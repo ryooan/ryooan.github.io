@@ -1,0 +1,160 @@
+body {
+	background-color: lavender;
+}
+
+.navul {
+  list-style-type: none;
+  margin: 0px 100px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #5BABE5;
+}
+
+.navli {
+  float: left;
+}
+
+.nava {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.postlinks:link {
+	color: #004F99;
+	text-decoration: none;
+}
+
+.postlinks:hover {
+	color: inherit;
+	background-color: inherit;
+}
+
+li a:hover {
+  background-color: #5396C6;
+}
+
+.left {
+	background-color: cyan;
+	color: black;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	float: left;
+	width: 70%;
+	word-wrap: break-word;
+}
+
+.sidebar {
+	background-color: salmon;
+	color: black;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	overflow: hidden;
+}
+
+.image {
+	width: 40%;
+	float: left;
+}
+
+.description {
+	overflow:hidden;
+	margin: 0px;
+	padding: 0px 5%;
+}
+
+.container {
+	background-color: white;
+	color: black;
+	margin: 10px 100px;
+	padding: 5px 0px;
+	overflow: hidden;
+}
+
+.posts {
+	list-style: none;
+	padding-left: 0;
+}
+
+.posts2 {
+	list-style: none;
+	padding-left: 0;
+}
+
+.post {
+	background-color: white;
+	word-wrap: break-word;
+}
+
+h2.blog {
+	font-size: 1.5em;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.collapsible:after {
+	content: "+";
+	float: right;
+}
+
+.active:after {
+	content: "-";
+	float: right;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.infinite-spinner {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #333;
+  margin: 60px auto;
+  
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes scaleout {
+  0% { -webkit-transform: scale(0.0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}

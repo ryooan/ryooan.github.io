@@ -1,0 +1,55 @@
+---
+layout: default
+title: Blog
+---
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/infinite-jekyll.js"></script>
+<div class="left">
+	<ul class="posts">
+  	{% for post in site.posts limit: 5 %}
+    		<li>
+      			<div class="post">
+				<h2 class="blog"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+				<p>{{ post.date | date_to_string }}</p>
+
+				{{ post.content }}
+			</div>
+    		</li>
+  	{% endfor %}
+	</ul>
+	<div class="infinite-spinner"></div>
+</div>
+
+<div class="sidebar">
+	{% for post in site.posts %}
+  		{% assign currentdate = post.date | date: "%Y" %}
+  		{% if currentdate != date %}
+    			{% unless forloop.first %}</ul></div>{% endunless %}
+			<button class="collapsible">{{ currentdate }}</button>
+			<div class="content">
+    			<ul class="posts2">
+    			{% assign date = currentdate %}
+  		{% endif %}
+    			<li><a href="{{ post.url }}" class="postlinks">{{ post.title }}</a></li>
+  		{% if forloop.last %}</ul></div>{% endif %}
+	{% endfor %}
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+  			coll[i].addEventListener("click", function() {
+    			this.classList.toggle("active");
+    			var content = this.nextElementSibling;
+   			if (content.style.display === "block") {
+      				content.style.display = "none";
+    			} else {
+      			content.style.display = "block";
+    			}
+  			});
+		}
+	</script>
+
+</div>
+
