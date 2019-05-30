@@ -68,7 +68,7 @@ li a:hover {
 .container {
 	background-color: white;
 	color: black;
-	margin: 10px 100px;
+	margin: 10px 10%;
 	padding: 5px 0px;
 	overflow: hidden;
 }
