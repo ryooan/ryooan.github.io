@@ -57,6 +57,7 @@ li a:hover {
 .image {
 	width: 50%;
 	float: left;
+	margin: 0px 5px 5px 0px;
 }
 
 .description {
