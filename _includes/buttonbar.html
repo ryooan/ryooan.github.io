@@ -1,0 +1,45 @@
+<div class="sidebar">
+	<button class = "collapsible">Navigate Blog</button>
+	<div class="content">
+		<button class = "collapsible">Tags</button>
+			<div class="content">
+			<ul class="posts2">
+			<li><a href="/blog.html" class="postlinksblog">all</a></li>
+			{% for tag in site.tags %}
+				<li><a href="/tags/{{ tag[0] }}.html" class="postlinksblog">{{ tag[0] }}</a></li>
+			{% endfor %}
+			</ul>
+			</div>
+
+	{% for post in site.posts %}
+  		{% assign currentdate = post.date | date: "%Y" %}
+  		{% if currentdate != date %}
+    			{% unless forloop.first %}</ul></div>{% endunless %}
+			<button class="collapsible">{{ currentdate }}</button>
+			<div class="content">
+    			<ul class="posts2">
+    			{% assign date = currentdate %}
+  		{% endif %}
+    			<li><a href="{{ post.url }}" class="postlinksblog">{{ post.title }}</a></li>
+  		{% if forloop.last %}</ul></div>{% endif %}
+	{% endfor %}
+	</div>
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+  			coll[i].addEventListener("click", function() {
+    			this.classList.toggle("active");
+    			var content = this.nextElementSibling;
+   			if (content.style.display === "block") {
+      				content.style.display = "none";
+    			} else {
+      			content.style.display = "block";
+    			}
+  			});
+		}
+	</script>
+
+</div>

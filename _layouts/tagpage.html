@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/infinite-jekyll-tags.js"></script>
+
+<!-- used for mobile display -->
+{% include buttonbar.html %}
+
+<div class="left">
+
+	<h1>{{ page.tag }}</h1>
+
+	<ul class="posts">
+  	{% for post in site.tags[page.tag] limit: 5 %}
+    		<li>
+      			<div class="post">
+				<h1 class="blog"><a href="{{ post.url }}" class="headerlink">{{ post.title }}</a></h1>
+				<p>{{ post.date | date_to_string }}</p>
+
+				{{ post.content }}
+			</div>
+    		</li>
+  	{% endfor %}
+	</ul>
+	<div class="infinite-spinner"></div>
+</div>

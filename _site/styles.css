@@ -1,33 +1,172 @@
+/* NEED TO DESIGN FOR MOBILE FIRST */
+/* SET UP FOR MOBILE AND ADD MEDIA QUERIES TO */
+/* FIX PROBLEMS OR REARRANGE AS SCREEN GETS LARGER */
+/* FIX MIN-WIDTH BASED ON SCREEN SIZE SO NO */
+/* HORIZONTAL SCROLL HAPPENS EXCEPT WHEN ZOOMING */
+
 body {
-	background-color: lavender;
+	/* background-color: lavender; */
+	background-image: url("/images/Cover.PNG");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-attachment: fixed;
+}
+
+h1 {
+	font-size: 1.25em;
+	font-weight: 900;
+}
+
+h2 {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.pheader {
+	font-size: 1.15em;
+	font-weight: bold;
+	margin: 0.67em 0em 0.67em 0em;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.4em;
+	margin: 0em 0em 1em 0em;
+}
+
+.navwrapper {
+	text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+	.navwrapper {
+		margin: 0px 10%;
+		text-align: left;
+	}
 }
 
 .navul {
-  list-style-type: none;
-  margin: 0px 100px;
-  padding: 0;
-  overflow: hidden;
-  background-color: #5BABE5;
+	display: inline-block;
+  	list-style-type: none;
+  	margin: 0px 0px;
+  	padding: 0;
+  	overflow: hidden;
+	background-color: #5BABE5;
+	width: 100%;
+}
+
+
+/* for desktop */
+@media screen and (min-width: 600px) {
+	.navul {
+		display: inline-block;
+  		list-style-type: none;
+  		padding: 0;
+  		overflow: hidden;
+	}
 }
 
 .navli {
-  float: left;
+  	display: inline-block;
 }
 
 .nava {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  	display: block;
+  	color: white;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+	font-size: 1.2em;
 }
 
+/* mobile */
+.title {
+	display: inline-block;
+	margin: 0;
+}
+
+/* desktop */
+@media screen and (min-width: 600px) {
+	.title {
+		margin: 0 10%;
+	}
+}
+
+.name {
+	float: left;
+	width: 50%;
+}
+
+/* for mobile */
+.social {
+	width: 25%;
+	display: flex;
+	float: right;
+	padding: 2% 0 0 0;
+}
+
+/* for desktop */
+@media screen and (min-width: 600px) {
+	.social {
+		width: 15%;
+		display: flex;
+		float: right;
+		padding: 4% 0 0 0;
+	}
+}
+
+.soca {
+  	display: block;
+  	text-align: center;
+  	padding: 0px 0px;
+	margin: 0 10%;
+  	text-decoration: none;
+}
+
+.icon {
+	width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+.img1 { flex: 1.0084; }
+.img2 { flex: 1.2255; }
+.img3 { flex: 0.6371; }
+.img4 { flex: 1.2663; }
+
+/* styles the list of links on home page */
 .postlinks:link {
+	color: #004F99;
+	text-decoration: none;
+	line-height: 2em;
+	font-size: 1.1em;
+}
+
+.postlinks:hover {
+	color: inherit;
+	background-color: inherit;
+}
+
+/* styles the list of links on blog page */
+.postlinksblog:link {
+	color: #004F99;
+	text-decoration: none;
+	line-height: 1em;
+	font-size: 1.1em;
+}
+
+.postlinksblog:hover {
+	color: inherit;
+	background-color: inherit;
+}
+
+/* styles blog header links */
+.headerlink:link {
 	color: #004F99;
 	text-decoration: none;
 }
 
-.postlinks:hover {
+.headerlink:hover {
 	color: inherit;
 	background-color: inherit;
 }
@@ -42,35 +181,90 @@ li a:hover {
 	margin: 0px 0px;
 	padding: 0px 0px;
 	float: left;
-	width: 70%;
+	width: 100%;
 	word-wrap: break-word;
 }
 
-.sidebar {
+@media screen and (min-width: 600px) {
+	.left {
+		width: 70%;
+	}
+}
+
+/* used for home page /*
+.sidebarhome {
+	float: left;
 	background-color: salmon;
 	color: black;
 	margin: 0px 0px;
 	padding: 0px 0px;
 	overflow: hidden;
+	width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+	.sidebarhome {
+		float: left;
+	}
+}
+
+/* used for blogs and posts mobile */
+.sidebar {
+	float: right;
+	background-color: salmon;
+	color: black;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	overflow: hidden;
+	width: 100%;
+}
+
+/* used for blogs and posts desktop */
+@media screen and (min-width: 600px) {
+	.sidebar {
+		width: 30%;
+	}
 }
 
 .image {
-	width: 40%;
-	float: left;
+	width: 12em;
+	float: right;
+	margin: 0px 0px 0px 1.5em;
+}
+
+@media screen and (max-width: 350px) {
+	.image {
+		width: 50%;
+		margin: 0px 0px 0px 5%;
+	}
+}
+
+@media screen and (max-width: 700px) and (min-width: 600px) {
+	.image {
+		width: 50%;
+		margin: 0px 0px 0px 5%;
+	}
 }
 
 .description {
 	overflow:hidden;
 	margin: 0px;
-	padding: 0px 5%;
+	padding: 0% 6% 0% 1%;
 }
 
 .container {
 	background-color: white;
 	color: black;
-	margin: 10px 100px;
+	margin: 0px 0px;
 	padding: 5px 0px;
 	overflow: hidden;
+}
+
+/* for desktop */
+@media screen and (min-width: 600px) {
+	.container {
+		margin: 0px 10%;
+	}
 }
 
 .posts {
@@ -81,6 +275,7 @@ li a:hover {
 .posts2 {
 	list-style: none;
 	padding-left: 0;
+	margin: 0.5em 0em 0.5em 0em;
 }
 
 .post {
@@ -88,7 +283,7 @@ li a:hover {
 	word-wrap: break-word;
 }
 
-h2.blog {
+h1.blog {
 	font-size: 1.5em;
 }
 
@@ -122,10 +317,28 @@ h2.blog {
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
-  padding: 0 18px;
+  padding: 0 0 0 5%;
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+}
+
+.PageNavigation {
+  	float: right;
+  	width: 100%;
+  	overflow: hidden;
+}
+
+.PageNavigation a {
+  	display: block;
+  	width: 50%;
+  	float: left;
+  	margin: 1em 0;
+}
+
+.PageNavigation .next {
+  	text-align: right;
+	float: right;
 }
 
 .infinite-spinner {

@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+tags: [politics,science]
 ---
 Here's my first post to test out the blog.
 

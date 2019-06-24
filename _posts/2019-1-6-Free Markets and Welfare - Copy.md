@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+tags: [politics]
 ---
 If you believe in free markets then you believe in creative destruction, the loss of businesses that lose out to better businesses. That means constant job loss and it means some regions and areas may struggle. To make a free market as efficient as possible, we need strong welfare benefits so that workers have the resources to get back into the workforce.
 

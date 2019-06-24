@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+tags: [politics]
 ---
 Here's my second post.
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+tags: [writing]
 ---
 The topic of my last poll came from an article by John Searle where he brings up the Chinese room example (I originally heard about it from Javin, I'm really glad you mentioned it to me because it's super interesting and I'm curious to hear your thoughts on it). The short version is that Searle doesn't believe a computer could ever be said to actually think, or to experience consciousness. His hypothetical experiment is very convincing, I'm not going to describe it here but I highly recommend reading it (http://cogprints.org/7150/1/10.1.1.83.5248.pdf). If you want the extra short version check wikipedia.
 

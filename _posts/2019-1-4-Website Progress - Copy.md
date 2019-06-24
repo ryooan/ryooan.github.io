@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+tags: [science, politics]
 ---
 I'm working on laying out and formatting divs.
 
