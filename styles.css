@@ -6,6 +6,7 @@
 
 body {
 	/* background-color: lavender; */
+        height: 100%;
 	background-image: url("/images/Cover.PNG");
 	background-repeat: no-repeat;
 	background-size: cover;
