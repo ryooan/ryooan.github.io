@@ -1,0 +1,26 @@
+---
+layout: default
+title: Works
+---
+
+<div class="books">
+	<div class="booklisting">
+		<div class="workimage">
+			<a href="/works/SEER.html" class="workimglink"><img class="bookimage" src="/images/Cover.PNG" alt="SEER"></a>
+
+			<a href="/works/SEER.html" class="workslink">SEER</a>
+		</div>
+	</div>
+</div>
+
+<div class="homeright">
+	<p class="pheader">LATEST POSTS</p>
+
+	<ul class="posts2">
+		{% for post in site.posts limit: 10 %}
+    			<li class="lipostlinks">
+      				<a href="{{ post.url }}" class="postlinks">{{ post.title }}</a>
+    			</li>
+  		{% endfor %}
+	</ul>
+</div>

@@ -1,7 +1,7 @@
 - name: Home
   link: /
-- name: Books
-  link: /books.html
+- name: Works
+  link: /works.html
 - name: Blog
   link: /blog.html
 - name: About

@@ -8,8 +8,9 @@ body {
 	/* background-color: lavender; */
 	background-image: url("/images/Cover.PNG");
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
 	background-attachment: fixed;
+	background-position: center;
 }
 
 h1 {
@@ -95,6 +96,7 @@ p {
 .name {
 	float: left;
 	width: 50%;
+	max-width: 350px;
 }
 
 /* for mobile */
@@ -111,7 +113,7 @@ p {
 		width: 15%;
 		display: flex;
 		float: right;
-		padding: 4% 0 0 0;
+		padding: 1em 0 0 0;
 	}
 }
 
@@ -134,11 +136,16 @@ p {
 .img3 { flex: 0.6371; }
 .img4 { flex: 1.2663; }
 
+/* styles list on homepage */
+.lipostlinks {
+	margin: 1em 0;
+}
+
 /* styles the list of links on home page */
 .postlinks:link {
 	color: #004F99;
 	text-decoration: none;
-	line-height: 2em;
+	line-height: 1.4em;
 	font-size: 1.1em;
 }
 
@@ -176,7 +183,7 @@ li a:hover {
 }
 
 .left {
-	background-color: cyan;
+	background-color: ;
 	color: black;
 	margin: 0px 0px;
 	padding: 0px 0px;
@@ -191,20 +198,21 @@ li a:hover {
 	}
 }
 
-/* used for home page /*
-.sidebarhome {
-	float: left;
-	background-color: salmon;
+/* used for home page */
+.homeright {
+	float: right;
+	background-color: inherit;
 	color: black;
-	margin: 0px 0px;
-	padding: 0px 0px;
+	margin: 0;
+	padding: 0 1% 0 1%;
 	overflow: hidden;
-	width: 100%;
+	width: 98%;
 }
 
 @media screen and (min-width: 600px) {
-	.sidebarhome {
+	.homeright {
 		float: left;
+		width: 28%;
 	}
 }
 
@@ -213,7 +221,7 @@ li a:hover {
 	float: right;
 	background-color: salmon;
 	color: black;
-	margin: 0px 0px;
+	margin: 0;
 	padding: 0px 0px;
 	overflow: hidden;
 	width: 100%;
@@ -223,6 +231,7 @@ li a:hover {
 @media screen and (min-width: 600px) {
 	.sidebar {
 		width: 30%;
+		margin: 1em 0 0 0;
 	}
 }
 
@@ -278,13 +287,24 @@ li a:hover {
 	margin: 0.5em 0em 0.5em 0em;
 }
 
+/* formatting for blog posts in lists and individual */
 .post {
 	background-color: white;
 	word-wrap: break-word;
+	margin: 1em 0.25em;
+	padding: 1em;
+	border-style: groove;
+}
+
+@media screen and (min-width: 600px) {
+	.post {
+		margin: 1em 1em;
+	}
 }
 
 h1.blog {
 	font-size: 1.5em;
+	margin: 0;
 }
 
 /* Style the button that is used to open and close the collapsible content */
@@ -324,14 +344,13 @@ h1.blog {
 }
 
 .PageNavigation {
-  	float: right;
-  	width: 100%;
   	overflow: hidden;
+	margin: 0 1em;
 }
 
 .PageNavigation a {
   	display: block;
-  	width: 50%;
+  	width: 20%;
   	float: left;
   	margin: 1em 0;
 }
@@ -340,6 +359,34 @@ h1.blog {
   	text-align: right;
 	float: right;
 }
+
+.books {
+	float: left;
+	width: 50%;
+}
+
+.booklisting {
+	
+}
+
+.workimage {
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.workimglink {
+}
+
+.bookimage {
+	width: 100%;
+}
+
+.workslink {
+	font-height: 2em;
+}
+
 
 .infinite-spinner {
   display: block;

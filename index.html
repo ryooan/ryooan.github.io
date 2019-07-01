@@ -21,12 +21,12 @@ title: Ryan Beck, Author
 	</div>
 </div>
 
-<div class="sidebarhome">
+<div class="homeright">
 	<p class="pheader">LATEST POSTS</p>
 
 	<ul class="posts2">
 		{% for post in site.posts limit: 10 %}
-    			<li>
+    			<li class="lipostlinks">
       				<a href="{{ post.url }}" class="postlinks">{{ post.title }}</a>
     			</li>
   		{% endfor %}

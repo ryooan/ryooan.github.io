@@ -6,19 +6,19 @@ layout: default
 {% include buttonbar.html %}
 
 <div class="left">
+	<div class="PageNavigation">
+		{% if page.previous.url %}
+    			<a class="prev" href="{{page.previous.url}}">&laquo; Previous</a>
+ 		{% endif %}
+  		{% if page.next.url %}
+    			<a class="next" href="{{page.next.url}}">Next &raquo;</a>
+  		{% endif %}
+	</div>
+
 	<div class="post">
 		<h1 class="blog"><a href="{{ page.url }}" class="headerlink">{{ page.title }}</a></h1>
 		<p>{{ page.date | date_to_string }}</p>
 
 		{{ content }}
 	</div>
-</div>
-
-<div class="PageNavigation">
-	{% if page.previous.url %}
-    		<a class="prev" href="{{page.previous.url}}">&laquo; Previous</a>
- 	{% endif %}
-  	{% if page.next.url %}
-    		<a class="next" href="{{page.next.url}}">Next &raquo;</a>
-  	{% endif %}
 </div>
