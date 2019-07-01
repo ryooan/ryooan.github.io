@@ -10,8 +10,8 @@ html {
 
 body {
 	/* background-color: lavender; */
-        height: 100vh;
-        min-height: 100vh;
+        height: 100%;
+        min-height: 100%;
 	background-image: url("/images/Cover.PNG");
 	background-repeat: no-repeat;
 	background-size: cover;
