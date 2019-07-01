@@ -4,6 +4,10 @@
 /* FIX MIN-WIDTH BASED ON SCREEN SIZE SO NO */
 /* HORIZONTAL SCROLL HAPPENS EXCEPT WHEN ZOOMING */
 
+html {
+	height: 100%;	
+}
+
 body {
 	/* background-color: lavender; */
 	background-image: url("/images/Cover.PNG");
