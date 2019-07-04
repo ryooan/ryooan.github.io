@@ -4,6 +4,7 @@
 /* FIX MIN-WIDTH BASED ON SCREEN SIZE SO NO */
 /* HORIZONTAL SCROLL HAPPENS EXCEPT WHEN ZOOMING */
 
+
 html {
 	background: url("/images/Cover.PNG") no-repeat center center fixed; 
   	-webkit-background-size: cover;
@@ -32,15 +33,36 @@ h1 {
 	font-weight: 900;
 }
 
+.mainheader {
+	border-bottom: 1px solid;
+}
+
+.tag {
+	margin: 0.67em 0.67em 0.67em 1em;
+}
+
 h2 {
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
+.worktitles {
+	margin: 0 0.67em 0 0;
+	color: #5BABE5;
+}
+
 .pheader {
 	font-size: 1.15em;
 	font-weight: bold;
-	margin: 0.67em 0em 0.67em 0em;
+	line-height: 1.2em;
+	margin: 0.96em 0em 0.67em 0em;
+	border-bottom: 1px solid;
+}
+
+@media screen and (min-width: 600px) {
+	.pheader {
+		border-bottom: none;
+	}
 }
 
 p {
@@ -116,7 +138,6 @@ p {
 /* for mobile */
 .social {
 	width: 25%;
-	display: flex;
 	float: right;
 	padding: 2% 0 0 0;
 }
@@ -125,10 +146,13 @@ p {
 @media screen and (min-width: 600px) {
 	.social {
 		width: 15%;
-		display: flex;
-		float: right;
 		padding: 1em 0 0 0;
 	}
+}
+
+.socblock {
+	width: 100%;
+	display: flex;
 }
 
 .soca {
@@ -182,13 +206,30 @@ p {
 }
 
 /* styles blog header links */
+.headerlink {
+	color: #5BABE5;
+}
+
 .headerlink:link {
-	color: #004F99;
 	text-decoration: none;
 }
 
 .headerlink:hover {
 	color: inherit;
+	background-color: inherit;
+}
+
+/* styles work titles header links */
+.worklinks {
+	color: inherit;
+}
+
+.worklinks:link {
+	text-decoration: none;
+}
+
+.worklinks:hover {
+	color: black;
 	background-color: inherit;
 }
 
@@ -214,19 +255,21 @@ li a:hover {
 
 /* used for home page */
 .homeright {
-	float: right;
+	float: left;
 	background-color: inherit;
 	color: black;
-	margin: 0;
-	padding: 0 1% 0 1%;
+	padding: 0 1em 0 1em;
 	overflow: hidden;
-	width: 98%;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 @media screen and (min-width: 600px) {
 	.homeright {
-		float: left;
 		width: 28%;
+		padding: 0;
+		margin: 0;
+		padding: 0 1% 0 1%;
 	}
 }
 
@@ -252,7 +295,7 @@ li a:hover {
 .image {
 	width: 12em;
 	float: right;
-	margin: 0px 0px 0px 1.5em;
+	margin: 0.67em 0 0 1.5em;
 }
 
 @media screen and (max-width: 350px) {
@@ -270,9 +313,15 @@ li a:hover {
 }
 
 .description {
-	overflow:hidden;
+	overflow: hidden;
 	margin: 0px;
-	padding: 0% 6% 0% 1%;
+	padding: 0 1em 0 1em;
+}
+
+@media screen and (min-width: 600px) {
+	.description {
+		padding: 0 6% 0 1em;
+	}
 }
 
 .container {
@@ -376,7 +425,28 @@ h1.blog {
 
 .books {
 	float: left;
-	width: 50%;
+	width: 100%;
+	padding: 0 1em 1em 1em;
+	box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+	.books {
+		width: 50%;
+	}
+}
+
+.stories {
+	float: left;
+	width: 100%;
+	padding: 0 1em 1em 1em;
+	box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+	.stories {
+		width: 50%;
+	}
 }
 
 .booklisting {
@@ -384,13 +454,13 @@ h1.blog {
 }
 
 .workimage {
-	width: 25%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	width: 30%;
+	float: left;
+	margin: 0 0.67em 0.67em 0;
 }
 
 .workimglink {
+
 }
 
 .bookimage {
@@ -399,6 +469,11 @@ h1.blog {
 
 .workslink {
 	font-height: 2em;
+}
+
+.shortblurb {
+	float: left;
+	width: 60%;
 }
 
 

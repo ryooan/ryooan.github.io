@@ -4,23 +4,29 @@ title: Works
 ---
 
 <div class="books">
+	<h1 class="mainheader">BOOKS</h1>
 	<div class="booklisting">
 		<div class="workimage">
 			<a href="/works/SEER.html" class="workimglink"><img class="bookimage" src="/images/Cover.PNG" alt="SEER"></a>
+		</div>
 
-			<a href="/works/SEER.html" class="workslink">SEER</a>
+		<div class="shortblurb">
+			<h2 class="worktitles"><a href="/works/SEER.html" class="worklinks">SEER</a></h2>
+			<p>This is my short blurb for my new book SEER. Check it out.</p>
 		</div>
 	</div>
 </div>
 
-<div class="homeright">
-	<p class="pheader">LATEST POSTS</p>
+<div class="stories">
+	<h1 class="mainheader">SHORT STORIES</h1>
+	<div class="booklisting">
+		<div class="workimage">
+			<a href="/works/NotHuman.html" class="workimglink"><img class="bookimage" src="/images/Cover.PNG" alt="SEER"></a>
+		</div>
 
-	<ul class="posts2">
-		{% for post in site.posts limit: 10 %}
-    			<li class="lipostlinks">
-      				<a href="{{ post.url }}" class="postlinks">{{ post.title }}</a>
-    			</li>
-  		{% endfor %}
-	</ul>
+		<div class="shortblurb">
+			<h2 class="worktitles"><a href="/works/NotHuman.html" class="worklinks">Not Human</a></h2>
+			<p>This is my short blurb for my new short story Not Human. Check it out.</p>
+		</div>
+	</div>
 </div>

@@ -51,7 +51,7 @@ title: Blog
     		<li>
       			<div class="post">
 				<h1 class="blog"><a href="{{ post.url }}" class="headerlink">{{ post.title }}</a></h1>
-				<p>{{ post.date | date_to_string }}</p>
+				<p>{{ post.date | date: '%B %d, %Y' }}</p>
 
 				{{ post.content }}
 			</div>
