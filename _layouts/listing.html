@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="mainlisting">
+	<div>
+		<div class="listingimage">
+			<a href="{{ page.getlink }}"><img class="bookimage" src="{{ page.imagepath }}" alt="{{ page.listingname }}"></a>
+		</div>
+
+		<!-- displays on desktop -->
+		<div class="longblurb">
+			<h1 class="listingtitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.listingname }}</a></h2>
+			{{ content }}
+			<div class="moreinfo">
+				<h2 class="worktitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.howtoget }}</a></h2>
+			</div>
+		</div>
+	</div>
+
+	<!-- displays on mobile -->
+	<div class="longblurb2">
+		<h1 class="listingtitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.listingname }}</a></h2>
+		{{ content }}
+		<div class="moreinfo">
+			<h2 class="worktitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.howtoget }}</a></h2>
+		</div>
+	</div>
+</div>

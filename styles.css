@@ -51,6 +51,11 @@ h2 {
 	color: #5BABE5;
 }
 
+.secondheader {
+	margin: 0 0.67em 0.25em 0;
+	color: #5BABE5;
+}
+
 .pheader {
 	font-size: 1.15em;
 	font-weight: bold;
@@ -111,14 +116,27 @@ p {
   	display: block;
   	color: white;
   	text-align: center;
-  	padding: 14px 16px;
+  	padding: 8px 4px;
   	text-decoration: none;
-	font-size: 1.2em;
+	font-size: 1em;
+}
+
+@media screen and (min-width: 400px) {
+	.nava {
+  		padding: 10px 10px;
+		font-size: 1.1em;
+	}
+}
+
+@media screen and (min-width: 475px) {
+	.nava {
+  		padding: 14px 16px;
+		font-size: 1.2em;
+	}
 }
 
 /* mobile */
 .title {
-	display: inline-block;
 	margin: 0;
 }
 
@@ -138,14 +156,15 @@ p {
 /* for mobile */
 .social {
 	width: 25%;
-	float: right;
 	padding: 2% 0 0 0;
+	float: right;
+	max-width: 150px;
 }
 
 /* for desktop */
 @media screen and (min-width: 600px) {
 	.social {
-		width: 15%;
+		width: 20%;
 		padding: 1em 0 0 0;
 	}
 }
@@ -413,7 +432,7 @@ h1.blog {
 
 .PageNavigation a {
   	display: block;
-  	width: 20%;
+  	width: 40%;
   	float: left;
   	margin: 1em 0;
 }
@@ -449,18 +468,10 @@ h1.blog {
 	}
 }
 
-.booklisting {
-	
-}
-
 .workimage {
 	width: 30%;
 	float: left;
 	margin: 0 0.67em 0.67em 0;
-}
-
-.workimglink {
-
 }
 
 .bookimage {
@@ -476,6 +487,62 @@ h1.blog {
 	width: 60%;
 }
 
+.mainlisting {
+	float: left;
+	width: 100%;
+	padding: 1em 1em 1em 1em;
+	box-sizing: border-box;
+}
+
+.listingimage {
+	width: 50%;
+	box-sizing: border-box;
+	margin: auto;
+	padding: 0 0 1em 0;
+}
+
+@media screen and (min-width: 600px) {
+	.listingimage {
+		float: left;
+		width: 35%;
+		margin: 0;
+		padding: 0 2em 1em 0;
+	}
+}
+
+.longblurb {
+	display: none;
+}
+
+@media screen and (min-width: 600px) {
+	.longblurb {
+		display: initial;
+		float: left;
+		width: 65%;
+	}
+}
+
+.longblurb2 {
+	display: initial;
+	float: left;
+	width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+	.longblurb2 {
+		display: none;
+	}
+}
+
+.listingtitles {
+	font-size: 2em;
+	margin: 0 0.67em 0 0;
+	color: #5BABE5;
+}
+
+.moreinfo {
+	margin: 1em 1em 1em 0;
+}
 
 .infinite-spinner {
   display: block;
