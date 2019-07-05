@@ -116,14 +116,14 @@ p {
   	display: block;
   	color: white;
   	text-align: center;
-  	padding: 8px 4px;
+  	padding: 12px 4px;
   	text-decoration: none;
 	font-size: 1em;
 }
 
 @media screen and (min-width: 400px) {
 	.nava {
-  		padding: 8px 8px;
+  		padding: 12px 8px;
 		font-size: 1em;
 	}
 }
