@@ -123,8 +123,8 @@ p {
 
 @media screen and (min-width: 400px) {
 	.nava {
-  		padding: 10px 10px;
-		font-size: 1.1em;
+  		padding: 8px 8px;
+		font-size: 1em;
 	}
 }
 
