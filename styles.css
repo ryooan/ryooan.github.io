@@ -13,6 +13,8 @@ html {
   	background-size: cover;
 	height: 100vh;
 	max-width: 1500px;
+        margin: 0:
+        padding: 0;
 }
 
 body {
@@ -27,6 +29,8 @@ body {
     	-o-background-size: cover;
 	height: 100vh;
 	*/
+        margin: 0;
+        padding: 0;
 }
 
 h1 {
