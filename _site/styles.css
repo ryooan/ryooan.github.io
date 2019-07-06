@@ -12,6 +12,9 @@ html {
   	-o-background-size: cover;
   	background-size: cover;
 	height: 100vh;
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 0;
 }
 
 body {
@@ -26,6 +29,8 @@ body {
     	-o-background-size: cover;
 	height: 100vh;
 	*/
+	margin: 0;
+	padding: 0;
 }
 
 h1 {
@@ -116,14 +121,14 @@ p {
   	display: block;
   	color: white;
   	text-align: center;
-  	padding: 8px 4px;
+  	padding: 12px 4px;
   	text-decoration: none;
 	font-size: 1em;
 }
 
 @media screen and (min-width: 400px) {
 	.nava {
-  		padding: 8px 8px;
+  		padding: 12px 8px;
 		font-size: 1em;
 	}
 }
@@ -272,6 +277,22 @@ li a:hover {
 	}
 }
 
+.aboutleft {
+	background-color: ;
+	color: black;
+	margin: 0px 0px;
+	padding: 0px 0px;
+	float: left;
+	width: 100%;
+	word-wrap: break-word;
+}
+
+@media screen and (min-width: 600px) {
+	.aboutleft {
+		width: 60%;
+	}
+}
+
 /* used for home page */
 .homeright {
 	float: left;
@@ -286,6 +307,26 @@ li a:hover {
 @media screen and (min-width: 600px) {
 	.homeright {
 		width: 28%;
+		padding: 0;
+		margin: 0;
+		padding: 0 1% 0 1%;
+	}
+}
+
+.aboutright {
+	float: left;
+	background-color: inherit;
+	color: black;
+	padding: 0 1em 0 1em;
+	overflow: hidden;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+@media screen and (min-width: 600px) {
+	.aboutright {
+		float: right;
+		width: 38%;
 		padding: 0;
 		margin: 0;
 		padding: 0 1% 0 1%;
@@ -315,6 +356,24 @@ li a:hover {
 	width: 12em;
 	float: right;
 	margin: 0.67em 0 0 1.5em;
+}
+
+.headshot {
+	width: 8em;
+	float: left;
+	margin: 0 1em 0 0;
+}
+
+@media screen and (min-width: 600px) {
+	.headshot {
+		width: 8em;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.headshot {
+		width: 12em;
+	}
 }
 
 @media screen and (max-width: 350px) {
@@ -542,6 +601,24 @@ h1.blog {
 
 .moreinfo {
 	margin: 1em 1em 1em 0;
+}
+
+.copyrightcontainer {
+	position: relative;
+	min-height: 100vh;
+}
+
+.copyrightspacer {
+	margin: 1em 1em 1em 1em;
+}
+
+.copyright {
+	position: absolute;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	color: #DEE3E7;
 }
 
 .infinite-spinner {

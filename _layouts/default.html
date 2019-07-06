@@ -8,11 +8,19 @@
 	</head>
 
 	<body>
-		{% include top.html %}
-		{% include navigation.html %}
-		
-		<div class="container">
-			{{ content }}
+		<div class="copyrightcontainer">
+			{% include top.html %}
+			{% include navigation.html %}
+
+			<div class="container">
+				{{ content }}
+			</div>
+
+			<div class="copyrightspacer">
+				<div class="copyright">
+					<p>Copyright 2019 Ryan Beck</p>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
