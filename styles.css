@@ -267,7 +267,7 @@ li a:hover {
 }
 
 .left {
-	background-color: ;
+	background-color: inherit;
 	color: black;
 	margin: 0px 0px;
 	padding: 0px 0px;
@@ -283,7 +283,7 @@ li a:hover {
 }
 
 .aboutleft {
-	background-color: ;
+	background-color: inherit;
 	color: black;
 	margin: 0px 0px;
 	padding: 0px 0px;
@@ -540,10 +540,6 @@ h1.blog {
 
 .bookimage {
 	width: 100%;
-}
-
-.workslink {
-	font-height: 2em;
 }
 
 .shortblurb {
