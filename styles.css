@@ -17,6 +17,8 @@ html {
 	margin-bottom: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 body {
@@ -499,11 +501,16 @@ h1.blog {
   	width: 40%;
   	float: left;
   	margin: 1em 0;
+	color: #5BABE5;
 }
 
 .PageNavigation .next {
   	text-align: right;
 	float: right;
+}
+
+.PageNavigation a:visited {
+	color: #5BABE5;
 }
 
 .books {
