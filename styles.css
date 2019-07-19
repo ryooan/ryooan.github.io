@@ -6,7 +6,8 @@
 
 
 html {
-	background: #CBCECF url("/images/NotHumanBackground.jpg") no-repeat center center fixed; 
+	/* gray color that goes with SEER background #CBCECF */
+	background: #000000 url("/images/NotHumanBackground.jpg") no-repeat center center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
