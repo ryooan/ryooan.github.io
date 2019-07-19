@@ -585,14 +585,14 @@ h1.blog {
 
 @media screen and (min-width: 600px) {
 	.longblurb {
-		display: initial;
+		display: block;
 		float: left;
 		width: 65%;
 	}
 }
 
 .longblurb2 {
-	display: initial;
+	display: block;
 	float: left;
 	width: 100%;
 }
