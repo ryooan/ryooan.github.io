@@ -6,7 +6,7 @@
 
 
 html {
-	background: url("/images/Cover.PNG") no-repeat center center fixed; 
+	background: #CBCECF url("/images/NotHumanBackground.jpg") no-repeat center center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
@@ -38,6 +38,7 @@ body {
 	padding-top: 0;
 	padding-bottom: 0;
 	box-sizing: border-box;
+	opacity: 0.9;
 }
 
 h1 {
