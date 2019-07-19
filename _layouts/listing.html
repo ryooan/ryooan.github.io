@@ -3,20 +3,20 @@ layout: default
 ---
 
 <div class="mainlisting">
-	<div>
-		<div class="listingimage">
-			<a href="{{ page.getlink }}"><img class="bookimage" src="{{ page.imagepath }}" alt="{{ page.listingname }}"></a>
-		</div>
+	
+	<div class="listingimage">
+		<a href="{{ page.getlink }}"><img class="bookimage" src="{{ page.imagepath }}" alt="{{ page.listingname }}"></a>
+	</div>
 
-		<!-- displays on desktop -->
-		<div class="longblurb">
-			<h1 class="listingtitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.listingname }}</a></h1>
-			{{ content }}
-			<div class="moreinfo">
-				<h2 class="worktitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.howtoget }}</a></h2>
-			</div>
+	<!-- displays on desktop -->
+	<div class="longblurb">
+		<h1 class="listingtitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.listingname }}</a></h1>
+		{{ content }}
+		<div class="moreinfo">
+			<h2 class="worktitles"><a href="{{ page.getlink }}" class="worklinks">{{ page.howtoget }}</a></h2>
 		</div>
 	</div>
+	
 
 	<!-- displays on mobile -->
 	<div class="longblurb2">
