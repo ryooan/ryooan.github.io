@@ -1,6 +1,7 @@
 ---
 layout: post
 author: Ryan
+title: Not Human Cover Breakdown
 tags: [writing]
 ---
 I've always been a sucker for those videos that go layer by layer and show all the CGI that went into movie scenes, so I thought it would be fun to do something like that for my cover of Not Human.
