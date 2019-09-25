@@ -11,4 +11,4 @@ Making the skull look metal actually took a lot of time as well. I had to play a
 
 All of this was done in Gimp, which I've heard can do nearly anything photoshop can do except it's free. I've used Gimp some before, but this was by far the most elaborate work I've done in it. This was a fun project to do, and I'm sure people skilled in photo editing could have done it better, but it was really satisfying to do it for myself and learn some neat tricks along the way. I think it's pretty amazing that with the technology we have today an amateur like me can take two images and a metal gradient and end up with something like this.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/OcgqnP3r2J0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" src="https://www.youtube.com/embed/OcgqnP3r2J0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
