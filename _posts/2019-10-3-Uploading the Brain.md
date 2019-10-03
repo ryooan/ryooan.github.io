@@ -22,5 +22,5 @@ For all of the reasons above, I think it will be well over 100 years before we'r
 
 My understanding of biology and the current state of brain research is very limited, so be aware some of what I said above is probably inaccurate. But I definitely recommend checking out the OpenWorm website to read more about it, and the 3D fly brain is really cool as well. It's an exciting time to be alive, I hope within my lifetime we'll see a lot of progress made in this area.
 
-OpenWorm: <http://docs.openworm.org/en/latest/faq/>
+OpenWorm: <http://docs.openworm.org/en/latest/faq/>  
 Fly brain: <https://tinyurl.com/y4xf46w8>
