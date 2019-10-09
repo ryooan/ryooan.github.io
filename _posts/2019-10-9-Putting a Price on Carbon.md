@@ -10,5 +10,5 @@ Hey Republicans, are you concerned that cutting carbon emissions means damaging 
 
 Well you're in luck, because a carbon tax is perfect for everyone. Overwhelmingly supported by economists as the free market solution to climate change, a sufficiently sized carbon tax could cut our emissions in half in ten years with only minor impact on the economy. If you refund the revenue from the tax equally back into people's pockets, the least fortunate get more back than they pay in.
 
-Here's a neat tool that you can play with to show what effect certain carbon tax designs might have on carbon emissions and the economy. Seriously, everyone needs to be talking about putting a price on carbon and making sure our representatives know it's important. 
-https://www.rff.org/cpc/
+Here's a neat tool that you can play with to show what effect certain carbon tax designs might have on carbon emissions and the economy. Seriously, everyone needs to be talking about putting a price on carbon and making sure our representatives know it's important.  
+<https://www.rff.org/cpc/>
