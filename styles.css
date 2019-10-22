@@ -7,7 +7,7 @@
 
 html {
 	/* gray color that goes with SEER background #CBCECF */
-	background: #000000 url("/images/SEERbackground.jpg") no-repeat center center fixed; 
+	background: #000000 url("/images/SEERBackground.jpg") no-repeat center center fixed; 
   	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
