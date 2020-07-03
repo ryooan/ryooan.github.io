@@ -174,9 +174,9 @@ I don't expect everyone to agree with me, and it's perfectly reasonable not to. 
 Finally, if you ever want to restore your faith in America's institutions, read a Supreme Court case. Supreme Court opinions are logical, thoughtful, and address the relevant legal considerations and implications. Even if you ultimately disagree with one side, their arguments are usually grounded in logic and the law, and they often make very convincing points. They're human of course, so some arguments can be irrational or poorly reasoned, but in general I think there would be far more trust and far less extreme rhetoric regarding the Supreme Court if people made an effort to become more familiar with the cases they find concerning.
 
 <h1>LINKS</h1>
-PDF of Citizens United decision: <https://www.supremecourt.gov/opinions/09pdf/08-205.pdf>
-Text of BCRA: <https://www.congress.gov/bill/107th-congress/house-bill/2356/text>
-Information on BCRA and the limits it imposed on electioneering communications by corporations and unions: <https://www.law.cornell.edu/wex/bcra>
-Press exemption for expenditure limits, see 9-b-i: <https://www.law.cornell.edu/uscode/text/52/30101>
-Buckley v. Valeo Opinion: <https://supreme.justia.com/cases/federal/us/424/1/#tab-opinion-1951589>
-Austin v. Michigan Chamber of Commerce Opinion: <https://supreme.justia.com/cases/federal/us/494/652/>
+PDF of Citizens United decision: <https://www.supremecourt.gov/opinions/09pdf/08-205.pdf>  
+Text of BCRA: <https://www.congress.gov/bill/107th-congress/house-bill/2356/text>  
+Information on BCRA and the limits it imposed on electioneering communications by corporations and unions: <https://www.law.cornell.edu/wex/bcra>  
+Press exemption for expenditure limits, see 9-b-i: <https://www.law.cornell.edu/uscode/text/52/30101>  
+Buckley v. Valeo Opinion: <https://supreme.justia.com/cases/federal/us/424/1/#tab-opinion-1951589>  
+Austin v. Michigan Chamber of Commerce Opinion: <https://supreme.justia.com/cases/federal/us/494/652/>  
