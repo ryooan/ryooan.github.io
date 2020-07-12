@@ -12,9 +12,7 @@ description: Not Human, a science fiction short story by Ryan Beck.
 
 <p>Before</p>
 
-{% story = site.my_collection.stories.NotHuman.md %}
+{% assign story = site.stories | where_exp:"story", "story.title == 'Not Human'" | first %}
 {{ story.content }}
-
-<p>Test</p>
 
 <p>After</p>
