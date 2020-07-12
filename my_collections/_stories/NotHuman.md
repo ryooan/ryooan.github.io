@@ -6,7 +6,7 @@ title: Not Human
 
 ***
 
-## Not Human
+# Not Human
 
 Lisa sat alone in the lobby, her right leg bouncing up and down, her hands crossing and recrossing. She glanced at the door beside the receptionist's desk for the fifth time in the two minutes since she'd sat down. This time it opened.
 
