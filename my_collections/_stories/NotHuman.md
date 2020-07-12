@@ -4,6 +4,8 @@ title: Not Human
 
 ---
 
+###Not Human
+
 Lisa sat alone in the lobby, her right leg bouncing up and down, her hands crossing and recrossing. She glanced at the door beside the receptionist's desk for the fifth time in the two minutes since she'd sat down. This time it opened.
 
 "Hello Lisa, good to see you again," said the man who stepped through. "Are you ready to see her?"
@@ -72,7 +74,7 @@ Marie looked down at the floor. "Can... can I have some time to myself? To get u
 
 "Of course, Lisa. We'll see you in a few days."
 
-***
+<p align="center">&#916; &#916; &#916; &#916; &#916;</p>
 
 Two days later they were seated in the same room. This time Tim was on the side of the table by himself, with Lisa and Marie seated side by side across from him. The room was homier now, with a bed in the corner, a flatscreen TV mounted on the wall, and a few books on a newly added shelf.
 
