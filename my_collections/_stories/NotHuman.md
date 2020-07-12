@@ -76,7 +76,7 @@ Marie looked down at the floor. "Can... can I have some time to myself? To get u
 
 "Of course, Lisa. We'll see you in a few days."
 
-<p align="center">&#916;   &#916;   &#916;   &#916;   &#916;</p>
+<p align="center">&#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916;</p>
 
 Two days later they were seated in the same room. This time Tim was on the side of the table by himself, with Lisa and Marie seated side by side across from him. The room was homier now, with a bed in the corner, a flatscreen TV mounted on the wall, and a few books on a newly added shelf.
 
@@ -120,7 +120,7 @@ Marie's voice followed an instant later. "Prison."
 
 Tim looked up sharply. He cleared his throat. "Okay, let's stop there for the day. Marie, just try to unwind. Watch some TV, read a book. We'll pick up where we left off in a few days."
 
-<p align="center">&#916;   &#916;   &#916;   &#916;   &#916;</p>
+<p align="center">&#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916;</p>
 
 It was only a day later that Tim was again ushering Lisa to Marie's room. Though this time he wore a concerned expression on his face.
 
@@ -198,7 +198,7 @@ Tim nodded vigorously. "Absolutely, that will be top priority. I promise you we'
 
 Tim gazed at her for a few heartbeats, considering. "Okay," he said at last. "I promise. But everything will be fine when you come back next week. You'll see."
 
-<p align="center">&#916;   &#916;   &#916;   &#916;   &#916;</p>
+<p align="center">&#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916;</p>
 
 "Damn it, Tim, let me see her!" It had been a week, and when Lisa had not heard a word from Tim she had come down to the lab to see for herself. They were in the monitoring room but it was as far as Tim had let her go. Despite it being the middle of the day, on the monitors Marie's room was dark, the infrared image showing a shape seated at the table covered with a blanket. Tim was standing between Lisa and the door. The security guard was on her feet, watching the situation cautiously.
 
@@ -272,7 +272,7 @@ Marie stared at him silently for several seconds. Then she stood and walked slow
 
 Tim turned for the door. "Shut her down!" he yelled as he fumbled with the handle. That was as far as he got before a hand grasped him by the neck and his yelling was interrupted by a sickening crack.
 
-<p align="center">&#916;   &#916;   &#916;   &#916;   &#916;</p>
+<p align="center">&#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916; &nbsp; &nbsp; &nbsp; &#916;</p>
 
 "You sure she won't wake up?" the woman asked, walking cautiously toward the still form.
 
