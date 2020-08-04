@@ -10,7 +10,7 @@ In recent years several VPs have gone on to run for president and win the party 
 
 <img src="/assets/vice_president_full_table.png" width="100%" />
 
-<img src="/assets/vice_president_key.png" width="100%" />
+<img src="/assets/vice_president_key.png" width="50%" />
 
 As you can see there's a recent trend toward VPs becoming the party nominee in the future. A couple things surprised me about this table. One is that a lot of VPs and presidents died in office. Those are the rows in gray. This table also seems to point out the benefits of improved healthcare, as deaths of the VP or president appear to be less common now.
 
