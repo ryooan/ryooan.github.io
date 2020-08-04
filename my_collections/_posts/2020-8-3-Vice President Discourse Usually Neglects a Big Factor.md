@@ -8,7 +8,7 @@ Biden will be announcing his pick for vice president soon, and I think one aspec
 
 In recent years several VPs have gone on to run for president and win the party nomination. I wanted to look at this more closely and see how common it is and if there are any trends. So I looked at all 48 VPs to see if they sought the presidency after their VP term, whether they got the party nomination, and if they eventually won the presidency. See the first image for the table I put together summarizing that information (it's color coded to be more at a glance, see the second image for the key).
 
-![Vice Presidents and Future Attempts at the Presidency](/assets/vice_president_full_table.png)
+![Vice Presidents and Future Attempts at the Presidency](/assets/vice_president_full_table.png | width=100%)
 
 ![Key for Vice President Table](/assets/vice_president_key.png)
 
