@@ -8,9 +8,9 @@ Biden will be announcing his pick for vice president soon, and I think one aspec
 
 In recent years several VPs have gone on to run for president and win the party nomination. I wanted to look at this more closely and see how common it is and if there are any trends. So I looked at all 48 VPs to see if they sought the presidency after their VP term, whether they got the party nomination, and if they eventually won the presidency. See the first image for the table I put together summarizing that information (it's color coded to be more at a glance, see the second image for the key).
 
-![Vice Presidents and Future Attempts at the Presidency](/assets/vice_president_full_table.png | width=100%)
+<img src="/assets/vice_president_full_table.png" width="100%" />
 
-![Key for Vice President Table](/assets/vice_president_key.png)
+![Key for Vice President Table](/assets/vice_president_key.png | width="100%")
 
 As you can see there's a recent trend toward VPs becoming the party nominee in the future. A couple things surprised me about this table. One is that a lot of VPs and presidents died in office. Those are the rows in gray. This table also seems to point out the benefits of improved healthcare, as deaths of the VP or president appear to be less common now.
 
