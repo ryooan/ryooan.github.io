@@ -10,13 +10,13 @@ In recent years several VPs have gone on to run for president and win the party 
 
 <img src="/assets/vice_president_full_table.png" width="100%" />
 
-![Key for Vice President Table](/assets/vice_president_key.png | width="100%")
+<img src="/assets/vice_president_key.png" width="100%" />
 
 As you can see there's a recent trend toward VPs becoming the party nominee in the future. A couple things surprised me about this table. One is that a lot of VPs and presidents died in office. Those are the rows in gray. This table also seems to point out the benefits of improved healthcare, as deaths of the VP or president appear to be less common now.
 
 Another surprise was how recent the trend is for VPs to win the party nomination. It's a lot more common now than it used to be. It's become increasingly likely that a VP will go on to win the party nomination. See the third image for how successful VPs are at running for president and how often they choose to run.
 
-![Vice President Success Rates](/assets/vice_president_summary_table.png)
+<img src="/assets/vice_president_summary_table.png" width="100%" />
 
 I think there are a couple reasons this trend is happening. One big factor is that the presidential nominee has trended toward being chosen by the public instead of by party leaders. The first state primary was in the first decade of the 1900s. Prior to the prominence of primaries it was up to just the delegates to choose the presidential nominee at the convention, and the delegates were typically important members of the party. I think that as the public gained more control over who the nominee is, name recognition became a bigger factor. Party bosses would be more likely to know all the major players and their politics, so they have a larger pool of favorites to pick from. Your regular citizen might know only the big names and want someone familiar to them.
 
