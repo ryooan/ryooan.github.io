@@ -90,7 +90,8 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 1% - A state that went to Biden ends up going to Trump as a result of a recount or court decision  
 35% - Democrats win a majority in the Senate in 2020 (50 seats plus Harris as tiebreaker)  
 
-<h1>NOTES</h1>  
+<h1>Notes</h1>  
+
 *Why am I so uncertain on getting some of these things done even if Democrats win the Senate?*  
 Because the filibuster exists and I think it's unlikely Democrats get rid of it even with control of the Senate, which makes it very difficult for them to pass legislation they want to pass.  
 
@@ -100,7 +101,8 @@ Because no president gets what they want and I wanted to set the bar for the que
 *Why did I pick these questions and issues?*  
 Mostly I just focused on the bigger issues and things that will have a clear yes or no resolution. Biden has tons of pretty specific proposals on his website, so I just picked some of the biggest or most controversial to keep things simple and the ones I think will have the most attention on them during his term. I also picked a few that I'm interested in and want to follow. Predicting things is a good way to keep track of what happens with them, it gives you a bigger incentive to follow up on their outcome.  
 
-<h1>SCORING</h1>
+<h1>Scoring</h1>
+
 The most common way of scoring predictions is with the Brier score. The Brier score is a measure of the difference between your forecast and the outcome. Like golf, a lower score is better. It's the difference between your forecast and reality squared. For example, if I predict a 70% chance that the sun rises tomorrow, and the sun does rise tomorrow, my Brier score would be (1 - 0.7)^2 + (0 - 0.3)^2 = 0.18. That equation represents my forecast of 70% that the sun rises minus the outcome of it rising (100%) plus my implied forecast of 30% that the sun doesn't rise minus the outcome of it not rising (0%). A perfect Brier score is zero. The worst Brier score is 2. The Brier score of guessing at random (50%) is 0.5, so to be better than random guessing your Brier score should be below 0.5.
 
 Note that there's another way to calculate the above Brier score which would be (1 - 0.7)^2 = 0.09. This method leaves out the implied 30% chance the other thing happens. Under this method random guessing equates to a Brier score of 0.25. I'm using the first method instead of this one just to be consistent with the way I'm used to seeing it.
