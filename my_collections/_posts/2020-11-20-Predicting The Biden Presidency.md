@@ -55,10 +55,10 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 15% - Enters the US into a new unauthorized war or conflict (US drone strikes or US soldiers performing combat operations would count, monetary support would not count, current example would be ongoing US activity in Yemen) :x:  
 99% - Rejoins the WHO :icecream:  
 75% - Rejoins the Iran nuclear deal :icecream:  
-65% - Fewer US troops in Iraq at end of Biden's term than at end of Trump's term* :icecream:  
-65% - Fewer US troops in Afghanistan at end of Biden's first term than at end of Trump's term* :icecream:  
+65% - Fewer US troops in Iraq at end of Biden's term than at end of Trump's term\* :icecream:  
+65% - Fewer US troops in Afghanistan at end of Biden's first term than at end of Trump's term\* :icecream:  
 
-*I'll base troops at end of Trump's term on his last order. If he orders a withdrawal that continues into Biden's term it'll be based on Trump's last order.
+\*I'll base troops at end of Trump's term on his last order. If he orders a withdrawal that continues into Biden's term it'll be based on Trump's last order.
 
 <b>CRIMINAL JUSTICE</b>  
 30% (60%) - Decriminalizes marijuana at the Federal level (removes jail time as punishment for first time possession of small amounts of marijuana, no longer goes on record) :icecream:  
@@ -91,13 +91,13 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 35% - Democrats win a majority in the Senate in 2020 (50 seats plus Harris as tiebreaker)  
 
 <h1>NOTES</h1>
-<i>Why am I so uncertain on getting some of these things done even if Democrats win the Senate?</i>  
+*Why am I so uncertain on getting some of these things done even if Democrats win the Senate?*  
 Because the filibuster exists and I think it's unlikely Democrats get rid of it even with control of the Senate, which makes it very difficult for them to pass legislation they want to pass.  
 
-<i>Why are some of these proposals less than what Biden has proposed, for example free college for families earning less than $100k instead of his $125k proposal or $500 billion for climate change instead of his $2 trillion proposal?</i>  
+*Why are some of these proposals less than what Biden has proposed, for example free college for families earning less than $100k instead of his $125k proposal or $500 billion for climate change instead of his $2 trillion proposal?*  
 Because no president gets what they want and I wanted to set the bar for the question at something more plausible to make it interesting. If I set his free college income limit at $125k but the final bill ends up at $110k I think most people would consider that being a goal fulfilled for Biden, even though he didn't get quite what he wanted.  
 
-<i>Why did I pick these questions and issues?</i>  
+*Why did I pick these questions and issues?*  
 Mostly I just focused on the bigger issues and things that will have a clear yes or no resolution. Biden has tons of pretty specific proposals on his website, so I just picked some of the biggest or most controversial to keep things simple and the ones I think will have the most attention on them during his term. I also picked a few that I'm interested in and want to follow. Predicting things is a good way to keep track of what happens with them, it gives you a bigger incentive to follow up on their outcome.  
 
 <h1>SCORING</h1>
