@@ -18,6 +18,8 @@ The closer to 0% or 100% the more confident I am, closer to 50% means less confi
 
 No emoji means I'm not certain enough of his stance to say one way or the other.
 
+<h1>Predictions</h1>
+
 <b>CLIMATE CHANGE</b>
 95% - Rejoins the Paris agreement (counts even if not ratified by Senate) :icecream:  
 0% (1%) - Bans fracking (defined as a direct blanket ban on all fracking) :x:  
