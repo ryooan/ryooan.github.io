@@ -8,6 +8,7 @@ I thought it would be interesting to predict what will happen under the Biden pr
 
 Here are my predictions of what will happen in Biden's first term. What do you think will happen? Feel free to copy some or all of these and make your own forecast and we can compare in four years.
 
+<h1>Methodology</h1>
 First a bit about how I'm doing the predictions. The Senate is still contested and Democrats could win control of it by winning both Georgia runoff seats. So the main percentage is my prediction with Republican control of the Senate. The number in parenthesis is my prediction if Democrats control the Senate. If there are no parenthesis I think it's something that doesn't depend on the Senate.
 
 The closer to 0% or 100% the more confident I am, closer to 50% means less confidence. Sometimes percentage probabilities can be difficult to think about, so it can help to think about other ways, such as a 25% chance is in 1 in 4 and 10% chance is 1 in 10. There's a way to score how you do on predictions that I'll discuss at the end of the post.
