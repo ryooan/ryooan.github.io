@@ -20,25 +20,25 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 
 <h1>Predictions</h1>
 
-<b>CLIMATE CHANGE</b>
+<b>CLIMATE CHANGE</b>  
 95% - Rejoins the Paris agreement (counts even if not ratified by Senate) :icecream:  
 0% (1%) - Bans fracking (defined as a direct blanket ban on all fracking) :x:  
 20% (60%) - Implements a carbon tax  
 10% (65%) - Passes significant climate legislation (I'm defining as a climate bill including at least $500 billion invested in climate change mitigation and related areas) :icecream:  
 
-<b>CORONAVIRUS</b>
+<b>CORONAVIRUS</b>  
 5% - Implements a mask mandate (defined as one that's legally enforceable or has a defined punishment. Still counts if later ruled unconstitutional)  
 95% - Implements a mask policy (one not federally enforceable, such as guidelines or incentives for states to implement mask mandates. Counts even if it's referred to as a mandate but not actually required or enforceable) :icecream:  
 85% (99%) - Passes a coronavirus relief bill providing $500 billion or more in relief and funding :icecream:  
 35% (65%) - Pass a coronavirus relief bill providing over $1 trillion in relief and funding and including stimulus checks (one bill of this size would also satisfy previous question) :icecream:  
 
-<b>IMMIGRATION</b>
+<b>IMMIGRATION</b>  
 95% - Increases refugee admissions to about where they were before Trump (I'm defining as a cap of 80k or higher maintained over most of the term) :icecream:  
 25% - Sets the refugee admissions cap to 200k or higher (about double Obama's 2017 cap, maintained over at least one year)  
 5% (20%) - Creates a legal pathway to citizenship (defining as a law passed by congress that would allow undocumented immigrants to eventually become citizens after meeting certain criteria) :icecream:  
 85% - Removes the travel ban (or Muslim ban) on more than half the countries currently barred from certain types of travel or immigration (archived link listing countries with prohibitions as of 11/19/2020: <https://web.archive.org/web/20201119223419/https://en.wikipedia.org/wiki/Executive_Order_13780)> :icecream:  
 
-<b>ECONOMY AND TRADE</b>
+<b>ECONOMY AND TRADE</b>  
 80% - Decreases average tariffs on China  
 90% - Decreases average tariffs on Canada and other allies  
 10% (60%) - Raises the corporate income tax :icecream:  
@@ -46,11 +46,11 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 5% (40%) - Raises the federal minimum wage to $15 an hour or more :icecream:  
 40% (35%) - Increases direct taxes on those making under $400,000 (I'm defining direct taxes as income, payroll, social security, etc. taxes paid directly by individuals, indirect taxes like an increase in the corporate tax resulting in lower wages or a carbon tax resulting in higher prices would not count) :x:  
 
-<b>HEALTHCARE</b>
+<b>HEALTHCARE</b>  
 20% (55%) - Passes a public option :icecream:  
 0% (3%) - Passes Medicare for All (defined as a single payer healthcare plan that covers all or nearly all healthcare costs) :x:  
 
-<b>FOREIGN POLICY</b>
+<b>FOREIGN POLICY</b>  
 3% - Enters the US into a new authorized war (counts regardless of how it was initiated, a war authorized by Congress either directly or with funding) :x:  
 15% - Enters the US into a new unauthorized war or conflict (US drone strikes or US soldiers performing combat operations would count, monetary support would not count, current example would be ongoing US activity in Yemen) :x:  
 99% - Rejoins the WHO :icecream:  
@@ -60,31 +60,31 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 
 *I'll base troops at end of Trump's term on his last order. If he orders a withdrawal that continues into Biden's term it'll be based on Trump's last order.
 
-<b>CRIMINAL JUSTICE</b>
+<b>CRIMINAL JUSTICE</b>  
 30% (60%) - Decriminalizes marijuana at the Federal level (removes jail time as punishment for first time possession of small amounts of marijuana, no longer goes on record) :icecream:  
 5% (15%) - Legalizes marijuana :x:  
 5% (25%) - Eliminate the death penalty at the federal level (does not mandate elimination at state level) :icecream:  
 5% (35%) - End mandatory minimum sentences at the Federal level :icecream:  
 
-<b>POVERTY</b>
+<b>POVERTY</b>  
 55% (80%) - Increase the child tax credit :icecream:  
 20% (65%) - Increases or expands EITC benefits or EITC-like benefits (LIFT act or similar) :icecream:  
 25% (70%) - Expands housing voucher funding or access to housing vouchers :icecream:  
 
-<b>EDUCATION</b>
+<b>EDUCATION</b>  
 30% (65%) - Cancels $100 billion or more in Federal student loans :icecream:  
 15% (55%) - Makes public colleges tuition free for families with incomes less than $100,000 :icecream:  
 
-<b>FIREARMS</b>
+<b>FIREARMS</b>  
 0% (5%) - Bans "assault weapons" :icecream:  
 5% (30%) - Bans online sale of firearms or ammunition (counted as yes if either are banned) :icecream:  
 
-<b>MISCELLANEOUS</b>
+<b>MISCELLANEOUS</b>  
 10% (40%) - Pass legislation to require community development grant recipients to implement zoning reforms for less restrictive zoning to be eligible for the grant (HOME Act or similar) :icecream:  
 30% (60%) - Pass a significant multi-year infrastructure bill (defined as at least $250 billion in surface transportation infrastructure funding over several years) :icecream:  
 0% (25%) - The Senate filibuster is eliminated  
 
-<b>OTHER UNRELATED TO BIDEN POLICIES</b>
+<b>OTHER UNRELATED TO BIDEN POLICIES</b>  
 25% - Roe v. Wade overturned  
 10% - Harris replaces Biden before his term is up  
 1% - A state that went to Biden ends up going to Trump as a result of a recount or court decision  
