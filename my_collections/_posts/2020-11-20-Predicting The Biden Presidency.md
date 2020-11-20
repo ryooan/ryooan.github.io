@@ -6,7 +6,7 @@ tags: [politics]
 ---
 I thought it would be interesting to predict what will happen under the Biden presidency. I think making falsifiable predictions is important for improving our perceptions and predictions and holding ourselves accountable. There seems to be an epidemic of unfalsifiable predictions and assertions lately, and I think that may be either a symptom or a cause of what I perceive as a decrease in social trust and an increase in conspiracy theories.
 
-Here are my predictions of what will happen in Biden's first term. What do you think will happen? Feel free to copy some or all of these and make your own forecast and we can compare in four years.
+Here are my predictions of what will happen in Biden's first term. What do you think will happen? Feel free to copy some or all of these and make your own forecast and we can compare in four years. There's a google spreadsheet at the end too that you can copy and use if that's easier.
 
 <h1>Methodology</h1>
 First a bit about how I'm doing the predictions. The Senate is still contested and Democrats could win control of it by winning both Georgia runoff seats. So the main percentage is my prediction with Republican control of the Senate. The number in parenthesis is my prediction if Democrats control the Senate. If there are no parenthesis I think it's something that doesn't depend on the Senate.
