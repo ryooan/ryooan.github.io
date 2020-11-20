@@ -90,7 +90,7 @@ No emoji means I'm not certain enough of his stance to say one way or the other.
 1% - A state that went to Biden ends up going to Trump as a result of a recount or court decision  
 35% - Democrats win a majority in the Senate in 2020 (50 seats plus Harris as tiebreaker)  
 
-<h1>NOTES</h1>
+<h1>NOTES</h1>  
 *Why am I so uncertain on getting some of these things done even if Democrats win the Senate?*  
 Because the filibuster exists and I think it's unlikely Democrats get rid of it even with control of the Senate, which makes it very difficult for them to pass legislation they want to pass.  
 
