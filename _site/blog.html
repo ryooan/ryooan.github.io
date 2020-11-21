@@ -1,10 +1,20 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147962076-1"></script>
+		<script>
+ 			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'UA-147962076-1');
+		</script>
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Blog</title>
-		<meta name="description" content="The blog of author Ryan Beck.">
+		<meta name="description" content="The blog of Ryan Beck, author of SEER">
 		<link rel="stylesheet" href="/styles.css">
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -13,68 +23,79 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
+		<meta property="og:title" content="Blog">
+		<meta property="og:description" content="The blog of Ryan Beck, author of SEER">
+		<meta property="og:image" content="https://www.ryanbeckauthor.com/images/NotHuman.jpg">
+		<meta name="twitter:card" content="summary_large_image">
 	</head>
 
 	<body>
 		<div class="copyrightcontainer">
 			<div class="title">
   	<div class="name">
-		<img src="/images/name.PNG" alt="Ryan Beck" style="width:100%">
+		<a href="https://www.ryanbeckauthor.com"><img src="/images/name.PNG" alt="Ryan Beck" style="width:100%"></a>
   	</div>	
 
 	<div class="social">
 		<div class="socblock">
 			<div class="img1">
-				<a href="https://www.facebook.com/welcometothebestpageonearth" class="soca"><img class="icon" src="/images/facebook.PNG" alt="Facebook" style="width:100%"></a>
+				<a href="https://www.facebook.com/ryanbeckauthor" class="soca"><img class="icon" src="/images/facebook.PNG" alt="Facebook" style="width:100%"></a>
 			</div>
 			<div class="img2">
 				<a href="https://twitter.com/BeckRyooan" class="soca"><img class="icon" src="/images/twitter.PNG" alt="Twitter" style="width:100%"></a>
 			</div>
 			<div class="img3">
-				<a href="https://www.goodreads.com/user/show/76183527-ryan-beck" class="soca"><img class="icon" src="/images/goodreads.PNG" alt="Goodreads" style="width:100%"></a>
+				<a href="https://www.goodreads.com/ryanbeckauthor" class="soca"><img class="icon" src="/images/goodreads.PNG" alt="Goodreads" style="width:100%"></a>
 			</div>
 			<div class="img4">
 				<a href="https://mewe.com/profile/5bbfed7170fb13619fe8d9c8" class="soca"><img class="icon" src="/images/mewe.PNG" alt="MeWe" style="width:100%"></a>
 			</div>
+			<div class="img5">
+				<a href="mailto:ryanbeckauthor@gmail.com" class="soca"><img class="icon" src="/images/envelope.png" alt="Email" style="width:100%"></a>
+			</div>
 		</div>
 	</div>
 </div>
+
 			<nav>
   	<div class="navwrapper">
   	<ul class="navul">
     		
       			<li class="navli"><a href="/" class="nava">Home</a></li>
     		
-      			<li class="navli"><a href="/writing.html" class="nava">Writing</a></li>
+      			<li class="navli"><a href="/writing" class="nava">Writing</a></li>
     		
-      			<li class="navli"><a href="/blog.html" class="nava">Blog</a></li>
+      			<li class="navli"><a href="/blog" class="nava">Blog</a></li>
     		
-      			<li class="navli"><a href="/subscribe.html" class="nava">Subscribe</a></li>
+      			<li class="navli"><a href="/subscribe" class="nava">Subscribe</a></li>
     		
-      			<li class="navli"><a href="/about.html" class="nava">About</a></li>
+      			<li class="navli"><a href="/about" class="nava">About</a></li>
     		
   	</ul>
 	</div>
 </nav>
 
 			<div class="container">
-				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+				<!-- FOR MOBILE FIRST DESIGN MOVE SIDEBAR TO TOP AND PUT WITHIN LARGER -->
+<!-- MENU BUTTON. BUTTON CLICK EXPANDS TO REVEAL BUTTONS BY YEAR -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/js/infinite-jekyll.js"></script>
+
 
 <!-- used for mobile display -->
 <div class="sidebar">
-	<button class = "collapsible">Navigate Blog</button>
+	<button class="collapsible">Navigate Blog</button>
 	<div class="content">
-		<button class = "collapsible">Tags</button>
+		<button class="collapsible">Tags</button>
 			<div class="content">
 			<ul class="posts2">
 			<li><a href="/blog.html" class="postlinksblog">all</a></li>
 			
-				<li><a href="/tags/politics.html" class="postlinksblog">politics</a></li>
+				<li><a href="/tags/writing.html" class="postlinksblog">writing</a></li>
 			
 				<li><a href="/tags/science.html" class="postlinksblog">science</a></li>
 			
-				<li><a href="/tags/writing.html" class="postlinksblog">writing</a></li>
+				<li><a href="/tags/politics.html" class="postlinksblog">politics</a></li>
 			
 			</ul>
 			</div>
@@ -83,79 +104,76 @@
   		
   		
     			
+			<button class="collapsible">2020</button>
+			<div class="content">
+    			<ul class="posts2">
+    			
+  		
+    			<li><a href="/2020/11/20/Predicting-The-Biden-Presidency.html" class="postlinksblog">Predicting the Biden Presidency</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/08/13/The-Logic-(or-Lack-of)-Behind-Third-Party-Voting.html" class="postlinksblog">The Logic (or Lack of) Behind Third Party Voting</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/08/03/Vice-President-Discourse-Usually-Neglects-a-Big-Factor.html" class="postlinksblog">Vice President Discourse Usually Neglects a Big Factor</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/07/12/Robot-Sumo.html" class="postlinksblog">Robot Sumo</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/07/03/Why-Citizens-United-Was-a-Reasonable-Decision.html" class="postlinksblog">Why Citizens United Was a Reasonable Decision</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/03/02/Why-Nations-Fail.html" class="postlinksblog">Why Nations Fail</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2020/02/13/Technology-and-Jobs.html" class="postlinksblog">Technology and Jobs</a></li>
+  		
+	
+  		
+  		
+    			</ul>
+</div>
 			<button class="collapsible">2019</button>
 			<div class="content">
     			<ul class="posts2">
     			
   		
-    			<li><a href="/2019/01/06/Small-Particles-Big-Impacts.html" class="postlinksblog">Small particles big impacts</a></li>
+    			<li><a href="/2019/10/15/Robots-and-Rubik's-Cubes.html" class="postlinksblog">Robots and Rubik's Cubes</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Small-Particles-Big-Impacts-Copy.html" class="postlinksblog">Small particles big impacts   copy</a></li>
+    			<li><a href="/2019/10/09/Putting-a-Price-on-Carbon.html" class="postlinksblog">Putting a Price on Carbon</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/I,-Robot.html" class="postlinksblog">I, robot</a></li>
+    			<li><a href="/2019/10/03/Uploading-the-Brain.html" class="postlinksblog">Uploading the Brain</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/I,-Robot-Copy.html" class="postlinksblog">I, robot   copy</a></li>
+    			<li><a href="/2019/09/25/Not-Human-Cover-Breakdown.html" class="postlinksblog">Not Human Cover Breakdown</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Free-Markets-and-Welfare.html" class="postlinksblog">Free markets and welfare</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/06/Free-Markets-and-Welfare-Copy.html" class="postlinksblog">Free markets and welfare   copy</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/06/Consciousness-and-Searle.html" class="postlinksblog">Consciousness and searle</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/04/Website-Progress.html" class="postlinksblog">Website progress</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/04/Website-Progress-Copy.html" class="postlinksblog">Website progress   copy</a></li>
-  		
-	
-  		
-  		
-    			</ul></div>
-			<button class="collapsible">2018</button>
-			<div class="content">
-    			<ul class="posts2">
-    			
-  		
-    			<li><a href="/2018/12/19/Second.html" class="postlinksblog">Second</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2018/12/19/Second-Copy.html" class="postlinksblog">Second   copy</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2018/12/19/Miscellaneous.html" class="postlinksblog">Miscellaneous</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2018/12/19/Miscellaneous-Copy.html" class="postlinksblog">Miscellaneous   copy</a></li>
-  		</ul></div>
+    			<li><a href="/2019/09/14/Welcome-to-my-Website.html" class="postlinksblog">Welcome to my Website</a></li>
+  		</ul>
+</div>
 	
 	</div>
 
@@ -184,78 +202,73 @@
   		
   		
     			
-			<button class="collapsible">2019</button>
+			<button class="collapsible">2020</button>
 			<div class="content">
     			<ul class="posts2">
     			
   		
-    			<li><a href="/2019/01/06/Small-Particles-Big-Impacts.html" class="postlinksblog">Small particles big impacts</a></li>
+    			<li><a href="/2020/11/20/Predicting-The-Biden-Presidency.html" class="postlinksblog">Predicting the Biden Presidency</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Small-Particles-Big-Impacts-Copy.html" class="postlinksblog">Small particles big impacts   copy</a></li>
+    			<li><a href="/2020/08/13/The-Logic-(or-Lack-of)-Behind-Third-Party-Voting.html" class="postlinksblog">The Logic (or Lack of) Behind Third Party Voting</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/I,-Robot.html" class="postlinksblog">I, robot</a></li>
+    			<li><a href="/2020/08/03/Vice-President-Discourse-Usually-Neglects-a-Big-Factor.html" class="postlinksblog">Vice President Discourse Usually Neglects a Big Factor</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/I,-Robot-Copy.html" class="postlinksblog">I, robot   copy</a></li>
+    			<li><a href="/2020/07/12/Robot-Sumo.html" class="postlinksblog">Robot Sumo</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Free-Markets-and-Welfare.html" class="postlinksblog">Free markets and welfare</a></li>
+    			<li><a href="/2020/07/03/Why-Citizens-United-Was-a-Reasonable-Decision.html" class="postlinksblog">Why Citizens United Was a Reasonable Decision</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Free-Markets-and-Welfare-Copy.html" class="postlinksblog">Free markets and welfare   copy</a></li>
+    			<li><a href="/2020/03/02/Why-Nations-Fail.html" class="postlinksblog">Why Nations Fail</a></li>
   		
 	
   		
   		
-    			<li><a href="/2019/01/06/Consciousness-and-Searle.html" class="postlinksblog">Consciousness and searle</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/04/Website-Progress.html" class="postlinksblog">Website progress</a></li>
-  		
-	
-  		
-  		
-    			<li><a href="/2019/01/04/Website-Progress-Copy.html" class="postlinksblog">Website progress   copy</a></li>
+    			<li><a href="/2020/02/13/Technology-and-Jobs.html" class="postlinksblog">Technology and Jobs</a></li>
   		
 	
   		
   		
     			</ul></div>
-			<button class="collapsible">2018</button>
+			<button class="collapsible">2019</button>
 			<div class="content">
     			<ul class="posts2">
     			
   		
-    			<li><a href="/2018/12/19/Second.html" class="postlinksblog">Second</a></li>
+    			<li><a href="/2019/10/15/Robots-and-Rubik's-Cubes.html" class="postlinksblog">Robots and Rubik's Cubes</a></li>
   		
 	
   		
   		
-    			<li><a href="/2018/12/19/Second-Copy.html" class="postlinksblog">Second   copy</a></li>
+    			<li><a href="/2019/10/09/Putting-a-Price-on-Carbon.html" class="postlinksblog">Putting a Price on Carbon</a></li>
   		
 	
   		
   		
-    			<li><a href="/2018/12/19/Miscellaneous.html" class="postlinksblog">Miscellaneous</a></li>
+    			<li><a href="/2019/10/03/Uploading-the-Brain.html" class="postlinksblog">Uploading the Brain</a></li>
   		
 	
   		
   		
-    			<li><a href="/2018/12/19/Miscellaneous-Copy.html" class="postlinksblog">Miscellaneous   copy</a></li>
+    			<li><a href="/2019/09/25/Not-Human-Cover-Breakdown.html" class="postlinksblog">Not Human Cover Breakdown</a></li>
+  		
+	
+  		
+  		
+    			<li><a href="/2019/09/14/Welcome-to-my-Website.html" class="postlinksblog">Welcome to my Website</a></li>
   		</ul></div>
 	
 
@@ -284,54 +297,406 @@
   	
     		<li>
       			<div class="post">
-				<h1 class="blog"><a href="/2019/01/06/Small-Particles-Big-Impacts.html" class="headerlink">Small particles big impacts</a></h1>
-				<p>January 06, 2019</p>
+				<h1 class="blog"><a href="/2020/11/20/Predicting-The-Biden-Presidency.html" class="headerlink">Predicting the Biden Presidency</a></h1>
+				<p>November 20, 2020</p>
 
-				<p>I don’t understand how people can think that CO2 can’t possibly be causing global warming just because it makes up a small part of the atmosphere. You know how you can taste chlorine in drinking water sometimes? Chlorine concentrations in tap water are normally around 1 part per million (ppm). At 3 or 4 ppm the taste of chlorine in the water becomes disgustingly strong. We’re at around 406 ppm of CO2 in the atmosphere, over 100 ppm higher than at any point in the last 800,000 years. Obviously you can’t compare the ppm of two different molecules, but the idea that CO2 can’t be responsible for climate change because it’s a small component of the atmosphere is absurd.</p>
+				<p>I thought it would be interesting to predict what will happen under the Biden presidency. I think making falsifiable predictions is important for improving our perceptions and predictions and holding ourselves accountable. There seems to be an epidemic of unfalsifiable predictions and assertions lately, and I think that may be either a symptom or a cause of what I perceive as a decrease in social trust and an increase in conspiracy theories.</p>
+
+<p>Here are my predictions of what will happen in Biden’s first term. What do you think will happen? Feel free to copy some or all of these and make your own forecast and we can compare in four years. There’s a google spreadsheet at the end too that you can copy and use if that’s easier.</p>
+
+<h1>Methodology</h1>
+<p>First a bit about how I’m doing the predictions. The Senate is still contested and Democrats could win control of it by winning both Georgia runoff seats. So the main percentage is my prediction with Republican control of the Senate. The number in parenthesis is my prediction if Democrats control the Senate. If there are no parenthesis I think it’s something that doesn’t depend on the Senate.</p>
+
+<p>The closer to 0% or 100% the more confident I am, closer to 50% means less confidence. Sometimes percentage probabilities can be difficult to think about, so it can help to think about other ways, such as a 25% chance is in 1 in 4 and 10% chance is 1 in 10. There’s a way to score how you do on predictions that I’ll discuss at the end of the post.</p>
+
+<p><img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"> = Biden has specifically proposed or advocated for this or an even larger version<br>
+<img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> = Biden has specifically said he won’t do this</p>
+
+<p>No emoji means I’m not certain enough of his stance to say one way or the other.</p>
+
+<h1>Predictions</h1>
+
+<p><b>CLIMATE CHANGE</b><br>
+95% - Rejoins the Paris agreement (counts even if not ratified by Senate) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+0% (1%) - Bans fracking (defined as a direct blanket ban on all fracking) <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"><br>
+20% (60%) - Implements a carbon tax<br>
+10% (65%) - Passes significant climate legislation (I’m defining as a climate bill including at least $500 billion invested in climate change mitigation and related areas) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>CORONAVIRUS</b><br>
+5% - Implements a mask mandate (defined as one that’s legally enforceable or has a defined punishment. Still counts if later ruled unconstitutional)<br>
+95% - Implements a mask policy (one not federally enforceable, such as guidelines or incentives for states to implement mask mandates. Counts even if it’s referred to as a mandate but not actually required or enforceable) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+85% (99%) - Passes a coronavirus relief bill providing $500 billion or more in relief and funding <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+35% (65%) - Pass a coronavirus relief bill providing over $1 trillion in relief and funding and including stimulus checks (one bill of this size would also satisfy previous question) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>IMMIGRATION</b><br>
+95% - Increases refugee admissions to about where they were before Trump (I’m defining as a cap of 80k or higher maintained over most of the term) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+25% - Sets the refugee admissions cap to 200k or higher (about double Obama’s 2017 cap, maintained over at least one year)<br>
+5% (20%) - Creates a legal pathway to citizenship (defining as a law passed by congress that would allow undocumented immigrants to eventually become citizens after meeting certain criteria) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+85% - Removes the travel ban (or Muslim ban) on more than half the countries currently barred from certain types of travel or immigration (archived link listing countries with prohibitions as of 11/19/2020: <a href="https://web.archive.org/web/20201119223419/https://en.wikipedia.org/wiki/Executive_Order_13780)">https://web.archive.org/web/20201119223419/https://en.wikipedia.org/wiki/Executive_Order_13780)</a> <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>ECONOMY AND TRADE</b><br>
+80% - Decreases average tariffs on China<br>
+90% - Decreases average tariffs on Canada and other allies<br>
+10% (60%) - Raises the corporate income tax <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+90% - Raises the minimum wage for federal employees and contractors to $15 an hour or more <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+5% (40%) - Raises the federal minimum wage to $15 an hour or more <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+40% (35%) - Increases direct taxes on those making under $400,000 (I’m defining direct taxes as income, payroll, social security, etc. taxes paid directly by individuals, indirect taxes like an increase in the corporate tax resulting in lower wages or a carbon tax resulting in higher prices would not count) <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"></p>
+
+<p><b>HEALTHCARE</b><br>
+20% (55%) - Passes a public option <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+0% (3%) - Passes Medicare for All (defined as a single payer healthcare plan that covers all or nearly all healthcare costs) <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"></p>
+
+<p><b>FOREIGN POLICY</b><br>
+3% - Enters the US into a new authorized war (counts regardless of how it was initiated, a war authorized by Congress either directly or with funding) <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"><br>
+15% - Enters the US into a new unauthorized war or conflict (US drone strikes or US soldiers performing combat operations would count, monetary support would not count, current example would be ongoing US activity in Yemen) <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"><br>
+99% - Rejoins the WHO <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+75% - Rejoins the Iran nuclear deal <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+65% - Fewer US troops in Iraq at end of Biden’s term than at end of Trump’s term* <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+65% - Fewer US troops in Afghanistan at end of Biden’s first term than at end of Trump’s term* <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p>*I’ll base troops at end of Trump’s term on his last order. If he orders a withdrawal that continues into Biden’s term it’ll be based on Trump’s last order.</p>
+
+<p><b>CRIMINAL JUSTICE</b><br>
+30% (60%) - Decriminalizes marijuana at the Federal level (removes jail time as punishment for first time possession of small amounts of marijuana, no longer goes on record) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+5% (15%) - Legalizes marijuana <img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"><br>
+5% (25%) - Eliminate the death penalty at the federal level (does not mandate elimination at state level) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+5% (35%) - End mandatory minimum sentences at the Federal level <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>POVERTY</b><br>
+55% (80%) - Increase the child tax credit <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+20% (65%) - Increases or expands EITC benefits or EITC-like benefits (LIFT act or similar) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+25% (70%) - Expands housing voucher funding or access to housing vouchers <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>EDUCATION</b><br>
+30% (65%) - Cancels $100 billion or more in Federal student loans <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+15% (55%) - Makes public colleges tuition free for families with incomes less than $100,000 <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>FIREARMS</b><br>
+0% (5%) - Bans “assault weapons” <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+5% (30%) - Bans online sale of firearms or ammunition (counted as yes if either are banned) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"></p>
+
+<p><b>MISCELLANEOUS</b><br>
+10% (40%) - Pass legislation to require community development grant recipients to implement zoning reforms for less restrictive zoning to be eligible for the grant (HOME Act or similar) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+30% (60%) - Pass a significant multi-year infrastructure bill (defined as at least $250 billion in surface transportation infrastructure funding over several years) <img class="emoji" title=":icecream:" alt=":icecream:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f366.png" height="20" width="20"><br>
+0% (25%) - The Senate filibuster is eliminated</p>
+
+<p><b>OTHER UNRELATED TO BIDEN POLICIES</b><br>
+25% - Roe v. Wade overturned<br>
+10% - Harris replaces Biden before his term is up<br>
+1% - A state that went to Biden ends up going to Trump as a result of a recount or court decision<br>
+35% - Democrats win a majority in the Senate in 2020 (50 seats plus Harris as tiebreaker)</p>
+
+<h1>Notes</h1>
+
+<p><em>Why am I so uncertain on getting some of these things done even if Democrats win the Senate?</em><br>
+Because the filibuster exists and I think it’s unlikely Democrats get rid of it even with control of the Senate, which makes it very difficult for them to pass legislation they want to pass.</p>
+
+<p><em>Why are some of these proposals less than what Biden has proposed, for example free college for families earning less than $100k instead of his $125k proposal or $500 billion for climate change instead of his $2 trillion proposal?</em><br>
+Because no president gets what they want and I wanted to set the bar for the question at something more plausible to make it interesting. If I set his free college income limit at $125k but the final bill ends up at $110k I think most people would consider that being a goal fulfilled for Biden, even though he didn’t get quite what he wanted.</p>
+
+<p><em>Why did I pick these questions and issues?</em><br>
+Mostly I just focused on the bigger issues and things that will have a clear yes or no resolution. Biden has tons of pretty specific proposals on his website, so I just picked some of the biggest or most controversial to keep things simple and the ones I think will have the most attention on them during his term. I also picked a few that I’m interested in and want to follow. Predicting things is a good way to keep track of what happens with them, it gives you a bigger incentive to follow up on their outcome.</p>
+
+<h1>Scoring</h1>
+
+<p>The most common way of scoring predictions is with the Brier score. The Brier score is a measure of the difference between your forecast and the outcome. Like golf, a lower score is better. It’s the difference between your forecast and reality squared. For example, if I predict a 70% chance that the sun rises tomorrow, and the sun does rise tomorrow, my Brier score would be (1 - 0.7)^2 + (0 - 0.3)^2 = 0.18. That equation represents my forecast of 70% that the sun rises minus the outcome of it rising (100%) plus my implied forecast of 30% that the sun doesn’t rise minus the outcome of it not rising (0%). A perfect Brier score is zero. The worst Brier score is 2. The Brier score of guessing at random (50%) is 0.5, so to be better than random guessing your Brier score should be below 0.5.</p>
+
+<p>Note that there’s another way to calculate the above Brier score which would be (1 - 0.7)^2 = 0.09. This method leaves out the implied 30% chance the other thing happens. Under this method random guessing equates to a Brier score of 0.25. I’m using the first method instead of this one just to be consistent with the way I’m used to seeing it.</p>
+
+<p>If you want to participate I made a google sheet you can copy and fill out your own percentages that will do the scoring for you. You could even modify it to forecast on other questions if you wanted to too. But you definitely don’t need to use this, it’s easy enough to score by hand. And using Brier scores isn’t really necessary either, it’s just a useful way to compare scores, you could always make predictions and just see how far off they were without using an actual score.   <a href="https://docs.google.com/spreadsheets/d/1_p_WArcp0RFRhVYbaKZgr38BlHOCc96ma4cgMqx_owg/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1_p_WArcp0RFRhVYbaKZgr38BlHOCc96ma4cgMqx_owg/edit?usp=sharing</a></p>
+
+<p>So that’s that, if there are any big questions about his presidency you think I should add let me know! I encourage you to forecast some of these questions yourself either publicly or privately and see how you do four years from now.</p>
 
 			</div>
     		</li>
   	
     		<li>
       			<div class="post">
-				<h1 class="blog"><a href="/2019/01/06/Small-Particles-Big-Impacts-Copy.html" class="headerlink">Small particles big impacts   copy</a></h1>
-				<p>January 06, 2019</p>
+				<h1 class="blog"><a href="/2020/08/13/The-Logic-(or-Lack-of)-Behind-Third-Party-Voting.html" class="headerlink">The Logic (or Lack of) Behind Third Party Voting</a></h1>
+				<p>August 13, 2020</p>
 
-				<p>I don’t understand how people can think that CO2 can’t possibly be causing global warming just because it makes up a small part of the atmosphere. You know how you can taste chlorine in drinking water sometimes? Chlorine concentrations in tap water are normally around 1 part per million (ppm). At 3 or 4 ppm the taste of chlorine in the water becomes disgustingly strong. We’re at around 406 ppm of CO2 in the atmosphere, over 100 ppm higher than at any point in the last 800,000 years. Obviously you can’t compare the ppm of two different molecules, but the idea that CO2 can’t be responsible for climate change because it’s a small component of the atmosphere is absurd.</p>
+				<p>I want to discuss the strategy and logic behind the decision to vote third party or sit out of an election. Below are some of the common reasons people use to vote third party, and I’ll discuss each of these.</p>
+
+<p>1.) If a third party does well in this election maybe more people will start to see that party as a viable option and we can stop choosing the lesser of two evils.
+2.) The candidates are both bad, I don’t want to vote for either.
+3.) I genuinely like this third party candidate a lot.
+4.) My vote doesn’t matter so it doesn’t really change anything if I vote third party.</p>
+
+<p>This may not be a comprehensive list but I think these are some of the primary considerations. People often have more than one of these reasons for voting third party, and some of these apply to people who abstain from voting. The following discussion isn’t intended to be specific to this election year. It mainly only applies to presidential elections, some of these responses aren’t as valid at the state or local level.</p>
+
+<p><strong>1.) If a third party does well this election maybe more people will start to see that party as a viable option and we can stop choosing the lesser of two evils.</strong></p>
+
+<p>This reasoning depends on a couple assumptions. One is that there are enough voters out there who would prefer a certain third party to one of the two main parties. Another is that our voting system is stable with three or more prominent parties.</p>
+
+<p>The first assumption is at least plausible, but I’m also very skeptical. For one, the reason the two main parties have remained in power so long is because the parties’ politics shift to match public opinion as best they can. One example is same-sex marriage. The opinion of both the general public and of Democratic politicians shifted very quickly on this issue. That change is likely both because Democratic politicians genuinely changed their opinion like many in the public did, and also because they had to shift their public stance or risk getting voted out. Even most Republican politicians no longer talk about this issue because the public opinion has shifted so much. So the idea that a third party is going to capture enough of the voters from either of the main two parties to win an election is hard to believe.</p>
+
+<p>The second assumption is the idea that our electoral system can support more than two parties. I don’t think it can, and the reason is because of how voting currently works. We cast one vote for one person. This system requires compromise and consolidation. Imagine if there were 100 candidates of about equal popularity. No one would win, a different candidate would probably win each state and no candidate would get enough electoral votes to win the electoral college (you need 270 out of 538 to win). To win the field has to consolidate enough so that a candidate can receive a majority of electoral votes. That consolidation can either happen by voters cooperating and focusing on one compromise candidate or by candidates cooperating and dropping out to support other candidates. The candidates that are similar but stay in the race will split votes and each be weaker than they otherwise would be.</p>
+
+<p>That same effect works when going from two to three candidates. If there are more than two candidates those that are the most similar will split votes and be weaker than they otherwise would have been. Having a third party only strengthens the party that’s furthest away politically from the third party, and the stronger the third party the bigger this effect. Theoretically the third party could get large enough to replace one of the two main parties, but it would likely take many years of lost elections for the two weaker parties to swap. The largest percent of votes for a third party in the last 100 years was for Ross Perot, running as an independent in 1992. He got 18.91%, and even a showing that good didn’t lead to renewed interest or greater success for third party candidates.</p>
+
+<p><strong>2.) The candidates are both bad, I don’t want to vote for either.</strong></p>
+
+<p>This is a reason that can be used for both voting third party and not voting. As described in the discussion of reason 1, a third party vote is very unlikely to result in a viable third party or end lesser of two evils voting. It’s essentially the same as abstaining. So I’m going to refer to both as abstaining in the discussion of reason 2.</p>
+
+<p>One of the two major party candidates will win. By abstaining you are not expressing your preferences at all. Your opinions have no effect on the outcome. And usually the idea that the two main party candidates are the same is just a figure of speech. They’re clearly different in many ways. Just as an example look at Biden and Trump. Biden wants to rejoin the Paris climate change accord, Trump left it. Biden wants to increase the number of refugees admitted to the US, Trump has been decreasing the amount admitted. These are just two differences out of many, but both are things that the president essentially has complete control over and can change on their own without Congress.</p>
+
+<p>Despite the existence of differences it may still be reasonable to abstain if overall you think they will be equally bad. Maybe you don’t care about immigration, or what the tax rate is, or climate change policy, or healthcare, or gun policy or any of those things the candidates normally have wide differences on. Maybe you only care about specific things like abuse of presidential power, global nuclear disarmament, or our relationship with Canada and you think both candidates would be equally bad on that issue. Or maybe you do care about the other things too but both candidates are a mix of okay and really bad on those issues. If you legitimately can’t decide which would be worse it makes sense to abstain. But only as long as you’ve made a genuine effort to compare the two and have fully considered the impact that the differing policies would have not only on you but also on other people in the country.</p>
+
+<p>In reality that’s not always how the “both sides are the same” reason is used. Often it’s that one side wants to do things the abstainer hates, while the other side wants to do some things the abstainer hates and some things that are sort of in the right direction but don’t go nearly far enough. In this scenario abstaining accomplishes nothing. One of the two will still win, but the abstainer gets no say in which things are at least sort of in the right direction.</p>
+
+<p><strong>3.) I genuinely like this third party candidate a lot.</strong></p>
+
+<p>This one is similar to reason 2 except that voting third party isn’t only a protest vote, the third party candidate genuinely aligns with you on most policy preferences. Sometimes people who use this reason may even like one of the main party candidates but they just like a third party candidate a lot more. The same discussion for reason 2 still applies. As much as they align with your policy preferences and values, by voting for the third party candidate you are essentially not voting, your preferences aren’t being counted toward the actual decision being made.</p>
+
+<p><strong>4.) My vote doesn’t matter so it doesn’t really change anything if I vote third party.</strong></p>
+
+<p>This one can be true, depending on where you live. A voter in California who would normally vote Democrat but wants to vote third party for whatever reason is probably pretty safe in doing that. But as I discussed for reasons 1 through 3 it’s probably ineffective to do that regardless. And which states are competitive can vary election to election. While California and Kentucky are probably not going to be competitive anytime soon, this year Texas, which is traditionally a red state, is polling pretty close. And near my neck of the woods there’s Nebraska 2, the district of Nebraska containing Omaha, which is close too and could potentially flip from Trump to Biden.</p>
+
+<p>I think that covers the main reasons people vote third party or abstain. In summary the only logical reason to vote third part or abstain is if you genuinely believe the two candidates would be equally bad after fully researching and considering the effects of their different policies on you, your fellow Americans, and the country itself. Your vote shouldn’t be thought of as a moral endorsement or a perfect expression of your politics, it should be thought of as expressing your preference between the candidates most likely to win.</p>
+
+<p>If you don’t like that third parties aren’t viable in the United States then start advocating for ranked choice voting. Ranked choice voting would allow everyone to vote for their first preference without wasting their vote, because once the first choice was found not to have enough support their vote would shift to their second choice, and so on. I think this would increase voter satisfaction and allow everyone to see what the country’s true preferences are. However, if we do someday manage to switch to ranked choice voting I think people should be prepared for the possibility that it doesn’t change the two party presidential system. Like I discussed in reason 1, the two main parties are probably many people’s genuine first choice out of all the options. But if that’s actually the case at least our voting system would reveal that and we could move on from the theory that everyone would vote third party if they just knew more about them or stopped voting for the lesser of two evils.</p>
+
+<p>Thoughts? Did I miss any important factors or argue any of these badly or unfairly? Follow me on social media and share your thoughts.</p>
 
 			</div>
     		</li>
   	
     		<li>
       			<div class="post">
-				<h1 class="blog"><a href="/2019/01/06/I,-Robot.html" class="headerlink">I, robot</a></h1>
-				<p>January 06, 2019</p>
+				<h1 class="blog"><a href="/2020/08/03/Vice-President-Discourse-Usually-Neglects-a-Big-Factor.html" class="headerlink">Vice President Discourse Usually Neglects a Big Factor</a></h1>
+				<p>August 03, 2020</p>
 
-				<p>I’m listening to I, Robot by Isaac Asimov and its great so far, but it’s pretty funny how his imagined future still has people using a lot of paper and cigarettes and treating women as weak/inferior. What kinds of things do we take for granted today that will probably not be normal in the future, or what kinds of things do you see in shows and books about the future that probably won’t actually be around?</p>
+				<p>Biden will be announcing his pick for vice president soon, and I think one aspect of the VP selection has been overlooked in the discussions about it. Most of the focus on the VP has been about what the pick does for the presidential nominee’s electability or appealing to different demographics. I don’t know if the data supports those factors, I would guess they’re very overrated. But the factor that doesn’t get enough attention is whether the chosen VP will be a good candidate for a future presidential election.</p>
+
+<p>In recent years several VPs have gone on to run for president and win the party nomination. I wanted to look at this more closely and see how common it is and if there are any trends. So I looked at all 48 VPs to see if they sought the presidency after their VP term, whether they got the party nomination, and if they eventually won the presidency. See the first image for the table I put together summarizing that information (it’s color coded to be more at a glance, see the second image for the key).</p>
+
+<p><img src="/assets/vice_president_full_table.png" width="100%"></p>
+
+<p align="center">
+  <img src="/assets/vice_president_key.png" width="25%">
+</p>
+<p align="center">
+  <i>*Used where VP died in office or president died and VP assumed office. VPs who succeeded to the presidency are not counted as a nomination or run for presidency.</i>
+</p>
+
+<p>As you can see there’s a recent trend toward VPs becoming the party nominee in the future. A couple things surprised me about this table. One is that a lot of VPs and presidents died in office. Those are the rows in gray. This table also seems to point out the benefits of improved healthcare, as deaths of the VP or president appear to be less common now.</p>
+
+<p>Another surprise was how recent the trend is for VPs to win the party nomination. It’s a lot more common now than it used to be. It’s become increasingly likely that a VP will go on to win the party nomination. See the third image for how successful VPs are at running for president and how often they choose to run.</p>
+
+<p><img src="/assets/vice_president_summary_table.png" width="100%"></p>
+
+<p>I think there are a couple reasons this trend is happening. One big factor is that the presidential nominee has trended toward being chosen by the public instead of by party leaders. The first state primary was in the first decade of the 1900s. Prior to the prominence of primaries it was up to just the delegates to choose the presidential nominee at the convention, and the delegates were typically important members of the party. I think that as the public gained more control over who the nominee is, name recognition became a bigger factor. Party bosses would be more likely to know all the major players and their politics, so they have a larger pool of favorites to pick from. Your regular citizen might know only the big names and want someone familiar to them.</p>
+
+<p>The other big factor is the role of vice presidents and how they’re selected. In the 1700s the vice president was the candidate receiving the second most electoral votes for president. This changed after Jefferson and Burr tied in 1800. But even after the change vice presidents were often selected at the convention instead of being carefully chosen by the president beforehand. Vice presidents have to be confirmed by the delegates at the convention, and as recently as the 1980 Republican national convention this was done by casting votes. Since then the parties have confirmed the presidential nominee’s desired VP by voice vote. Reagan was also the first presidential candidate to announce his choice for VP prior to the convention in 1976.</p>
+
+<p>That’s not to say that prior to that the presidential nominees weren’t picking the VP, in the decades prior to the change to voice votes the delegates would usually just confirm whoever the president wanted to be their running mate. For example, Nixon announced that he wanted Agnew to be his VP at the 1968 Republican Convention and Agnew won the nomination easily. But in the first half of the 1900s and earlier, the VP was often primarily selected by the convention instead of by the presidential nominee. As late as 1944, many in the Democratic party opposed Roosevelt’s VP, Henry Wallace, and convinced him to drop Wallace in favor of Truman.</p>
+
+<p>What does VP selection have to do with the recent trend of VPs winning the nomination in the future? In my opinion a big reason for this trend is increased unity between the president and the VP. VPs are now carefully picked to ensure unity with the presidential nominee and the convention automatically accepts the chosen VP. In contrast, since VPs were historically not chosen primarily based on unity with the president they often butted heads with the president and some publicly opposed some of the presidents’ policies. That kind of opposition can make a VP a controversial figure, which in my opinion is why they less frequently received the presidential nomination after their term as VP. And this combines with the previous factor I mentioned when you consider that it was party leaders acting as delegates who were choosing presidential nominees. Those party leaders would be more attuned to conflicts between the VP and the president, and would be more likely to have a preferred side than your average member of the public. The increased unity between president and VP in recent years means that partisans who liked the president will probably like the VP and support their nomination in later years. And if the president wasn’t particularly well liked the VP can skirt around most of the bad press while still associating themselves with the qualities that voters liked about the president.</p>
+
+<p>The high likelihood of the VP becoming the party nominee in the future should have much more weight in the way we talk about the VP selection process. It’s often ignored in these discussions, and I think it should probably be the main criteria for selection. Using presidential prospect as the main criteria forces us to put more weight on factors like age and electability. I’m also very glad that Biden promised to nominate a woman. Putting a woman in prime position to be party nominee in a future election greatly increases the chances of a woman becoming president in the near future. After hundreds of years with very little diversity in the oval office any move to increase the odds of greater diversity and representation is very important.</p>
+
+<p>If I made any errors please let me know. My sources for this were mainly a whole bunch of Wikipedia articles that are easily found so I won’t bother linking to them, and a few other articles I used to verify things that were vague or looked questionable. And as a final note keep in mind the sample size is low, particularly when we’re just looking at the last 50 or 75 years, so this isn’t a bulletproof analysis by any means. But I do think the trend is legitimate considering the changes that have happened in the ways presidents and VPs are elected.</p>
+
+<p>Here’s a link to the spreadsheet I put together and pulled the above images from. If you find it useful or want to copy and modify it feel free to use as you please. <a href="https://docs.google.com/spreadsheets/d/1xHAgo15nLrWb_TqqQy3J-8vF0WGosy_aVmZK0ERUae0/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1xHAgo15nLrWb_TqqQy3J-8vF0WGosy_aVmZK0ERUae0/edit?usp=sharing</a></p>
 
 			</div>
     		</li>
   	
     		<li>
       			<div class="post">
-				<h1 class="blog"><a href="/2019/01/06/I,-Robot-Copy.html" class="headerlink">I, robot   copy</a></h1>
-				<p>January 06, 2019</p>
+				<h1 class="blog"><a href="/2020/07/12/Robot-Sumo.html" class="headerlink">Robot Sumo</a></h1>
+				<p>July 12, 2020</p>
 
-				<p>I’m listening to I, Robot by Isaac Asimov and its great so far, but it’s pretty funny how his imagined future still has people using a lot of paper and cigarettes and treating women as weak/inferior. What kinds of things do we take for granted today that will probably not be normal in the future, or what kinds of things do you see in shows and books about the future that probably won’t actually be around?</p>
+				<p>When I wrote the drones in SEER this was kind of what I had in mind for how quickly they move and attack. Being controlled by computers means they would be able to acquire targets and make adjustments at lightning speed. Picture this kind of battle happening between hundreds of airborne drones. Of course, since they have to destroy each other instead of just push each other out of the ring it probably wouldn’t be over quite so fast. It’ll be cool to see how advanced these kinds of competitions become within the next decade. Having no remote controls really ups the pace, and I can imagine some pretty exciting robot battles in the future.</p>
+
+<div class="embedvideodiv">
+<iframe class="embediframe" src="https://www.youtube.com/embed/mS-L2fpV1Is" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
 
 			</div>
     		</li>
   	
     		<li>
       			<div class="post">
-				<h1 class="blog"><a href="/2019/01/06/Free-Markets-and-Welfare.html" class="headerlink">Free markets and welfare</a></h1>
-				<p>January 06, 2019</p>
+				<h1 class="blog"><a href="/2020/07/03/Why-Citizens-United-Was-a-Reasonable-Decision.html" class="headerlink">Why Citizens United Was a Reasonable Decision</a></h1>
+				<p>July 03, 2020</p>
 
-				<p>If you believe in free markets then you believe in creative destruction, the loss of businesses that lose out to better businesses. That means constant job loss and it means some regions and areas may struggle. To make a free market as efficient as possible, we need strong welfare benefits so that workers have the resources to get back into the workforce.</p>
+				<p>Citizens United v. FEC was decided ten years ago and remains one of the first things that comes to mind when people think about campaign finance. Nearly every Democratic presidential candidate, including Joe Biden and Bernie Sanders, supports a constitutional amendment to overturn Citizens United. But despite it being an extremely controversial decision, it seems like most people don’t know anything about the background and arguments of the case or even what it changed. I didn’t either, and since it’s still so relevant to politics today I decided to read it. After doing so I came away with the conclusion that Citizens United was not a terrible decision or a travesty of justice at all, and that the decision is a good and reasonable application of the first amendment.</p>
 
-<p>If you believe in providing strong welfare benefits to the poor so they can make it out of poverty and improve their lives then you should also be in favor of the best method we have to generate wealth: free markets. Free markets that are regulated so as not to impose unpaid costs on society improve quality of life for our citizens and are in a large part responsible for the wealth that makes being poor in America better than being poor in a third world country. A wealthier country can provide more for its poorest through government as well as through markets.</p>
+<p>The following is information about the case and a discussion of the arguments. The goal is to help myself and others understand the case better, but also to argue the merits of the decision. I don’t want to try to present just the arguments because I don’t think I can do that in an unbiased way, and I also think that since it’s a commonly criticized case it would be useful to argue why the decision is logical. However, I will do my best to make it clear when I’m presenting the arguments of the majority and the dissent and when I’m including my own opinion. Keep in mind that while I’ll try to cover all the main arguments, I may also be biased in some of the arguments I chose to include or not include.</p>
 
-<p>The two go hand in hand.</p>
+<p>I’m no lawyer and I don’t know much about law, I’m just trying to understand this case better and I want to share what I’ve learned. Keep that in mind because it’s very possible I end up describing some of this inaccurately. If you see anything you know or believe to be incorrect please let me know and I’ll try to correct it.</p>
+
+<h1>BACKGROUND</h1>
+<p>The arguments in the case depend on and discuss a lot of campaign finance concepts, previous laws, and Supreme Court decisions, and a few of these are so important to the case that we need to understand what they’re about before getting into the case itself. I’ll try to be brief and present just what you need to know. If you want more information it’s all just a Google search away.</p>
+
+<p>Bipartisan Campaign Reform Act (BCRA) - This is a law passed by the government in 2002. It amended the Federal Election Campaign Act (FECA) of 1971. The most relevant amendment is section 203 of the BCRA which amended section 441b of FECA. The effect of this change to FECA was to define what an “electioneering communication” is and impose limits on the ability of corporations and unions to make those communications. It’s important to remember that this law only applied to Federal elections, states often have their own campaign finance laws.</p>
+
+<p>Electioneering Communication - An electioneering communication was originally defined by the BCRA as an ad meeting all of the following criteria: disseminated by cable, broadcast, or satellite; refers to a clearly identified candidate for Federal office; disseminated within certain time periods before an election; and targeted toward the relevant electorate (except in the case of Presidential or Vice Presidential-focused advertisements). The specific time period is within 30 days of a primary election or 60 days of a general election. A later Supreme Court ruling (Wisconsin Right to Life vs. FEC, 2007) found that just referring to a candidate was too broad and was unconstitutional as a means of defining an electioneering communication. That effectively changed the definition so that instead an ad had to specifically support or oppose a candidate for Federal office to be an electioneering communication.</p>
+
+<p>Independent Expenditure - An independent expenditure in the context of campaign finance is an expenditure made by a group unaffiliated with a political candidate. Independent expenditures are made by people or groups to advertise in support or opposition of political issues and candidates. At the time of Citizens United, individuals had no limits on the independent expenditures they could make, while corporations and unions were limited by the BCRA. Independent expenditures cannot be coordinated with a political candidate or anyone operating as part of a political candidate’s campaign.</p>
+
+<p>Direct Contributions - Direct contributions are donations to a candidate’s campaign for office. These were and still are limited to specific dollar amounts for individuals. Corporations and unions were and still are completely barred from making direct contributions to candidates. An individual can currently only donate $2,800 to each candidate per election (the primary and general election count as different elections, so an individual can donate that amount for the primary election and also for the general election).</p>
+
+<p>BCRA Restrictions on Electioneering Communications - The BCRA bars corporations and unions from using general treasury funds to make electioneering communications. Instead, corporations and unions are permitted to form Political Action Committees (PACs) which can advocate for or against candidates at any time. An exception is made for the press so that the law does not apply to “any news story, commentary, or editorial distributed through the facilities of any broadcasting station, newspaper, magazine, or other periodical publication, unless such facilities are owned or controlled by any political party, political committee, or candidate.”</p>
+
+<p>Political Action Committee (PAC) - A corporation or union can sponsor a political action committee which is a group who is separate from the corporation or union and has independent finances. The corporation or union may fund some of the administration and fundraising activities of the group, but at the time of the Citizens United case, corporate contributions could not be used for donations to candidates or for advertising. The money raised by PACs for contributing to candidates and advertising had to be donated by individuals, whether they’re employees or members of the corporation or union sponsoring the PAC or just unaffiliated citizens. PACs also have limits on how much they can donate directly to each candidate’s campaign per election.</p>
+
+<p>Super PAC - A super pac is officially known as an “independent expenditure-only political action committee”. They were created after the Citizens United ruling as a result of the Supreme Court decision that it was unconstitutional to impose limits on independent expenditures by corporations and unions. Super PACs can receive unlimited contributions from individuals, corporations, and unions, and they can make unlimited independent expenditures. However, they cannot contribute to political campaigns. If they could this would circumvent the ban on direct contributions from corporations and unions.</p>
+
+<p>Buckley v. Valeo (Referred to as Buckley) - This is a Supreme Court case from 1976 heavily relied on by the Citizens United majority. FECA originally limited independent expenditures by individuals to $1,000 and limited how much candidates can spend from their personal wealth on their campaigns. The Supreme Court found limits on independent expenditures by individuals unconstitutional in a 7-1 ruling, and they found limits on candidate spending from personal wealth unconstitutional in a 6-2 ruling (Justice Stevens was new to the court and missed the oral arguments so he didn’t participate). They also upheld limits on direct contributions to candidates as constitutional. This decision is the reason that at the time of the Citizens United case and to this day there are no limits on how much individuals can spend on independent expenditures.</p>
+
+<p>Austin v. Michigan Chamber of Commerce (Referred to as Austin) - This is a Supreme Court case from 1990. Its decision was overruled by the court in the Citizens United case and much of the disagreement in Citizens United focuses on this case. This case was about the constitutionality of a law in the state of Michigan which barred corporations from making any independent expenditures from their general treasury. The exception to this law was that corporations could establish a separate segregated fund where they can use corporate money for fundraising and administration, but the funds for political advertising would have to be solicited through personal donations from stockholders, executives, and employees. This functions similarly to a PAC. The court found this law to be constitutional in a 6-3 decision. The majority in Citizens United found this ruling to be poorly reasoned and overturned it as part of their decision. Before the Citizens United case overturned it, Austin established the precedent that restrictions and outright bans on corporate political independent expenditures were constitutional.</p>
+
+<p>McConnell v. FEC (Referred to as McConnell) - A 2003 Supreme Court case brought by Mitch McConnell, the California Democratic Party, the NRA, and others to contest provisions of the BCRA. This case covered a lot of laws, but relevant to the Citizens United case it contested the constitutionality of BCRA’s ban on the use of general treasury funds of corporations and unions to pay for electioneering communications. In a 5-4 ruling that relied on the precedent set in Austin the court found this ban to be constitutional.</p>
+
+<p>Text of the First Amendment - “Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble, and to petition the government for a redress of grievances.”</p>
+
+<h1>THE CASE</h1>
+<p>The case was brought by Citizens United, a conservative nonprofit organization. The reason for the case was that Citizens United wanted to distribute a documentary they made titled “Hillary: The Movie”, a documentary critical of Hillary Clinton, through video on demand and advertise it prior to the 2008 election. They had previously released the movie in theaters and on DVD. However, they anticipated that releasing on video on demand and advertising it could violate FEC restrictions on electioneering communications and appealed to the FEC in advance to argue that restrictions on electioneering communications would not apply. The FEC told them the rules would apply and Citizens United would be in violation of the law if they proceeded as planned and published and advertised within the 30 day window of the primary and the 60 day window of the general election. Citizens United was not satisfied with this answer and took their case against the FEC to court, eventually reaching the Supreme Court.</p>
+
+<p>There’s some additional background involving Citizens United’s previous disputes with the FEC about Michael Moore’s “Fahrenheit 9/11” movie that isn’t necessary to know for this case but provides some fascinating context. If you’re interested you should read the “Background” section on the “Citizens United v. FEC” Wikipedia page, it’s pretty short and well summarized.</p>
+
+<p>Citizens United effectively made the following arguments to the Supreme Court (this is my numbering and grouping of the questions, the court refers to them differently):</p>
+
+<p>1.) “Hillary” is not an electioneering communication because it was not publicly distributed and it was not specifically advocating for the election or defeat of a particular candidate, that 441b (the part of FECA which restricts electioneering communications) should not be applied to video on demand because that delivery method has lower risk of distorting the political process than television ads (because with video on demand the users have to voluntarily pick a movie to watch instead of seeing ads they didn’t choose), and that there should be an exception to nonprofit political speech funded primarily by individuals (“Hillary” was funded in part by donations to Citizens United from for-profit corporations, though most of the source funding was from individuals).</p>
+
+<p>2.) If the Supreme Court does not find that Citizens United is an exception to 441b, the court should instead rule that 441b is unconstitutional and reevaluate Austin and McConnell.</p>
+
+<p>3.) Disclosure requirements imposed by FECA are unconstitutional as applied to Citizens United’s ads. The law requires political advertising to disclose who is funding it and provide a disclaimer saying who is responsible for the contents of the ad.</p>
+
+<h1>DECISION</h1>
+<p>The majority opinion was to reject point 1 and rule that Citizens United was not an exception to the law. The dissent agreed as well; the court was unanimous on this point.</p>
+
+<p>On point 2 the majority found 441b to be unconstitutional, and in the process overturned Austin and the parts of McConnell which had been based on Austin. The court ruled 5-4 on this point, with Kennedy, Roberts, Scalia, Alito, and Thomas in the majority and Stevens, Ginsburg, Breyer, and Sotomayor dissenting.</p>
+
+<p>On point 3 the court rejected the argument that Citizens United was an exception from disclosure requirements, ruling they would have to comply with the law. The court was 8-1 on this ruling, with only Thomas dissenting.</p>
+
+<p>Five opinions were written for this case, broken down as follows:</p>
+
+<p>Opinion of the Court - Written by Kennedy, this argued that 441b is unconstitutional and that Austin is overturned, and that disclosure requirements do apply to Citizens United. This opinion represents the majority and was the final ruling.</p>
+
+<p>Concurring Opinion by Roberts - Roberts wrote a concurring opinion, joined by Alito, to “address the important principles of judicial restraint and stare decisis implicated in this case.” I’ll discuss these arguments more later, but basically one of the big points of disagreement from the dissent was that the case did not warrant overturning precedent and that the Supreme Court was overreaching and unjustly interfering with the ability of Congress to legislate.</p>
+
+<p>Concurring Opinion by Scalia - Scalia wrote a concurring opinion, joined by Alito and in part by Thomas, to respond to claims by the dissent that the court’s decision goes against original understandings of the first amendment.</p>
+
+<p>Dissent by Stevens - Stevens authored the dissent which disagrees with the majority on striking down 441b and overturning Austin. However, they agree that Citizens United is subject to the disclosure laws. The dissent would have rejected all arguments made by Citizens United, holding that 441b is constitutional and requiring Citizens United to comply with it, as well as the disclosure requirements.</p>
+
+<p>Opinion of Thomas - Thomas writes separately to concur with the majority on all but point 3. He argues that disclosure requirements are unconstitutional.</p>
+
+<h1>LEGAL SPECIFICS</h1>
+<p>Before diving into the arguments there are a couple more specific legal concepts we need to talk about that play an important role in this case. The first is stare decisis. Stare decisis is the respect of precedence. If a previous Supreme Court case ruled in a way relevant to a later case, that later case should rule in a way consistent with and relying on the previous decision, unless there is a valid and convincing reason to overturn that precedent. This keeps the court and the law consistent, so that lawmakers and citizens can have a solid grasp of what the law is without it changing drastically all the time.</p>
+
+<p>Next is the preference for narrow rulings. Narrow means that the court, whenever possible, will try to rule on narrow and specific grounds instead of by broadly ruling whole laws as unconstitutional. All of the exceptions listed in point 1 of Citizens United’s arguments would be narrow because they wouldn’t strike down 441b as unconstitutional or overturn precedents, they would just create exceptions within 441b for specific types of ads or organizations while leaving the law generally intact. Petitioners know that the court prefers narrow rulings and will usually try to win on narrow grounds before raising broader constitutional challenges. The reason to prefer narrow rulings is for consistency in law and a deference to Congress. The role of the judicial system isn’t to widely change and slash through the laws Congress creates, its role is to prevent unconstitutionality in the law.</p>
+
+<p>An important factor when dealing with rights is strict scrutiny. Laws which infringe upon rights are subject to strict scrutiny, which requires that to be constitutional the law must do all of the following: serve a compelling state interest, be narrowly tailored to achieve that interest, and use the least restrictive means to achieve that interest.</p>
+
+<p>Another general rule is that the Supreme Court will only rule on questions presented to it. If a case deals exclusively with law A but the outcome of the case would raise constitutional questions about law B, the court will generally limit itself to dealing only with law A. If someone in a later case brings those questions on law B, only then will the court address law B.</p>
+
+<p>It’s good to remember these aren’t hard rules, they’re just accepted doctrines and their application can be subjective. My understanding is there’s no law requiring adherence to stare decisis or limiting judgements to narrow rulings, but to get to the level of Supreme Court as a judge and to be approved by Congress you generally have to respect these principles.</p>
+
+<h1>ARGUMENTS AND DISCUSSION</h1>
+<p>Starting with where they would agree, the court appears to unanimously reject point 1 raised by Citizens United. “Hillary” clearly advocates against Hillary Clinton without any other reasonable interpretation, it counts as publicly distributed and the video on demand system is not an exception under the law. Despite the fact that video on demand is different from general broadcast ads because the user has to choose to watch a movie, the majority states: “While some means of communication may be less effective than others at influencing the public in different contexts, any effort by the Judiciary to decide which means of communications are to be preferred for the particular type of message and speaker would raise questions as to the courts’ own lawful authority. Substantial questions would arise if courts were to begin saying what means of speech should be preferred or disfavored.” And finally, no exception to Citizens United’s funding method is allowed, because some of the funding came from general treasury donations from corporations. The court argues that if they made an exception here for a nonprofit it would invalidate restrictions on corporate political spending from their general treasury because corporations would just funnel their political spending through nonprofits and therefore avoid the restrictions.</p>
+
+<p>That’s a pretty quick and broad overview of the rejection of point 1, but since the court agrees on this I don’t think it’s worth spending a lot of time on. Because point 1 is rejected, the majority moves to consider point 2, the constitutionally of the law.</p>
+
+<p>Before talking about the constitutionally arguments, there are some arguments on procedure which I think are worth mentioning. Part of the dissent’s argument is that there are no grounds to consider point 2 on because Citizens United did not raise that question to the Supreme Court. This gets confusing and I don’t fully understand it, but the gist of it is that Citizens United raised the constitutional question in point 2 before a district court, but district courts cannot overturn Supreme Court decisions and the decision in McConnell gave cause to deny that constitutional challenge. So Citizens United dropped the constitutional challenge. When it reached the Supreme Court, the court heard the arguments and then asked the parties to reargue the case and address whether Austin and the related part of McConnell should be overruled.</p>
+
+<p>The dissent finds this to be a subversion of the court’s procedure. In their view the court is asking the petitioners to bring arguments they did not plan to bring, thereby giving itself the ability to rule on a question that was not asked. The majority argues that the request for reargument was perfectly valid because the constitutionality argument was made to a lower court and was denied because the lower court can only adhere to previous Supreme Court decisions and has no power to overrule them. Additionally the majority argues that the arguments raised in point 1 are directly related to the constitutionality of 441b and the validity of Austin and McConnell because Citizens United makes the case that the law is unconstitutional as applied to them, and denying the possible exceptions without examining the constitutionality of the law and the validity of the precedents would ignore the rights of Citizens United.</p>
+
+<p>They each cite previous cases and make arguments supporting their reasoning, but these have too much to do with court procedure for me to have a strong opinion on; I have no idea what’s regular and irregular. My ignorant opinion tends to side with the majority. It seems to me like you can’t really address the complaints raised by Citizens United without verifying that the underlying law and precedents are actually constitutional.</p>
+
+<p>This argument doesn’t really touch on the issues, it’s mostly procedural, but just keep in mind that the dissent contends that the court shouldn’t even be considering a constitutional question or the validity of Austin and McConnell.</p>
+
+<p>The next main argument before really getting into point 2 is an argument about stare decisis. The dissent argues that the court has no reason or grounds in this case to overturn the previous Supreme Court rulings. The dissent states: “I am not an absolutist when it comes to stare decisis, in the campaign finance area or in any other. No one is. But if this principle is to do any meaningful work in supporting the rule of law, it must at least demand a significant justification, beyond the preferences of five Justices, for overturning settled doctrine.” And the dissent provides the following quote from a previous Supreme Court case: “[A] decision to overrule should rest on some special reason over and above the belief that a prior case was wrongly decided.”</p>
+
+<p>The majority’s basis for whether or not to adhere to stare decisis is provided in this quote they present from a previous Supreme Court case which overruled a previous one: “… the relevant factors in deciding whether to adhere to the principle of stare decisis include the antiquity of the precedent, the reliance interests at stake, and of course whether the decision was well reasoned.” The majority contends that all three points are met. Austin and McConnell are not particularly old, reversing them would not decimate the law or cause chaos, and they argue that those decisions were not well reasoned. We’ll get into the last point later.</p>
+
+<p>In a concurring opinion Roberts writes to argue that stare decisis is important but that there is plenty of reason here to overrule anyway. He makes the point that if a recent case goes against precedents that came before it then it may better serve the values of stare decisis to overturn the recent case and return to the precedent that existed before it.</p>
+
+<p>To me a lot of this dispute seems to come down to whether the Justices think the previous decisions were well reasoned. The majority thinks Austin and McConnell were poorly argued and contradict earlier precedents, while the dissent thinks they were valid decisions that should be upheld. I think the argument about stare decisis is kind of useless here because what they’re really arguing are the merits of Austin and McConnell. The majority says they’re bad and can be overturned, the dissent says they’re not bad and that stare decisis means you can’t overturn reasonable rulings.</p>
+
+<p>The next argument from the dissent is about judicial restraint. They believe that the court should not be considering the constitutionality of 441b because the majority can rule in favor of Citizens United on narrower grounds. The dissent quotes from a previous Supreme Court case which stated that there is an elementary rule “that every reasonable construction must be resorted to, in order to save a statute from unconstitutionality.” The dissent argues that the Supreme Court should have accepted one of the exceptions in point 1 instead of the broader action of declaring part of a law unconstitutional and overturning previous cases. The dissent seems to advocate that the majority should use the video on demand exception, because it’s not particularly clear whether video on demand qualifies as an electioneering communication.</p>
+
+<p>This is an interesting argument the dissent is making. They reject all the arguments in point 1 themselves, but they think the majority should adopt one of them instead of resorting to the more extreme outcome. The majority criticizes this as inconsistent, and argues that it’s not good jurisprudence to accept a bad argument in order to save a law and previous cases, especially when, in their view, the law and previous cases are unconstitutional.</p>
+
+<p>I agree with the majority on this one. While the dissents argument isn’t illogical, it does seem a bit absurd. I don’t know to what lengths the court will usually go to avoid striking down a law as unconstitutional, but accepting a weak argument to avoid it seems wrong to me. Again many of the arguments made to this point hinge on their disagreement about the merits of the law and the previous cases. So these disagreements don’t seem as important as the core disagreement about the merits.</p>
+
+<p>With those arguments about legal concepts out of the way we can get into the core disagreement between the majority and the dissent: whether 441b, which bars corporations and unions from using general treasury funds to make electioneering communications, is unconstitutional and whether Austin and part of McConnell should be overruled.</p>
+
+<p>Previous court cases have established that the first amendment applies to corporations, including political speech by corporations (First National Bank of Boston v. Bellotti (1978) and NAACP v. Button (1963)). The freedom of speech extends to corporations because they’re just groups of people joined by a shared goal of earning profit, just as freedom of speech applies to other groups and associations of people. Additionally, Buckley has established that restrictions on spending are restrictions on speech. This does not mean that money is speech, but just that speech often requires money, and the fact that some speech requires money does not mean it is less protected than speech that does not require money. A government-imposed limit on the amount an individual can spend on TV advertisements limits their ability to speak. Limits on this freedom of speech must pass strict scrutiny. They must serve a compelling state interest, be narrowly targeted to serve that interest, and be the least restrictive means of achieving that interest. Most of the debate in this case centers around whether there is a compelling state interest in restricting the speech of corporations and unions and if 441b and the rulings in the previous cases of Austin and McConnell are narrowly targeted enough to be constitutional.</p>
+
+<p>An example of a previous limit on speech that was upheld was a limit on direct contributions to candidates, from the Buckley case. The court argued that direct contributions were symbolic speech, but that limiting the amount of the contribution did little to restrict speech because symbolic speech could still happen, and the size of the contribution was only a rough proxy for how strong the contributor’s support of the candidate is. Taking that into consideration they found that the government had a compelling interest in limiting direct contributions in order to avoid quid pro quo corruption or the appearance of corruption.</p>
+
+<p>The majority argues that 441b does not satisfy the requirements to pass strict scrutiny. In the majority’s view there is no basis for restricting speech based on the identity of the speaker, in this case that identity being a corporation or union. The majority recognizes that some limits on speech are permitted based on compelling state interests, but they believe there is no compelling state interest in limiting independent expenditures by corporations and unions. The court relies heavily on the precedent set by Buckley, which overturned restrictions on individual independent expenditures. The majority in Citizens United provides the following quote from the Buckley opinion arguing that limits on independent expenditures from individuals “fail[ed] to serve any substantial governmental interest in stemming the reality or appearance of corruption in the electoral process.” The majority argues that this precedent from Buckley should apply equally to independent expenditures by corporations and unions. They believe that the restrictions in 441b do not serve the government interest against corruption and are not narrowly tailored.</p>
+
+<p>The dissent argues the opposite, making the case that 441b serves a governmental interest against corruption and is narrowly targeted to limit that corruption without restricting speech. They argue that it’s acceptable to impose spending limits on corporations and not people because corporations have special features that give them an advantage in making money such as limited liability and infinite life. Another part of their argument is that corporations are created to earn profits for shareholders and so their interests don’t really represent the interests of people so much as their desire to maximize company profits. For this reason their claim to first amendment rights is lesser than that of individuals and they pose a greater corruption threat, and so the argument for a compelling government interest for restrictions is stronger. They also argue that 441b is actually narrow. It only applies to corporations and unions and only to electioneering communications, which are narrowly defined as those that argue for or against a specific candidate, within a short time period before an election, and funded from a corporation or union’s general treasury. And media corporations are exempt, so it doesn’t limit the free speech of the press. On those grounds they argue that 441b is constitutional and that the majority is overreaching.</p>
+
+<p>The majority finds these arguments unpersuasive. Broadly banning corporate speech, even just for electioneering communications, bans speech from big and small corporations alike. Most corporations are small without large amounts of wealth. The majority believes that the law is far from narrow as it would ban electioneering communications from corporations with little wealth along with speech from wealthy ones in the interest of preventing the corruptive influence of large amounts of wealth. The law prevents groups of citizens who have joined together into corporations in the interest of economic gain from expressing their political opinions. The intent of the first amendment is to let all citizens express their opinions, and there’s no reason this shouldn’t include groups of citizens joined together for economic gain.</p>
+
+<p>With regard to the media exception, the majority points to this as further proof of the unconstitutionality of the law. The free speech of the press is only being protected by an exemption for the media in the law. And the distinction between what constitutes a “broadcasting station, newspaper, magazine, or other periodical publication”, and is therefore eligible to receive the media exception, is hard to define and leaves first amendment protection up to a subjective case-by-case basis. Without the media exemption, 441b would bar most of the media from publishing opinions or arguments for or against candidates within the window prior to an election. And the majority makes the point that this exemption still applies to media corporations who are owned or controlled by non-media corporations. If a corporation wanted to receive the media exemption, it could set up a media arm that solely dealt in publications and use that media arm to publish the political opinions of the corporation. According to the majority “…the exemption would allow a conglomerate that owns both a media business and an unrelated business to influence or control the media in order to advance its overall business interest. At the same time, some other corporation, with an identical business interest but no media outlet in its ownership structure,would be forbidden to speak or inform the public about the same issue. This differential treatment cannot be squared with the First Amendment.”</p>
+
+<p>In further arguments against these points, the dissent contends that corporations do have access to unlimited independent expenditures through PACs. Though a PAC cannot use the corporation’s funds for political advertising, it can fundraise and use the proceeds of the fundraising to express the corporation’s political opinions. The dissent sees this as a reasonable alternative to using general treasury funds for electioneering communications. The dissent also points out that foreign based corporations operate in the US too, and that foreign election interference is a compelling reason for the government to interfere with the free speech rights of corporations. The majority responds by noting that the law is not specifically tailored to prevent foreign influence and that there are separate limits on foreign corporate spending so it’s not an issue. The dissent counters that the existence of multinational corporations and American corporations that have many foreign shareholders makes it virtually impossible to narrowly tailor the law, and if 441b were eliminated it allows these corporations to make electioneering communications too.</p>
+
+<p>The dissent also makes the point that speech by corporations and unions may be opposed by some shareholders and members. The majority argues that dissenting shareholders can protect their own opinions through corporate democracy such as the ability of shareholders to vote on company issues or to divest from the company. The dissent responds “I fail to understand how this addresses the concerns of dissenting union members, who will also be affected by today’s ruling, and I fail to understand why the Court is so confident in these mechanisms. By ‘corporate democracy,’ presumably the Court means the rights of shareholders to vote and to bring derivative suits for breach of fiduciary duty. In 
+practice, however, many corporate lawyers will tell you that ‘these rights are so limited as to be almost nonexis­tent’ given the internal authority wielded by boards and managers and the expansive protections afforded by the business judgment rule.” The majority contends that this argument about shareholders misses the point, because media corporations, who are exempt from the restrictions of 441b, may also have shareholders who oppose some speech by the corporation but it offers no protection for them. In their view, if protection of shareholders and members was the goal in writing 441b, 441b would be a very different law.</p>
+
+<p>In my opinion the majority is more persuasive on these arguments. While the dissent does bring some good points, they seem to argue that Congress has the right to impose restrictions on the first amendment, putting the burden of proof on the court to prove Congress wrong. This seems backward to me. When it comes to constitutional rights the default should be that the government cannot interfere with that right except for an exceptionally good reason. That’s essentially the idea behind strict scrutiny, and it doesn’t seem like there’s a clear and compelling reason here for the government to interfere with the right of corporations and unions to speak, even in the limited way that 441b restricts their speech.</p>
+
+<p>I also don’t think the dissent makes a strong case that there’s more potential for corruption from corporations than individuals. Buckley declared limits on independent expenditures by individuals to be unconstitutional, but individuals can have vast sums of money just like some corporations can. Look at Bill Gates, Jeff Bezos, and all the other rich people in the country. If, as ruled in Buckley, the government has no compelling interest in restrictions on individual spending it seems there would need to be some very substantial evidence that corporate spending is more corrupting than individual spending. But there does not seem to be strong evidence of that.</p>
+
+<p>Related to the individual and corporate comparison, I think it’s also important to realize that the corporations are owned by individuals. The value of a company is divided up among its shares, which are counted among the wealth of individuals. The profits of a company are spent by the company or paid out to shareholders as dividends. Why is there such a distinction between whether the corporation spends that money on political speech or whether the shareholders do?</p>
+
+<p>Back to the court opinions, something further complicating everything are the cases of Austin and McConnell. In Austin, the state of Michigan had banned all corporate-funded political independent expenditures that advocate for or against a candidate, not just ones at a specific time period. Remember, the electioneering communications restriction is a federal law that only applies to federal candidates. The states set their own campaign finance laws, and this one was far more restrictive than the federal law. The court in Austin decided that Michigan’s law was constitutional. McConnell was after Austin, and as part of its decision it specifically upheld the constitutionality of limits on corporate independent expenditures from treasury funds. The decision in McConnell depended greatly on Austin, which had set the precedent that there was strong government interest in limiting corporate speech and that even broad limits on corporate speech were constitutional. With those precedents in place and with McConnell having already ruled on the constitutionality of the BCRA and 441b, the only way for the majority to strike down 441b is to overturn Austin and the part of McConnell that ruled 441b to be constitutional.</p>
+
+<p>Overturning those precedents is fine with the majority, who believe that Austin and McConnell were poorly reasoned and bad decisions. The dissent, of course, strongly disagrees. This is where a lot of the debate about stare decisis really comes into play. The dissent accuses the majority of disagreeing with those cases and desiring to overrule them, which on its own is not enough reason to reverse them.</p>
+
+<p>Again, much of this debate is about the merits of those cases wrapped up in a debate about adherence to precedent. If the cases were bad it’s reasonable to overturn that precedent. If they used sound logic and good arguments it’s unreasonable to overturn them. So I want to focus primarily on the merits.</p>
+
+<p>The majority strongly opposes Austin because in their view it established a precedent and introduced poor arguments that the majority believes unjustly restricts first amendment rights. The primary argument opposed by the majority is that of an “antidistortion rationale”. This quote from the majority elaborates on what that is (the court references Bellotti, a case that established that there is first amendment protection for corporate political speech): “To bypass Buckley and Bellotti, the Austin Court identified a new governmental interest in limiting political speech: an antidistortion interest. Austin found a compelling governmental interest in preventing ‘the corrosive and distorting effects of immense aggregations of wealth that are accumulated with the help of the corporate form and that have little or no correlation to the public’s support for the corporation’s political ideas.’” The internal quote is from the Austin decision. The majority argues that there is no constitutional basis for restricting some speech in order to elevate other speech, which is precisely what the Austin court is arguing when it talks of the “distorting effects of immense aggregations of wealth”.</p>
+
+<p>The majority sites several previous cases which have explicitly argued that the government may not attempt to equalize speech. First is Buckley, which rejected the idea that there was a compelling government interest “in equalizing the relative ability of individuals and groups to influence the outcome of elections” (quote from Buckley used by the majority). The majority also provides the following quote from David v. FEC (2008): “Leveling electoral opportunities means making and implementing judgments about which strengths should be permitted to contribute to the outcome of an election. The Constitution, however, confers upon voters, not Congress, the power to choose the Members of the House of Representatives, Art. I, §2, and it is a dangerous business for Congress to use the election laws to influence the voters’ choices”.</p>
+
+<p>Additionally, the majority finds that the argument of the Austin court that the wealth and speech of a corporation “have little or no correlation to the public’s support for the corporation’s political ideas” to be irrelevant. The court argues that “All speakers, including individuals and the media, use money amassed from the economic marketplace to fund their speech. The First Amendment protects the resulting speech, even if it was enabled by economic transactions with persons or entities who disagree with the speaker’s ideas.”</p>
+
+<p>The majority argues that the decision in Austin was based primarily on this antidistortion rationale, and that it’s a completely unconstitutional rationale that goes against previously established precedents. On this basis, as well as the other points made against 441b, most of which also apply to the Austin decision, the majority would overturn Austin and the portion of McConnell which was based on Austin.</p>
+
+<p>The dissent responds by making the case that Austin was not only based on the antidistortion rationale, but also an anticorruptuon rationale, and that the antidistortion rationale itself is tied to corruption. In their view the antidistortion rationale recognizes that the government conferred benefits of corporations such as limited liability and infinite life make them particularly capable of amassing wealth, and that this means they pose a greater corruption threat. The dissent points out that money given directly to a candidate in exchange for favors isn’t the only form of corruption. Politicians are grateful when a group runs an ad that’s favorable to them and may respond with preferential treatment in the future. According to the dissent “In an age in which money and television ads are the coin of the campaign realm, it is hardly surprising that corporations deployed these ads to curry favor with, and to gain influence over, public officials.”</p>
+
+<p>In further support of its corruption argument, the dissent quotes a lobbyist who said “unregulated expenditures—whether soft money donations to the parties or issue ad campaigns—can sometimes generate far more influence than direct campaign contributions”. Additionally they point out that some corporations give “substantial sums to both major national parties” (quoting from the McConnell case) indicating that the corporations were more interested in influence than they were in expressing political preferences.</p>
+
+<p>In support of the idea that anticorruptuon restrictions are valid and don’t restrict speech, the dissent argues that restricting corporate speech “does not prevent anyone from speaking in his or her own voice.” In other words restrictions on corporations don’t restrain anyone from speaking independently.</p>
+
+<p>I agree more with the majority. I think the dissent too quickly disregards the right of individuals to speak in groups and to advocate for their economic interests, which is what corporate speech is. The dissent raises some great points about the risk of corruption and the fact that corruption can occur even when parties don’t coordinate. But that isn’t enough to justify restricting a constitutional right in my opinion. Buckley ruled that limits on individual independent expenditures are unconstitutional, and in my opinion that same logic must apply to corporations as well. The arguments of the dissent that corporations are different and more of a corruption risk are worth considering and make some valid points, but ultimately I don’t think their case is very strong.</p>
+
+<p>Additionally, the dissent continues to rely on the antidistortion rationale in their arguments, and I agree with the majority that this rationale is unconstitutional. The government has no business trying to equalize speech or prevent some speech from being dominant over other speech. The dissent makes several arguments that obviously rely on antidistortion such as this argument in favor of Austin discussing out of state corporations advertising to influence state elections where they say “when corporations grab up the prime broadcasting slots on the eve of an election, they can flood the market with advocacy that bears ‘little or no correlation’ to the ideas of natural persons or to any broader notion of the public good, 494 U. S., at 660. The opinions of real people may be marginalized.” In addition the dissent refers to this possibility as a “drowning out” of noncorporate voices. I agree with the majority that these arguments do not make a good case for infringing constitutional rights.</p>
+
+<p>I think that basically covers most of the larger points made by the majority and the dissent. The arguments were more in depth than what I presented here, often quoting and referring to previous Supreme Court cases in support of their points. But it’s difficult to know who is more accurately representing the past cases (they often refer to and quote from the same cases to make very different points) without an in depth knowledge of those cases as well. So instead I’ve made the broader points here which I think should be enough to understand the main arguments and their validity. Just remember this isn’t everything from the case, the PDF is over 180 pages long and they bring up a lot of points and arguments in support of their broader conclusions.</p>
+
+<p>Briefly there are two other arguments I want to mention. One is an argument over the views of the framers, the people who wrote the constitution. The dissent argues that they had no love for corporations and that it would be unreasonable to think the framers would want zero restrictions on corporate speech. Writing separately to argue against this, Scalia, joined by Alito and Thomas, says that corporations in the framers’ time were very different, and that often when corporations were formed they were granted monopoly rights in their industry. So if the framers did dislike corporations they were something very different from what exists today. In Scalia’s opinion the framers crafted the first amendment to apply broadly, and modern developments such as new technology and new advertising abilities shouldn’t invalidate that right, especially when modern corporations bear no resemblance to corporations at the time.</p>
+
+<p>There’s more to these arguments but ultimately I think it’s hard to say what the framers intended and speculation on it is not particularly helpful for this case.</p>
+
+<p>Finally, Thomas writes separately to argue against the last topic in this case, disclosure requirements for advertisements, which the eight other Justices find constitutional. He argues that disclosure requirements can lead to retaliation against speakers and that fear of violent retaliation can prevent a person from exercising their right to speech. As evidence he points to a 2008 ballot initiative in California that narrowly passed, which defined marriage as between one man and one woman. Supporters of the proposition, whose financial support had to be publicly disclosed, were in many cases subjected to threats and property damage, and a few were even mailed white powdery substances. Ultimately Thomas argues that the first amendment protects the right to speak anonymously.</p>
+
+<p>This was an interesting argument and I think he has a valid point, but I agree with the rest of the Justices that the public needs to know who is speaking to make informed decisions and to be able to identify whether corruption is happening. There are already exceptions to disclosure requirements for people and groups who can make a credible case that they would be subjected to violence if their identity was disclosed.</p>
+
+<h1>CONCLUSION</h1>
+<p>The final outcome was to strike down 441b as unconstitutional and overturn Austin and the related part of McConnell. The court also upheld disclosure requirements. The end result is that there are now no limitations on independent expenditures from corporations and unions. Eliminating this restriction resulted in the creation of super PACs (see definition near the beginning), because there was no longer any need for a distinction between individual independent expenditures and corporate independent expenditures.</p>
+
+<p>In my opinion the arguments made by the majority make the most sense. While I can’t judge whether the majority accurately represents the precedents set by other cases, it does appear to me that this decision was the right one, or at the very least a reasonable application of first amendment rights.</p>
+
+<p>I don’t expect everyone to agree with me, and it’s perfectly reasonable not to. Both sides made good arguments and each has a valid case. However, discussions of this case by some politicians and citizens often characterize the majority’s opinion as illogical or even corrupt. Most Democratic presidential candidates want to pass an amendment to the constitution to effectively overturn Citizens United and allow restrictions on corporate political spending. Some candidates have even said they will only appoint Supreme Court justices who want to overturn Citizens United. I think this kind of rhetoric is inaccurate and does not fairly consider the merits of the case. Even if we ignore the near impossibility of passing an amendment like that, too little consideration is given to the reasonable arguments made by the majority and their desire to protect first amendment rights. It shouldn’t just be about whether a constitutional amendment is possible, but whether it’s even a good idea at all. In my view it is not.</p>
+
+<p>Finally, if you ever want to restore your faith in America’s institutions, read a Supreme Court case. Supreme Court opinions are logical, thoughtful, and address the relevant legal considerations and implications. Even if you ultimately disagree with one side, their arguments are usually grounded in logic and the law, and they often make very convincing points. They’re human of course, so some arguments can be irrational or poorly reasoned, but in general I think there would be far more trust and far less extreme rhetoric regarding the Supreme Court if people made an effort to become more familiar with the cases they find concerning.</p>
+
+<h1>LINKS</h1>
+<p>PDF of Citizens United decision: <a href="https://www.supremecourt.gov/opinions/09pdf/08-205.pdf">https://www.supremecourt.gov/opinions/09pdf/08-205.pdf</a><br>
+Text of BCRA: <a href="https://www.congress.gov/bill/107th-congress/house-bill/2356/text">https://www.congress.gov/bill/107th-congress/house-bill/2356/text</a><br>
+Information on BCRA and the limits it imposed on electioneering communications by corporations and unions: <a href="https://www.law.cornell.edu/wex/bcra">https://www.law.cornell.edu/wex/bcra</a><br>
+Press exemption for expenditure limits, see 9-b-i: <a href="https://www.law.cornell.edu/uscode/text/52/30101">https://www.law.cornell.edu/uscode/text/52/30101</a><br>
+Buckley v. Valeo Opinion: <a href="https://supreme.justia.com/cases/federal/us/424/1/#tab-opinion-1951589">https://supreme.justia.com/cases/federal/us/424/1/#tab-opinion-1951589</a><br>
+Austin v. Michigan Chamber of Commerce Opinion: <a href="https://supreme.justia.com/cases/federal/us/494/652/">https://supreme.justia.com/cases/federal/us/494/652/</a></p>
 
 			</div>
     		</li>
@@ -345,7 +710,7 @@
 
 			<div class="copyrightspacer">
 				<div class="copyright">
-					<p>Copyright &copy; 2019 Ryan Beck</p>
+					<p>Copyright © 2020 Ryan Beck</p>
 				</div>
 			</div>
 		</div>
