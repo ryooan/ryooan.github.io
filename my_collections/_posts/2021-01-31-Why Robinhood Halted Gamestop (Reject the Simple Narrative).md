@@ -101,7 +101,7 @@ That just tells us the value-at-risk for one share. To estimate value at risk fo
 
 <img src="/assets/value at risk total market full.png" width="100%" />
 
-Here's the same chart but figured on October 2020 onward.
+Here's the same chart but focused on October 2020 onward.
 
 <img src="/assets/value at risk total market narrow.png" width="100%" />
 
