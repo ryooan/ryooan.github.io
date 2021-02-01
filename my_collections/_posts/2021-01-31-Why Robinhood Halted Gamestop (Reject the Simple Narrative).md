@@ -2,6 +2,7 @@
 layout: post
 author: Ryan
 title: Why Robinhood Halted Gamestop (Reject the Simple Narrative)
+ogimageurl: https://www.ryanbeckauthor.com/assets/value%20at%20risk%20percent%20full.png
 tags: [politics]
 ---
 On January 28th Robinhood [disabled all transactions except for position-closing (selling) for a small set of stocks including Gamestop (GME)](https://web.archive.org/web/20210128225134/https://robinhood.com/support/articles/5u3FDQTWzsH0yNQ4sJXYsZ/changes-due-to-recent-market-volatility/). This was a new and exciting development in the ongoing saga of how a subreddit called Wallstreetbets (WSB) memed their way into contributing to a short squeeze and profiting from it (or at least the early adopters are likely to profit from it). Freezing stock purchases also generated significant outrage, quickly turning into a narrative of how Big Wallstreet will cheat to avoid losing money to the average Joe. This narrative is simple, appealing, and probably wrong, and the following is an attempt to explain why.
@@ -19,10 +20,10 @@ Anyway, check out those links if you want, or don't, how we got to where we are 
 **What differentiates this post:** There have already been a few other good posts on why Robinhood shutting down transactions was not some corrupt conspiracy. But this post is a post for masochists who want to know what's going on in more detail and who want to dig into the technical background and data. If that's you, read on!
 
 Links to previous posts:
-https://www.reddit.com/r/neoliberal/comments/l7bo3r/the_game_stop_situation_is_not_a_conspiracy_an/
-https://www.reddit.com/r/neoliberal/comments/l7bdcv/what_actually_happened_today_hint_there_probably/
-https://www.reddit.com/r/neoliberal/comments/l81tif/why_did_robinhood_stop_allowing_their_customers/
-https://www.reddit.com/r/badeconomics/comments/l7gi70/financial_econ_101_or_link_this_in_bad_reddit/
+<https://www.reddit.com/r/neoliberal/comments/l7bo3r/the_game_stop_situation_is_not_a_conspiracy_an/>
+<https://www.reddit.com/r/neoliberal/comments/l7bdcv/what_actually_happened_today_hint_there_probably/>
+<https://www.reddit.com/r/neoliberal/comments/l81tif/why_did_robinhood_stop_allowing_their_customers/>
+<https://www.reddit.com/r/badeconomics/comments/l7gi70/financial_econ_101_or_link_this_in_bad_reddit/>
 
 # How a Stock Market Transaction Works
 To really understand why the popular narrative about Robinhood is likely to be wrong, we need to better understand how a stock market transaction works. When you buy a stock, you fork over your money and receive in return shares of a stock. The company that provides the user interface or the human that you call up to arrange this transaction is called a broker. That's what Robinhood is. You tell your broker you want to buy X shares of stock Y, you give them the money and they arrange for those shares to be purchased and documented as being owned by you.
