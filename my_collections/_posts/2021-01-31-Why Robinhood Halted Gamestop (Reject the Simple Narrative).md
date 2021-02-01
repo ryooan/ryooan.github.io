@@ -17,9 +17,9 @@ Anyway, check out those links if you want, or don't, how we got to where we are 
 
 **Disclaimer:** I am not an expert on any of this. There's a good chance I've made mistakes in the following explanation. I'm just a guy who wasn't satisfied by the simple narrative and stayed up 4 hours past his bedtime on Thursday night and spent most of his free time since trying to better understand this stuff and writing it up to share what I've learned. If you see anything that you know to be wrong please comment with correct information!
 
-**What differentiates this post:** There have already been a few other good posts on why Robinhood shutting down transactions was not some corrupt conspiracy. But this post is a post for masochists who want to know what's going on in more detail and who want to dig into the technical background and data. If that's you, read on!
+**What differentiates this post:** There have already been a few other good posts (see links below) on why Robinhood shutting down transactions was not some corrupt conspiracy. But this post is a post for masochists who want to know what's going on in more detail and who want to dig into the technical background and data. If that's you, read on!
 
-Links to previous posts:
+Links to other good posts:
 <https://www.reddit.com/r/neoliberal/comments/l7bo3r/the_game_stop_situation_is_not_a_conspiracy_an/>
 <https://www.reddit.com/r/neoliberal/comments/l7bdcv/what_actually_happened_today_hint_there_probably/>
 <https://www.reddit.com/r/neoliberal/comments/l81tif/why_did_robinhood_stop_allowing_their_customers/>
