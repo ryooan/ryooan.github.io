@@ -9,7 +9,7 @@ On January 28th Robinhood [disabled all transactions except for position-closing
 
 I'm not going to go over the full history here. Others have already done that with plenty of background information. If you want to read the full saga (not necessary to understand the rest of this post, but it is interesting) then check out these links:
 
-[The obligatory Vox explainer](https://www.vox.com/the-goods/22249458/gamestop-stock-wallstreetbets-reddit-citron)  
+[The obligatory Vox explainer.](https://www.vox.com/the-goods/22249458/gamestop-stock-wallstreetbets-reddit-citron)  
 [A background piece with an interesting explanation](https://yudkowsky.medium.com/r-wallstreetbets-is-trying-something-unprecedented-in-history-and-the-medias-not-reporting-it-7ab507e4a038) of how WSB could profit from this without many of them losing a bunch of money if they can coordinate effectively.  
 [A Wallstreetbets thread on GME](https://www.reddit.com/r/wallstreetbets/comments/l5c0nr/the_gme_thread_part_1_for_january_26_2021/?sort=confidence) if you've never visited the subreddit and want to immerse yourself in the full experience of crass GME memes and takes by people who have fully embraced the early 2000's non-PC habit of using intellectual disabilities and sexual orientation as insults.
 
