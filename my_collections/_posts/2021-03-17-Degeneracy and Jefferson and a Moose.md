@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: Degeneracy and Jefferson and a Moose
-ogimageurl: {{site.url}}/assets/tiger.jpg
+ogimageurl: ryanbeckauthor.com/assets/tiger.jpg
 tags: [science]
 ---
 >"The Europeans who pass into America degenerate, as do the animals; a proof that the climate is unfavourable to the improvement of either man or animal... This degradation of humanity must be imputed to the vitiated qualities of the air stagnating in their immense forests, and corrupted by the noxious vapours from standing waters and uncultivated grounds."
@@ -18,7 +18,7 @@ The quote at the start of this post and all of the hilariously incorrect quotes 
 >"The Puma, or lion of America, has no mane; nor is it to be compared for size, force, or courage, with the lion of Africa. The same may be affirmed of their Jaguar, which has been honoured with the name of tiger; as to the Couguar, or poltroon tiger, as it is called, it seems to be peculiar to this country."  
 
 <figure>
-  <img src="{{site.url}}/assets/tiger.jpg" alt="Offended Tiger" width=100%/>
+  <img src="{{site.url}}/assets/tiger.jpg" alt="Offended Tiger" width="100%"/>
   <figcaption>What did you call me?</figcaption>
 </figure>
 
