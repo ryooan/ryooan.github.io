@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ryan
-title: Degeneracy, Jefferson, and a Moose
+title: Degeneracy and Jefferson and a Moose
 ogimageurl: {{site.url}}/assets/tiger.jpg
 tags: [science]
 ---
