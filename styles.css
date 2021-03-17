@@ -654,6 +654,14 @@ h1.blog {
 	height: 100%;
 }
 
+figure {
+	width: 100%;	
+}
+
+figurecaption {
+	text-align: center;	
+}
+
 .infinite-spinner {
   display: block;
   width: 40px;
