@@ -16,8 +16,7 @@ The quote at the start of this post and all of the hilariously incorrect quotes 
 >"It was observed, at the discovery of the new world, that there was no such thing as a large quadruped to be found between the Tropics; there were neither horses, asses, oxen, camels, dromedaries, nor elephants; all which, except the last, have from time immemorial been so effectually tamed to the services of man in our hemisphere."
 
 >"The Puma, or lion of America, has no mane; nor is it to be compared for size, force, or courage, with the lion of Africa. The same may be affirmed of their Jaguar, which has been honoured with the name of tiger; as to the Couguar, or poltroon tiger, as it is called, it seems to be peculiar to this country."
->
-
+<br/><br/>
 <figure>
   <img src="{{site.url}}/assets/cougar.jpg" alt="Offended Cougar" width="100%"/>
   <figcaption>What did you call me?</figcaption>
