@@ -1,0 +1,74 @@
+---
+layout: post
+author: Ryan
+title: Afghanistan Uncertainty
+ogimageurl: ryanbeckauthor.com/assets/gjopen_kabul.png
+tags: [politics]
+---
+I've been increasingly frustrated with the public conversation around Afghanistan. The whole situation is a tragedy, and instead of sober reflection on the situation we got ourselves into the public conversation has predictably become nothing but political finger pointing. Those flinging blame at this point appear to be selectively attacking only their political enemies and defending their political allies. But the failures have been bipartisan, and I think we should all be ignoring the people who are currently using this horrible situation as a tool to attack their political enemies.
+
+Every additional piece of information I've read about what's been going on in Afghanistan makes me less sure what the right solution was. I think uncertainty is often the opposite of partisanship, so in the hopes of spreading some uncertainty I've tried below to provide some of the most useful information I've seen. I've tried to keep it light on opinion and I've also tried to include sources for everything I've said here.
+
+In February of 2020 the Trump administration negotiated with the Taliban and signed the Doha Agreement [[1]](https://en.wikipedia.org/wiki/Doha_Agreement_(2020)) [[2]](https://www.state.gov/wp-content/uploads/2020/02/Agreement-For-Bringing-Peace-to-Afghanistan-02.29.20.pdf). This agreement specified that the US would withdraw all its forces by May of 2021, and in exchange the Taliban agreed to prevent any threats against the United States and its military originating in Afghanistan. Additionally, the agreement specified that the Afghan government would release 5,000 Taliban prisoners, and the Taliban would release 1,000 Afghan government soldiers they held prisoner. The Afghan government was not a party to this negotiation.
+
+After the agreement the Taliban ceased attacks on US led forces in Afghanistan. You may have seen people saying that no US soldiers had died in Afghanistan since February of 2020. This is why. Wikipedia has a count of US soldiers killed in Afghanistan by month and you can see there are no deaths since February of 2020 [3]. However, according to [[1]](https://en.wikipedia.org/wiki/Doha_Agreement_(2020)), the Taliban continued and even increased the frequency of attacks against the Afghan government after the agreement was signed. It just stopped attacking US led forces.
+
+Biden became president in January, and in March he publicly stated that the US may miss its May withdrawal deadline [[4]](https://www.npr.org/2021/03/17/978106035/biden-says-u-s-may-miss-deadline-for-withdrawing-troops-from-afghanistan). Biden cited difficulties in the presidential transition process as the reason saying "The failure to have an orderly transition from the Trump presidency to my presidency... has cost me time and consequences." On April 13 Biden announced that the date of full withdrawal would be moved to September 11th, the 20 year anniversary of the September 11th attacks. [[5]](https://www.whitehouse.gov/briefing-room/speeches-remarks/2021/04/14/remarks-by-president-biden-on-the-way-forward-in-afghanistan/)
+
+In May, General Mark Milley, chairman of the Joint Chiefs of Staff, said plans were being created to evacuate Afghan allies such as interpreters, if necessary. Additionally, the State Department was stated to be processing Special Immigrant Visas (SIVs) in Kabul for Afghans. [[6]](https://www.nbcnews.com/politics/national-security/u-s-planning-possible-evacuation-afghan-interpreters-says-top-u-n1268852) Also in May, Zalmay Khalilzad, U.S. special envoy to Afghanistan and lead US negotiator on the February 2020 Doha Agreement with the Taliban, said "We don't want to signal panic and the departure of all educated Afghans by worst-casing and undermining the morale of the Afghan security forces... I personally believe that the statements that [Afghan] forces will disintegrate and the Talibs will take over in short order are mistaken." [[7]](https://gandhara.rferl.org/a/u-s-lawmakers-express-concerns-over-fate-of-afghan-allies-with-taliban-return/31262511.html
+)
+
+In June the US intelligence community stated that they believed the Afghan government could fall between 6 and 12 months after US forces withdrew, revising from a previous estimate of approximately 2 years [[8]](https://archive.is/PqKok). On August 16th the Taliban captured Kabul, the capital of Afghanistan, before US troops had completed their withdrawal. [[9]](https://www.bbc.com/news/world-asia-58223231)
+
+I tried to keep the above as close to the evidence and available information as possible, but of course there will be bias in what I've considered important enough to include. I'm also just learning about all this myself, so keep in mind someone who has carefully studied this more closely and for longer will have other information that would be important to consider. The rest of this will be my interpretation of the above and will obviously be based more on my opinion.
+
+The whole thing is a mess, and in my opinion it seems very unclear that we could have left Afghanistan without chaos ensuing. At the same time, in hindsight it also seems very likely that we could have left in a better way, but I'm not sure if anyone really could have foreseen some of these unexpected consequences.
+
+The Doha Agreement was responsible for the reduction in attacks on US soldiers in 2020. In the few years prior to the Doha Agreement on average about one US soldier was killed in action per month [3]. But what's not clear to me is what would have happened if Biden had decided to cancel the withdrawal entirely or delay it for significantly longer. It seems likely to me that the Taliban would have seen this as a violation of the agreement and restarted attacks against the US, resulting in US soldiers being killed again. In my opinion the Taliban signed onto the Doha Agreement in the first place because they knew once US troops were out of the way they would eventually gain control of Afghanistan. If US troops instead remain in violation of the agreement, why wouldn't the Taliban continue or renew its attacks and try to regain territory? Some opinion pieces in April were arguing the same. [[10]](https://www.nbcnews.com/think/opinion/trump-could-gain-biden-s-decision-delay-withdrawing-afghanistan-ncna1263956)
+
+Biden chose to take US troops out, though he delayed the withdrawal to try to prepare more. Obviously that failed. Could he have prepared better? I think so. I think Biden, the intelligence community, and everybody involved should have had a better contingency plan in place for a sudden takeover by the Taliban. But to me it seems like nobody saw this coming and therefore did not plan effectively for this possibility. The intelligence community thought 6 to 12 months in June. The US envoy to Afghanistan, Zalmay Khalilzad, basically said they didn't want to begin mass evacuations because that could start a panic and demoralize the Afghan forces, and that he believed they would hold out. So in the administrations mind the Afghan government would hold out for some time, so they would have time to get US citizens and Afghan allies out, and if they tried to do that too quickly it could demoralize the Afghan government and military and lead to an earlier collapse.
+
+I think the sudden collapse of the Afghan government surprised everyone, so I don't know how much blame should be placed solely at the feet of the Biden administration for this bad forecast. Certainly some. But don't believe anyone that tells you this was foreseeable unless they have receipts. Hindsight is easy, figuring out what's likely in advance is hard. As proof that no one expected this I can point to a related question which was on Good Judgement Open, a forecasting platform where people compete to try to have the most accurate forecast of what's likely to happen. This question asks if the US will evacuate or lose control of its embassy in Kabul before December 1, 2021. [[11]](https://www.gjopen.com/questions/2071-will-the-us-fully-evacuate-or-lose-control-of-its-embassy-in-kabul-afghanistan-before-1-december-2021) You can see the crowd forecast in the picture below. The crowd was at less than 10% chance all the way up until August 9th, just a week before Kabul fell. 91 people forecasted on that question (I did not, though I'm sure I would have assigned a low probability like the majority of them did). And keep in mind the question asked if it would happen before December, so these forecasters expected the embassy to stay under US control at least two and a half months after the September 11th withdrawal deadline Biden had set.
+
+<figure>
+  <img src="{{site.url}}/assets/gjopen_kabul.png" alt="Good Judgement Open Kabul Embassy Forecast" style="width:50%; margin:auto; display:block"/>
+  <figcaption>Good Judgement Open Kabul Embassy Forecast</figcaption>
+</figure>
+
+I think Biden has mainly failed in a couple ways. One is lack of preparation for the possibility of a swift collapse of the Afghan government. It seems like not enough planning was done for this possibility because everyone expected the Afghan government to last at least a few months. Another big failure is setting the withdrawal date as September 11th. This was purely a political date, meant to coincide with the 20th anniversary of the September 11th attacks. Some have argued pretty convincingly that the withdrawal should have waited for winter because the Taliban typically withdraws back to bases in the winter at the end of the "fighting season" in the summer. [[12]](https://archive.is/rwjQ0) The link at [[12]](https://archive.is/rwjQ0) has a larger criticism of the things the author thinks Biden did wrong and is definitely worth a read.
+
+The other main failure I think is a bipartisan one, which is not immediately committing to taking more Afghan refugees. The number of Afghan refugees the US will admit has apparently not yet been decided, but there is concern that Biden will shy away from taking a significant amount of Afghan refugees due to the political opposition against refugees from certain Republicans such as Trump and his supporters. [13] I hope that's not the case, and according to the link in [[13]](https://www.cnn.com/2021/08/22/politics/biden-afghan-refugees-resettlement-us-politics/index.html) some Republicans such as Mitt Romney, Joni Ernst, and others have come out in favor of welcoming Afghan refugees, which I'm glad to hear.
+
+Aside from the things I mentioned above, what were our other options and did anyone see this coming? I don't really know for sure. Mitch McConnell in April released a statement criticizing Biden's decision to pull out of Afghanistan saying "A reckless pullback like this would abandon our Afghan, regional, and NATO partners in a shared fight against terrorists that we have not yet won." [[14]](https://www.republicanleader.senate.gov/newsroom/remarks/clumsy-retreat-from-afghanistan-would-be-a-grave-mistake) The statement also mentions that he'd previously criticized the Trump administration for their decision to agree to withdrawal. Arguably this could be seen as a prediction of bad consequences, but it's vague enough that we can't say exactly what he thought would happen. His solution was to stay in Afghanistan indefinitely, as seen from this quote from his statement "Foreign terrorists will not leave the United States alone simply because our politicians have grown tired of taking the fight to them. The President needs to explain to the American people why he thinks abandoning our partners and retreating in the face of the Taliban will make America safer."
+
+I don't think staying indefinitely is a good option, and I think most people agree with that. People are tired of a war dragging on for 20 years, and there was bipartisan support for leaving, as evidenced by the fact that Trump signed an agreement that we would leave and Biden followed through on it. I'm fairly certain that had we not left the same people criticizing Biden right now for the Afghanistan debacle would be criticizing him for not leaving. It seems like a situation with no good outcomes. We can and should expect better of our government, but at the same time governments are always flawed, and this seems like a situation where there would have been at least some chaos no matter how well the Biden administration executed the withdrawal.
+
+Like I said, I don't have any strong opinions because I'm uncertain a good outcome was even possible. My only strong feelings are sadness and disappointment at the situation we got ourselves into and the lives endangered or lost. I hope that for anyone reading this far I've managed to add some uncertainty into how you view the situation too. If you think I'm missing something or incorrect about anything here please tell me!
+
+[1] <https://en.wikipedia.org/wiki/Doha_Agreement_(2020)>
+
+[2] Full text of the Doha Agreement (pdf, 4 pages): <https://www.state.gov/wp-content/uploads/2020/02/Agreement-For-Bringing-Peace-to-Afghanistan-02.29.20.pdf>
+
+[3] <https://en.wikipedia.org/wiki/United_States_military_casualties_in_the_War_in_Afghanistan>
+
+[4] <https://www.npr.org/2021/03/17/978106035/biden-says-u-s-may-miss-deadline-for-withdrawing-troops-from-afghanistan>
+
+[5] <https://www.whitehouse.gov/briefing-room/speeches-remarks/2021/04/14/remarks-by-president-biden-on-the-way-forward-in-afghanistan/>
+
+[6] <https://www.nbcnews.com/politics/national-security/u-s-planning-possible-evacuation-afghan-interpreters-says-top-u-n1268852>
+
+[7] <https://gandhara.rferl.org/a/u-s-lawmakers-express-concerns-over-fate-of-afghan-allies-with-taliban-return/31262511.html>
+
+[8] <https://archive.is/PqKok>
+
+[9] <https://www.bbc.com/news/world-asia-58223231>
+
+[10] <https://www.nbcnews.com/think/opinion/trump-could-gain-biden-s-decision-delay-withdrawing-afghanistan-ncna1263956>
+
+[11] <https://www.gjopen.com/questions/2071-will-the-us-fully-evacuate-or-lose-control-of-its-embassy-in-kabul-afghanistan-before-1-december-2021>
+
+[12] <https://archive.is/rwjQ0>
+
+[13] <https://www.cnn.com/2021/08/22/politics/biden-afghan-refugees-resettlement-us-politics/index.html>
+
+[14] <https://www.republicanleader.senate.gov/newsroom/remarks/clumsy-retreat-from-afghanistan-would-be-a-grave-mistake>
