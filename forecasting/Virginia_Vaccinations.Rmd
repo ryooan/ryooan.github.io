@@ -509,7 +509,7 @@ details summary > * {
 <details>
   <summary><h3>One Dose</h3>
   </summary>
-  <h4>The chart below contains the percent of the total population receiving first doses. Note that this includes Federal doses administered (see discussion at the top of this page).</h4>
+  <h4>The chart below contains the percent of the total population receiving first doses. Note that this does not include Federal doses administered (see discussion at the top of this page).</h4>
 ```{r message=FALSE, warning=FALSE}
   cumulative_one_dose_total
 ```
@@ -537,7 +537,7 @@ details summary > * {
 <details>
   <summary><h3>Fully Vaccinated</h3>
   </summary>
-  <h4>The chart below contains the percent of the total population fully vaccinated (two doses for Pfizer and Moderna, one dose for J&J, etc.). Note that this includes Federal doses administered (see discussion at the top of this page).</h4>
+  <h4>The chart below contains the percent of the total population fully vaccinated (two doses for Pfizer and Moderna, one dose for J&J, etc.). Note that this does not include Federal doses administered (see discussion at the top of this page).</h4>
 ```{r message=FALSE, warning=FALSE}
   cumulative_full_vax_total
 ```
