@@ -1,0 +1,640 @@
+---
+title: "Virginia Vaccinations"
+author: "Ryan Beck"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page contains trends and data for the share of the Virginia population which has received vaccinations (by age and by overall population). Trends are provided for first doses, full vaccinations, and boosters. This page was created as a tool for use in forecasting vaccination trends in Virginia on [Metaculus](https://www.metaculus.com/tournament/realtimepandemic/).
+
+Offical Virginia Department of Health vaccination information can be found here: https://www.vdh.virginia.gov/coronavirus/see-the-numbers/covid-19-in-virginia/covid-19-vaccine-summary/
+
+**IMPORTANT DATA NOTE:** The official Virginia vaccination information includes federal doses in the totals for those with at least one dose and those who are fully vaccinated. Virginia does not break Federal doses down by age. So while the data by age should match what the Virginia Department of Health is showing, percent of the population with one dose and the percent of the population fully vaccinated will not match because Virginia's numbers include Federal doses. Currently I have been unable to find Federal doses over time in Virginia, the only source appears to be the page linked below which shows the latest Federal numbers. Any numbers which rely on the total population with one dose or total population fully vaccinated will not match the numbers as reported by Virginia.
+
+Virginia Federal doses information: https://www.vdh.virginia.gov/coronavirus/see-the-numbers/covid-19-in-virginia/covid-19-vaccine-summary/covid-19-vaccine-federal-doses/
+
+Data sources used:
+
+* Virginia vaccinations: https://data.virginia.gov/Government/VDH-COVID-19-PublicUseDataset-Vaccines-DosesAdmini/8fmk-qt4d  
+* Virginia population statistics from 2019: https://wonder.cdc.gov/bridged-race-v2019.html  
+* Virginia population statistics summarized: https://docs.google.com/spreadsheets/d/1XEv7Lh38nRLwFBtTijncCjdT5YHCBGWAash4ivGKcvs/edit?usp=sharing  
+
+Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
+
+```{r message=FALSE, warning=FALSE}
+library(RSocrata)
+library(tidyverse)
+library(zoo)
+library(scales)
+library(kableExtra)
+library(reshape2)
+library(latticeExtra)
+
+#see here for population data: https://docs.google.com/spreadsheets/d/1XEv7Lh38nRLwFBtTijncCjdT5YHCBGWAash4ivGKcvs/edit?usp=sharing
+zero_pop = 505477
+five_pop = 723069
+twelve_pop = 422741
+sixteen_pop = 209561
+eighteen_pop = 798197
+twentyfive_pop = 1190381
+thirtyfive_pop = 1112496
+fortyfive_pop = 1100274
+fiftyfive_pop = 1114417
+sixtyfive_pop = 802291
+seventyfive_pop = 402130
+eightyfive_pop = 154485
+
+total_pop = zero_pop + five_pop + twelve_pop + sixteen_pop + eighteen_pop + twentyfive_pop+ thirtyfive_pop + fortyfive_pop + fiftyfive_pop + sixtyfive_pop + seventyfive_pop + eightyfive_pop
+
+df <- read.socrata("https://data.virginia.gov/resource/8fmk-qt4d.csv")
+
+df <- df %>% mutate(report_date = as.Date(report_date,"%Y-%m-%d"))
+
+#source below shows federal data but it's a static number, not tracked by date
+#federal_test <- read.socrata("https://data.virginia.gov/resource/28k2-x2rj.csv")
+
+#grouped_federal <- federal_test %>% group_by(administration_date, facility_type,dose_number) %>% summarise(administered = sum(vaccine_doses_administered))
+
+grouped_vaccinations <- df %>% group_by(report_date,vaccination_status,age_group_type,age_group) %>% summarise(vaccinated = sum(people_by_vaccination_status_count))
+
+grouped_vaccinations <- mutate(grouped_vaccinations, age_group_pop = ifelse(age_group == "5-11 Years",five_pop,
+                                                  ifelse(age_group == "12-15 Years",twelve_pop,
+                                                  ifelse(age_group == "16-17 Years",sixteen_pop,
+                                                  ifelse(age_group == "18-24 Years",eighteen_pop,
+                                                  ifelse(age_group == "25-34 Years",twentyfive_pop,  
+                                                  ifelse(age_group == "35-44 Years",thirtyfive_pop,                                                                    ifelse(age_group == "45-54 Years",fortyfive_pop,                                                                     ifelse(age_group == "55-64 Years",fiftyfive_pop,                                                                     ifelse(age_group == "65-74 Years",sixtyfive_pop,                                                                     ifelse(age_group == "75-84 Years",seventyfive_pop,
+                                                  ifelse(age_group == "85+ Years",eightyfive_pop, 0))))))))))))   
+
+grouped_vaccinations <- mutate(grouped_vaccinations, upper_age = ifelse(age_group == "5-11 Years",11,
+                                                  ifelse(age_group == "12-15 Years",15,
+                                                  ifelse(age_group == "16-17 Years",17,
+                                                  ifelse(age_group == "18-24 Years",24,
+                                                  ifelse(age_group == "25-34 Years",34,  
+                                                  ifelse(age_group == "35-44 Years",44,                                                                                ifelse(age_group == "45-54 Years",54,                                                                                ifelse(age_group == "55-64 Years",64,                                                                                ifelse(age_group == "65-74 Years",74,                                                                                ifelse(age_group == "75-84 Years",84,
+                                                  ifelse(age_group == "85+ Years",150, NA))))))))))))  
+
+#ONE DOSE TRENDS
+one_dose_group <- grouped_vaccinations %>% filter(age_group_type == "Vaccine Age Group", vaccination_status == "At Least One Dose")
+
+one_dose_group <- mutate(one_dose_group, age_group_percent = vaccinated/age_group_pop)
+
+one_dose_group <- one_dose_group %>% group_by(age_group) %>% mutate(seven_day_avg = (age_group_percent - lag(age_group_percent,7))/7) %>% ungroup()
+
+one_dose_eleven <- filter(one_dose_group,upper_age <= 12)
+
+one_dose_young <- filter(one_dose_group,upper_age <= 45, upper_age > 11)
+
+one_dose_old <- filter(one_dose_group, upper_age > 45)
+
+cumulative_one_dose_eleven <- ggplot(one_dose_eleven, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID First Doses: 5-11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+
+cumulative_one_dose_young <- ggplot(one_dose_young, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID First Doses: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_one_dose_old <- ggplot(one_dose_old, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID First Doses: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_one_dose_eleven <- ggplot(one_dose_eleven, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID First Doses: Ages 5 to 11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_one_dose_young <- ggplot(one_dose_young, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID First Doses: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_one_dose_old <- ggplot(one_dose_old, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID First Doses: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+#FULL VAX TRENDS
+full_vax_group <- grouped_vaccinations %>% filter(age_group_type == "Vaccine Age Group", vaccination_status == "Fully Vaccinated")
+
+full_vax_group <- mutate(full_vax_group, age_group_percent = vaccinated/age_group_pop)
+
+full_vax_group <- full_vax_group %>% group_by(age_group) %>% mutate(seven_day_avg = (age_group_percent - lag(age_group_percent,7))/7) %>% ungroup()
+
+full_vax_eleven <- filter(full_vax_group,upper_age <= 12)
+
+full_vax_young <- filter(full_vax_group,upper_age <= 45, upper_age > 11)
+
+full_vax_old <- filter(full_vax_group, upper_age > 45)
+
+#Currently the below calculates the total minus the federal doses. Need to figure out if it's possible to account for federal doses over time.
+#full_vax_total <- df %>% group_by(report_date,vaccination_status,age_group_type) %>% summarise(vaccinated = sum(people_by_vaccination_status_count))
+
+cumulative_full_vax_eleven <- ggplot(full_vax_eleven, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Fully Vaccinated: 5-11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+
+cumulative_full_vax_young <- ggplot(full_vax_young, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Fully Vaccinated: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_full_vax_old <- ggplot(full_vax_old, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Fully Vaccinated: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_full_vax_eleven <- ggplot(full_vax_eleven, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Fully Vaccinated: Ages 5 to 11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_full_vax_young <- ggplot(full_vax_young, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Fully Vaccinated: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_full_vax_old <- ggplot(full_vax_old, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Fully Vaccinated: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+#BOOSTER TRENDS
+booster_group <- grouped_vaccinations %>% filter(age_group_type == "Vaccine Age Group", vaccination_status == "Booster/ Third Dose")
+
+booster_group <- mutate(booster_group, age_group_percent = vaccinated/age_group_pop)
+
+booster_group <- booster_group %>% group_by(age_group) %>% mutate(seven_day_avg = (age_group_percent - lag(age_group_percent,7))/7) %>% ungroup()
+
+booster_eleven <- filter(booster_group,upper_age <= 12)
+
+booster_young <- filter(booster_group,upper_age <= 45, upper_age > 11)
+
+booster_old <- filter(booster_group, upper_age > 45)
+
+#Currently the below calculates the total minus the federal doses. Need to figure out if it's possible to account for federal doses over time.
+#booster_total <- df %>% group_by(report_date,vaccination_status,age_group_type) %>% summarise(vaccinated = sum(people_by_vaccination_status_count))
+
+cumulative_booster_eleven <- ggplot(booster_eleven, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Boosters: 5-11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+
+cumulative_booster_young <- ggplot(booster_young, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Boosters: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_booster_old <- ggplot(booster_old, aes(report_date, age_group_percent)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Percent Vaccinated", title="Cumulative Virginia COVID Boosters: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_booster_eleven <- ggplot(booster_eleven, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Boosters: Ages 5 to 11", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  expand_limits(x = as.Date("2021-11-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_booster_young <- ggplot(booster_young, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Boosters: Ages 12 to 44", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_booster_old <- ggplot(booster_old, aes(report_date, seven_day_avg)) +
+  geom_line(aes(color = age_group), size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Boosters: Ages 45+", color="Age") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+#TOTALS
+total_pop_vaccinations <- df %>% group_by(report_date,vaccination_status,age_group_type) %>% summarise(vaccinated = sum(people_by_vaccination_status_count)) %>% filter(age_group_type == "Case Age Group")
+
+one_total <- total_pop_vaccinations %>% filter(vaccination_status == "At Least One Dose") %>% ungroup() %>% select(report_date,One_Dose=vaccinated)
+
+full_total <- total_pop_vaccinations %>% filter(vaccination_status == "Fully Vaccinated") %>% ungroup() %>% select(report_date,Full_Vax=vaccinated)
+
+booster_total <- total_pop_vaccinations %>% filter(vaccination_status == "Booster/ Third Dose") %>% ungroup() %>% select(report_date,Booster=vaccinated)
+
+total_vax <- left_join(one_total,full_total)
+
+total_vax <- left_join(total_vax,booster_total)
+
+total_vax <- total_vax %>% mutate(One_Dose = One_Dose/total_pop,Full_Vax = Full_Vax/total_pop, Booster = Booster/total_pop, Portion_Full_Boosted = Booster/Full_Vax)
+
+total_vax <- total_vax %>% mutate(seven_day_avg_one = (One_Dose - lag(One_Dose,7))/7,seven_day_avg_full = (Full_Vax - lag(Full_Vax,7))/7,seven_day_avg_boost = (Booster - lag(Booster,7))/7, seven_day_avg_boost_full = (Portion_Full_Boosted - lag(Portion_Full_Boosted,7))/7)
+
+#cumulative charts
+cumulative_one_dose_total <- ggplot(total_vax, aes(report_date, One_Dose)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Percent", title="Virginia Percent of Total Population Vaccinated with One Dose") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05), limits = c(NA,0.9)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_full_vax_total <- ggplot(total_vax, aes(report_date, Full_Vax)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Percent", title="Virginia Percent of Total Population Fully Vaccinated") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05), limits = c(NA,0.9)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_booster_total <- ggplot(total_vax, aes(report_date, Booster)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Percent", title="Virginia Percent of Total Population with Booster") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05), limits = c(NA,0.65)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"), limits = c(as.Date("2021-10-01"),NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+cumulative_booster_full_total <- ggplot(total_vax, aes(report_date, Portion_Full_Boosted)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Percent", title="Virginia Percent of Fully Vaccinated Population with Booster") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.05), limits = c(NA,0.65)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"), limits = c(as.Date("2021-10-01"),NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+#rolling average charts
+rolling_one_dose_total <- ggplot(total_vax, aes(report_date, seven_day_avg_one)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID First Doses") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001), limits = c(0,0.015)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_full_vax_total <- ggplot(total_vax, aes(report_date, seven_day_avg_full)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Fully Vaccinated") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001), limits = c(0,0.015)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_booster_total <- ggplot(total_vax, aes(report_date, seven_day_avg_boost)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Boosters") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001), limits = c(0,0.015)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"), limits = c(as.Date("2021-10-01"),NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+rolling_booster_full_total <- ggplot(total_vax, aes(report_date, seven_day_avg_boost_full)) +
+  geom_line(color = "blue",size=1.0) +
+  labs(x="Date", y="Daily % Increase (7 Day Rolling Average)", title="Rolling Virginia COVID Boosters as Percent of Fully Vaccinated") +
+  scale_y_continuous(labels = percent, breaks = breaks_width(0.001), limits = c(0,0.015)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"), limits = c(as.Date("2021-10-01"),NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"))
+
+#BUILD DATA TABLES
+
+#~~~~~~~~~~~~~CUMULATIVE TABLES~~~~~~~~~~~~~~~~~
+#one dose by age
+one_dose_table <- one_dose_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+one_dose_table <- pivot_wider(data = one_dose_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+one_dose_table <- one_dose_table[-c(12,14:25)]
+
+one_dose_table <- one_dose_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+one_dose_table <- one_dose_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.1)(.)))
+
+one_dose_table_output <- kbl(one_dose_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+#full vacc. by age
+full_vax_table <- full_vax_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+full_vax_table <- pivot_wider(data = full_vax_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+full_vax_table <- full_vax_table[-c(12,14:25)]
+
+full_vax_table <- full_vax_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+full_vax_table <- full_vax_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.1)(.)))
+
+full_vax_table_output <- kbl(full_vax_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+#booster by age
+booster_table <- booster_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+booster_table <- pivot_wider(data = booster_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+booster_table <- booster_table[-c(12,14:25)]
+
+booster_table <- booster_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+booster_table <- booster_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.1)(.)))
+
+booster_table_output <- kbl(booster_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+#~~~~~~~~~~~END CUMULATIVE TABLES~~~~~~~~~~~~~~~~
+
+#~~~~~~~~~~~ROLLING AVG TABLES~~~~~~~~~~~~~~~~~
+#one dose by age
+one_dose_rolling_table <- one_dose_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+one_dose_rolling_table <- pivot_wider(data = one_dose_rolling_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+one_dose_rolling_table <- one_dose_rolling_table[-c(2:13,24)]
+
+one_dose_rolling_table <- one_dose_rolling_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+one_dose_rolling_table <- one_dose_rolling_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.001)(.)))
+
+one_dose_rolling_table_output <- kbl(one_dose_rolling_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+#full vax by age
+full_vax_rolling_table <- full_vax_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+full_vax_rolling_table <- pivot_wider(data = full_vax_rolling_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+full_vax_rolling_table <- full_vax_rolling_table[-c(2:13,24)]
+
+full_vax_rolling_table <- full_vax_rolling_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+full_vax_rolling_table <- full_vax_rolling_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.001)(.)))
+
+full_vax_rolling_table_output <- kbl(full_vax_rolling_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+#booster by age
+booster_rolling_table <- booster_group %>% ungroup() %>% select(report_date, age_group, age_group_percent, seven_day_avg)
+
+booster_rolling_table <- pivot_wider(data = booster_rolling_table,id_cols = report_date,names_from = age_group,values_from = c("age_group_percent","seven_day_avg"))
+
+booster_rolling_table <- booster_rolling_table[-c(2:13,24)]
+
+booster_rolling_table <- booster_rolling_table[,c(1,12,2:11)] %>% arrange(desc(report_date))
+
+booster_rolling_table <- booster_rolling_table %>% mutate(across(-1, ~ label_percent(accuracy = 0.001)(.)))
+
+booster_rolling_table_output <- kbl(booster_rolling_table,col.names = c("Date","5-11","12-15","16-17","18-24","25-34","35-44","45-54","55-64","65-74","75-84","85+")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+#~~~~~~~~~~~~~~~~~~END ROLLING BY AGE TABLES~~~~~~~~~~~~~~~
+
+#totals cumulative and rolling average
+totals_table <- total_vax %>% select(report_date,One_Dose,seven_day_avg_one,Full_Vax,seven_day_avg_full,Booster,seven_day_avg_boost,Portion_Full_Boosted,seven_day_avg_boost_full) %>% arrange(desc(report_date))
+
+totals_table <- totals_table %>% mutate(One_Dose = label_percent(accuracy=0.1)(One_Dose),seven_day_avg_one = label_percent(accuracy=0.001)(seven_day_avg_one),Full_Vax = label_percent(accuracy=0.1)(Full_Vax),seven_day_avg_full = label_percent(accuracy=0.001)(seven_day_avg_full),Booster = label_percent(accuracy=0.1)(Booster),seven_day_avg_boost = label_percent(accuracy=0.001)(seven_day_avg_boost),Portion_Full_Boosted = label_percent(accuracy=0.1)(Portion_Full_Boosted),seven_day_avg_boost_full = label_percent(accuracy=0.001)(seven_day_avg_boost_full))
+
+totals_table_output <- kbl(totals_table,col.names = c("Date","One Dose","One Dose Change","Fully Vaccinated","Full Vacc. Change","Booster","Booster Change","Portion Full Vacc. w/ Booster","Full Vacc. Boosted Change")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+```{css, echo=FALSE}
+details summary > * { 
+  display: inline;
+}
+```
+
+<hr>
+<h4>Expand the sections below for charts and information about the share of the population receiving each dose.</h4>
+<hr>
+
+<details>
+  <summary><h3>One Dose</h3>
+  </summary>
+  <h4>The chart below contains the percent of the total population receiving first doses. Note that this includes Federal doses administered (see discussion at the top of this page).</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_one_dose_total
+```
+
+  <h4>The chart below shows the daily percentage change in the total population receiving the first dose per day, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_one_dose_total
+```
+
+  <h4>The following charts provide the percent of the population vaccinated with one dose by age.</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_one_dose_eleven
+  cumulative_one_dose_young
+  cumulative_one_dose_old
+```
+
+  <h4>The following charts show the daily percentage change in each age group receiving the first dose per day, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_one_dose_eleven
+  rolling_one_dose_young
+  rolling_one_dose_old
+```
+</details>
+
+<details>
+  <summary><h3>Fully Vaccinated</h3>
+  </summary>
+  <h4>The chart below contains the percent of the total population fully vaccinated (two doses for Pfizer and Moderna, one dose for J&J, etc.). Note that this includes Federal doses administered (see discussion at the top of this page).</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_full_vax_total
+```
+
+  <h4>The chart below shows the daily percentage change in the total population fully vaccinated, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_full_vax_total
+```
+
+  <h4>The following charts provide the percent of the population fully vaccinated by age.</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_full_vax_eleven
+  cumulative_full_vax_young
+  cumulative_full_vax_old
+```
+
+  <h4>The following charts show the daily percentage change in each age group fully vaccinated per day, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_full_vax_eleven
+  rolling_full_vax_young
+  rolling_full_vax_old
+```
+</details>
+
+<details>
+  <summary><h3>Boosters</h3>
+  </summary>
+  <h4>The chart below contains the percent of the total population receiving booster doses (a third dose for Pfizer and Moderna, a second dose for J&J, etc.). Note that this does not include Federal doses administered (see discussion at the top of this page).</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_booster_total
+```
+
+  <h4>The chart below shows the daily percentage change in the total population with a booster dose, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_booster_total
+```
+
+  <h4>The chart below contains the percent of the total population receiving booster doses as a percentage of the total population fully vaccinated. Note that this does not include Federal doses administered (see discussion at the top of this page).</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_booster_full_total
+```
+
+  <h4>The chart below shows the daily percentage change in the percent of the fully vaccinated who have received a booster dose, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_booster_full_total
+```
+
+  <h4>The following charts provide the percent of the population with a booster dose by age.</h4>
+```{r message=FALSE, warning=FALSE}
+  cumulative_booster_eleven
+  cumulative_booster_young
+  cumulative_booster_old
+```
+
+  <h4>The following charts show the daily percentage change in each age group with a booster dose per day, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  rolling_booster_eleven
+  rolling_booster_young
+  rolling_booster_old
+```
+</details>
+
+<details>
+  <summary><h3>Tables</h3>
+  </summary>
+  <h4>The table below shows the percentage of each age group having received one dose over time.</h4>
+```{r message=FALSE, warning=FALSE}
+  one_dose_table_output
+```
+
+  <h4>The table below shows the daily percentage change in the percent of each age group with one dose, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  one_dose_rolling_table_output
+```
+
+  <h4>The table below shows the percentage of each age group having been fully vaccinated over time.</h4>
+```{r message=FALSE, warning=FALSE}
+  full_vax_table_output
+```
+
+  <h4>The table below shows the daily percentage change in the percent of each age group fully vaccinated, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  full_vax_rolling_table_output
+```
+
+  <h4>The table below shows the percentage of each age group having received a booster dose over time.</h4>
+```{r message=FALSE, warning=FALSE}
+  booster_table_output
+```
+
+  <h4>The table below shows the daily percentage change in the percent of each age group with a booster dose, using a seven day rolling average.</h4>
+```{r message=FALSE, warning=FALSE}
+  booster_rolling_table_output
+```
+
+  <h4>The table below shows the total share of the population vaccinated with each dose, as well as the daily percentage change for each value using a seven day rolling average."Portion Full Vacc. w/ Booster" indicates the share of the population that has been fully vaccinated which has also received a booster dose, and "Full Vacc. Boosted Change" provides the seven day rolling average percentage change in this number.</h4>
+```{r message=FALSE, warning=FALSE}
+  totals_table_output
+```
+</details>
