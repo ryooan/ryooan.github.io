@@ -1,10 +1,12 @@
 ---
 title: "Virginia Vaccinations"
-author: "Ryan Beck"
+author: "[Ryan Beck](https://twitter.com/BeckRyooan)"
 output:
   html_document:
     code_folding: hide
 ---
+
+*Thanks to [\@sam_atis](https://twitter.com/sam_atis) for some tips on working with this data in R.*
 
 Last updated: `r format(Sys.time(), '%B %d, %Y')`
 
