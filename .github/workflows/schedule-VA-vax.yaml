@@ -18,6 +18,7 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      working-directory: ./forecasting/testPackage
 
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +31,7 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
 
       - name: Query dependencies
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: |
           install.packages('remotes')
           install.packages('sessioninfo')
@@ -39,7 +40,7 @@ jobs:
         shell: Rscript {0}
         
       - name: install required packages
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: Rscript -e 'install.packages("rmarkdown")'
 
       - name: Cache R packages
@@ -50,19 +51,19 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install dependencies
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: |
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
           
       - name: Run Rmarkdown
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: |
           rmarkdown::render("R/Virginia_Vaccinations.Rmd", output_format = "html_document")
         shell: Rscript {0} 
         
       - name: Commit files
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
@@ -71,7 +72,7 @@ jobs:
           git push 
           
       - name: Session info
-        working-directory: ./forecasting/testPackage
+        working-directory: ${{env.working-directory}}
         run: |
           options(width = 100)
           pkgs <- installed.packages()[, "Package"]
