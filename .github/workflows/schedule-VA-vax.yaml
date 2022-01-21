@@ -45,12 +45,13 @@ jobs:
           install.packages("rmarkdown")
         shell: Rscript {0}
 
-      #- name: Cache R packages
-      #  uses: actions/cache@v1
-      #  with:
-      #    path: ${{ env.R_LIBS_USER }}
-      #    key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
-      #    restore-keys: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-
+      - name: Cache R packages
+        working-directory: ${{env.working-directory}}
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-
 
       - name: Install dependencies
         working-directory: ${{env.working-directory}}
@@ -61,7 +62,7 @@ jobs:
       - name: Run Rmarkdown
         working-directory: ${{env.working-directory}}
         run: |
-          rmarkdown::render("R/Virginia_Vaccinations.Rmd", output_format = "html_document")
+          rmarkdown::render("R/Virginia_Vaccinations.Rmd", output_format = "html_document", output_dir = "./")
         shell: Rscript {0} 
         
       - name: Commit files
@@ -69,7 +70,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add R/Virginia_Vaccinations.html
+          git add Virginia_Vaccinations.html
           git commit -m 'Scheduled update' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
