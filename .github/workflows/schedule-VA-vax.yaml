@@ -47,7 +47,7 @@ jobs:
 
       - name: Cache R packages
         working-directory: ${{env.working-directory}}
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
