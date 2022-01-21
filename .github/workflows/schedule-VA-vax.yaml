@@ -41,7 +41,9 @@ jobs:
         
       - name: install required packages
         working-directory: ${{env.working-directory}}
-        run: Rscript -e 'install.packages("rmarkdown")'
+        run: |
+          install.packages("rmarkdown")
+        shell: Rscript {0}
 
       #- name: Cache R packages
       #  uses: actions/cache@v1
