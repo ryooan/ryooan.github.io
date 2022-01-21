@@ -65,11 +65,12 @@ jobs:
         shell: Rscript {0} 
         
       - name: Commit files
-        working-directory: ./forecasting/testPackage/R
+        working-directory: ${{env.working-directory}}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git commit Virginia_Vaccinations.html -m 'Scheduled update' || echo "No changes to commit"
+          git add R/Virginia_Vaccinations.html
+          git commit -m 'Scheduled update' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
       - name: Session info
