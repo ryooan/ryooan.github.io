@@ -45,13 +45,13 @@ jobs:
           install.packages("rmarkdown")
         shell: Rscript {0}
 
-      - name: Cache R packages
-        working-directory: ${{env.working-directory}}
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-
+      #- name: Cache R packages
+      #  working-directory: ${{env.working-directory}}
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ${{ env.R_LIBS_USER }}
+      #    key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
+      #    restore-keys: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-
 
       - name: Install dependencies
         working-directory: ${{env.working-directory}}
