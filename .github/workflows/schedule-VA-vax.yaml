@@ -19,8 +19,8 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       working-directory: ./forecasting/VAVaccinationsPackage
-      working-file: Virginia_Vaccinations.rmd
-      working-location: R/Virginia_Vaccinations.rmd
+      output-file: Virginia_Vaccinations.html
+      working-path: R/Virginia_Vaccinations.rmd
 
     steps:
       - uses: actions/checkout@v2
@@ -64,7 +64,7 @@ jobs:
       - name: Run Rmarkdown
         working-directory: ${{env.working-directory}}
         run: |
-          rmarkdown::render("${{env.working-location}}", output_format = "html_document", output_dir = "../")
+          rmarkdown::render("${{env.working-path}}", output_format = "html_document", output_dir = "../")
         shell: Rscript {0} 
         
       - name: Commit files
@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add ${{env.working-file}}
+          git add ${{env.output-file}}
           git commit -am 'Scheduled update' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
