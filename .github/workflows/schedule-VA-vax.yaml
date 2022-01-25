@@ -64,7 +64,7 @@ jobs:
       - name: Run Rmarkdown
         working-directory: ${{env.working-directory}}
         run: |
-          rmarkdown::render(${{env.working-location}}, output_format = "html_document", output_dir = "../")
+          rmarkdown::render("${{env.working-location}}", output_format = "html_document", output_dir = "../")
         shell: Rscript {0} 
         
       - name: Commit files
