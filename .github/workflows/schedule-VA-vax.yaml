@@ -18,10 +18,10 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      working-directory: ./forecasting/VAVaccinationsPackage
+      working-directory: /forecasting/VAVaccinationsPackage
       working-path: R/Virginia_Vaccinations.rmd
       output-file: Virginia_Vaccinations.html
-      output-path: ./forecasting
+      output-path: /forecasting
 
     steps:
       - uses: actions/checkout@v2
@@ -73,7 +73,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add Virginia_Vaccinations.html
+          git add ${{env.output-file}}
           git commit -am 'Scheduled update' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
