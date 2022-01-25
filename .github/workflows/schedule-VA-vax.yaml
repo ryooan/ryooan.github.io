@@ -72,7 +72,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add ${{env.output-file}}
+          git add Virginia_Vaccinations.html
           git commit -am 'Scheduled update' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
