@@ -19,8 +19,9 @@ jobs:
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       working-directory: ./forecasting/VAVaccinationsPackage
-      output-file: Virginia_Vaccinations.html
       working-path: R/Virginia_Vaccinations.rmd
+      output-file: Virginia_Vaccinations.html
+      output-path: ./forecasting
 
     steps:
       - uses: actions/checkout@v2
@@ -64,11 +65,11 @@ jobs:
       - name: Run Rmarkdown
         working-directory: ${{env.working-directory}}
         run: |
-          rmarkdown::render("${{env.working-path}}", output_format = "html_document", output_dir = "../")
+          rmarkdown::render("${{env.working-path}}", output_format = "html_document", output_dir = "${{env.output-path}}")
         shell: Rscript {0} 
         
       - name: Commit files
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.output-path}}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
