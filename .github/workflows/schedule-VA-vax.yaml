@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "* 5 * * *"
 
 jobs:
   render:
@@ -20,8 +20,8 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       working-directory: ./forecasting/VAVaccinationsPackage
       working-path: R/Virginia_Vaccinations.rmd
-      output-file: Virginia_Vaccinations.html
-      output-path: ./forecasting
+      #output-file: Virginia_Vaccinations.html
+      #output-path: ./forecasting
 
     steps:
       - uses: actions/checkout@v2
