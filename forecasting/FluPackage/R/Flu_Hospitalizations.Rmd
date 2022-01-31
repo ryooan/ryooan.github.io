@@ -1,0 +1,158 @@
+---
+title: "Influenza Hospitalizations"
+author: "[Ryan Beck](https://twitter.com/BeckRyooan)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page contains influenza hospital admissions data for several states for use with the [Metaculus FluSight forecasting challenge](https://www.metaculus.com/project/1322/?order_by=close_time&project=1322&status=open).
+
+Note: The data provides previous day hospital admissions, and [consistent with the methodology used for assessing the ground truth data for flusight forecasts](https://github.com/computationalUncertaintyLab/Flusight-forecast-data/tree/master/data-truth) the dates have been shifted one day earlier from those shown in the source data.
+
+Date source: https://healthdata.gov/Hospital/COVID-19-Reported-Patient-Impact-and-Hospital-Capa/g62h-syeh
+
+Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
+
+```{r message=FALSE, warning=FALSE}
+
+library(RSocrata)
+library(tidyverse)
+library(zoo)
+library(scales)
+library(kableExtra)
+library(reshape2)
+library(latticeExtra)
+
+df <- read.socrata("https://healthdata.gov/resource/g62h-syeh.csv")
+
+df <- df %>% mutate(date = as.Date(date,"%Y-%m-%dT00:00:00.000"))
+
+df[is.na(df)] = 0
+
+data_by_date <- df %>% group_by(state, date) %>% summarise(daily = sum(previous_day_admission_influenza_confirmed))
+
+data_by_date <- data_by_date %>% group_by(state) %>% arrange(date) %>% mutate(weekly = rollapply(daily,7,sum, fill = NA, align = "right"))
+
+metaculus_states <- data_by_date %>% filter(state == "NY" | state == "FL" | state == "OK" | state == "CA" | state == "VT" | state == "WY")
+
+#shift the date back 1 since this is previous day reported
+metaculus_states <- metaculus_states %>% mutate(date = date - 1)
+
+#GENERATE OVERALL PLOT
+state_hospitalizations <- ggplot(metaculus_states, aes(date, weekly)) +
+  geom_line(aes(color = state), size=0.75) +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly Influenza Hospitalizations", color="State") +
+  #scale_y_continuous(labels = percent, breaks = breaks_width(5)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"), limits = as.Date(c('2020-10-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "lightgrey"))
+
+#GENERATE PLOTS BY STATES
+influenza_CA <- metaculus_states %>% filter(state == "CA")
+influenza_FL <- metaculus_states %>% filter(state == "FL")
+influenza_NY <- metaculus_states %>% filter(state == "NY")
+influenza_OK <- metaculus_states %>% filter(state == "OK")
+influenza_VT <- metaculus_states %>% filter(state == "VT")
+influenza_WY <- metaculus_states %>% filter(state == "WY")
+
+CA_hospitalizations <- ggplot(influenza_CA, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly California Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(10)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+FL_hospitalizations <- ggplot(influenza_FL, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly Florida Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(10)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+NY_hospitalizations <- ggplot(influenza_NY, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly New York Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(10)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+OK_hospitalizations <- ggplot(influenza_OK, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly Oklahoma Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(10)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+VT_hospitalizations <- ggplot(influenza_VT, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly Vermont Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(2)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+WY_hospitalizations <- ggplot(influenza_WY, aes(date, weekly)) +
+  geom_line(size=0.75, color="blue") +
+  labs(x="Date", y="Weekly Hospitalizations", title="Weekly Wyoming Influenza Hospitalizations") +
+  scale_y_continuous(breaks = breaks_width(10)) +
+  scale_x_date(breaks="1 month",date_minor_breaks="1 week",labels = date_format("%b/%y"), limits = as.Date(c('2021-09-01',NA))) +
+  #expand_limits(x = as.Date("2021-10-1")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+#GENERATE TABLE
+metaculus_table <- pivot_wider(data = metaculus_states,id_cols = date,names_from = state,values_from = c("daily","weekly"))
+
+metaculus_table <- metaculus_table %>% arrange(desc(date))
+
+state_table_output <- kbl(metaculus_table,col.names = c("Date","CA","OK","WY","FL","NY","VT","CA","OK","WY","FL","NY","VT")) %>%
+  add_header_above(c(" " = 1,"Daily Hospitalizations" = 6,"Weekly Hospitalizations" = 6)) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+```
+
+
+# Overall Time Series of Weekly Hospital Admissions
+```{r message=FALSE, warning=FALSE}
+state_hospitalizations
+
+```
+
+# Weekly Hospital Admissions for Each State
+```{r message=FALSE, warning=FALSE}
+CA_hospitalizations
+OK_hospitalizations
+WY_hospitalizations
+FL_hospitalizations
+NY_hospitalizations
+VT_hospitalizations
+
+```
+
+# Data Table
+```{r message=FALSE, warning=FALSE}
+state_table_output
+
+```
