@@ -1,4 +1,4 @@
-Package: TestPackage
+Package: VAVaccinationsPackage
 Type: Package
 Title: Virginia Vaccinations Rmarkdown Generator
 Version: 0.1.0
