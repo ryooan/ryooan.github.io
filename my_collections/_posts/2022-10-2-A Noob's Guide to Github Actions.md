@@ -11,16 +11,16 @@ I have a few Rmarkdown scripts that I’ve created to visualize data for forecas
 Before digging in, a few things are worth mentioning and linking up front so they can be referred to. First are the guides I used to piece this all together. I’ve included a TL;DR as well, if the TL;DR sounds like it fits perfectly with what you need to do feel free to jump on over and ignore everything else I have to say.
 
 
-Source: [Running R Scripts on a Schedule with GitHub Actions](https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/)
-TL;DR: A great overview of all the steps of creating an R script, putting it into a package, uploading the package to Github, and creating a Github action to schedule it. It gave me a great starting point but it was too light on explanation, didn’t really specify what was actually happening at a basic level, and used a procedure that at the end I felt was more complicated than I needed.
+* Source: [Running R Scripts on a Schedule with GitHub Actions](https://blog--simonpcouch.netlify.app/blog/r-github-actions-commit/)
+    * TL;DR: A great overview of all the steps of creating an R script, putting it into a package, uploading the package to Github, and creating a Github action to schedule it. It gave me a great starting point but it was too light on explanation, didn’t really specify what was actually happening at a basic level, and used a procedure that at the end I felt was more complicated than I needed.
 
 
-Source: [Rendering your README with GitHub Actions](https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/)
-TL;DR: This one is based around creating an Rmarkdown file that will be used to update the README in their Github repository automatically. This one filled in a few more pieces about syntax and helpfully describes what’s happening in certain parts of the process, but there were still parts that I didn’t understand, background I felt like I was missing, and it didn’t give me all the information I needed to complete my Github Action.
+* Source: [Rendering your README with GitHub Actions](https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/)
+    * TL;DR: This one is based around creating an Rmarkdown file that will be used to update the README in their Github repository automatically. This one filled in a few more pieces about syntax and helpfully describes what’s happening in certain parts of the process, but there were still parts that I didn’t understand, background I felt like I was missing, and it didn’t give me all the information I needed to complete my Github Action.
 
 
-Source: [R-lib Actions](https://github.com/r-lib/actions)
-TL;DR: A Github repository with a bunch of actions and examples for using Github Actions to run R scripts and files. This one was particularly useful for figuring out syntax or what specific commands were doing, but it’s somewhat light on descriptions so is mostly useful for templates and added context.
+* Source: [R-lib Actions](https://github.com/r-lib/actions)
+    * TL;DR: A Github repository with a bunch of actions and examples for using Github Actions to run R scripts and files. This one was particularly useful for figuring out syntax or what specific commands were doing, but it’s somewhat light on descriptions so is mostly useful for templates and added context.
 
 
 Those are the main sources of useful information related to Github Actions I found. But there are some additional helpful tools and sources I’ve mentioned in the following guide that I’ll link here. These might be meaningless to anyone reading this who isn’t familiar with this stuff, but I think it will be useful to have some of the more important links up front and all in one place for referring back to later.
