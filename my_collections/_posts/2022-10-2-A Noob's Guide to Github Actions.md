@@ -7,7 +7,7 @@ tags: [programming, resources]
 I have a few Rmarkdown scripts that I’ve created to visualize data for forecasting. I host them on Github so they appear as html [pages](https://www.ryanbeckauthor.com/forecasting/Virginia_Vaccinations.html) on my [website](https://www.ryanbeckauthor.com/forecasting/Virginia_Vaccinations.html). I’ve been looking for a way to automatically render those Rmarkdown files every day instead of manually running and uploading the updated html file to Github, and someone suggested I try Github Actions. This turned out to be the perfect solution, but it took a lot of head scratching and confusion on my part to get it going. So here I’m documenting in detail everything I learned from the perspective of a novice muddling through it. There are other guides out there from people who have more knowledge of Github, Github Actions, and R, but as I looked at these guides I felt that there were gaps where they were either discussing things above my level of understanding or things didn’t apply to my situation. I’m hoping that by documenting what I’ve learned here it will help other noobs learn and setup their own Github Actions more quickly, and also that I’ll be able to use this guide myself when I inevitably forget how my setup works.
 
 
-#References and Helpful Sources
+# References and Helpful Sources
 Before digging in, a few things are worth mentioning and linking up front so they can be referred to. First are the guides I used to piece this all together. I’ve included a TL;DR as well, if the TL;DR sounds like it fits perfectly with what you need to do feel free to jump on over and ignore everything else I have to say.
 
 
@@ -88,11 +88,11 @@ Side note: When creating a typical R package for others to use, you’re general
 Once the files are edited, your package folder is named appropriately, and your R file is placed in the "R" folder the next step is to upload the package to Github. Just place it wherever in your Github repository you like.
 
 
-#Create a .Github/Workflows Directory
+# Create a .Github/Workflows Directory
 Make a new folder called ".Github" in the root directory of your repository. It has to be in the root, otherwise it won’t work. Then in the ".Github" folder make a folder called "Workflows". This is where the .yaml files that define the workflows to be completed automatically will go. You can see the .Github/Workflows directory in [my repository](https://github.com/ryooan/ryooan.github.io) for an example.
 
 
-#Create a Github Action
+# Create a Github Action
 Next we’ll create the .yaml file that will define the Github Action. I’ll walk line by line through mine and try to explain my understanding of what each is doing.
 
 
@@ -218,7 +218,7 @@ Line 80 pushes the commit to the remote server. That’s kind of gibberish to me
 Finally, the last step starting on line 82 just creates some session info logging for us. Not entirely sure how it works and I don’t think I’ve really used it, but might be helpful for anyone trying to troubleshoot stuff.
 
 
-#Monitoring and Troubleshooting
+# Monitoring and Troubleshooting
 That’s pretty much the breakdown of the Github actions. The last useful thing to know is that Github logs each step of your action as it executes, and you can look through that to see where things went wrong. The top menu on Github has an "Actions" tab that you can look at to see the status of your actions.
 
 
@@ -257,5 +257,5 @@ You can click on "1 job completed" and then again on the name of the virtual env
 You can expand each step and see a log of what happened. If your Github action failed you can check out the first one that shows up with a red X and try to diagnose why from that. If you’re having trouble I suggest making changes and then setting a cron schedule to run the action every 10 minutes so the action will trigger again soon and you can see if your changes have managed to fix things.
 
 
-#Okay Bye
+# Okay Bye
 That’s pretty much everything I’ve managed to figure out when trying to make a working Github Action. So far it’s been successful, I have two Github Actions in my "workflows" folder and they run without errors once per day on their own. If you’ve made it this far I hope this has helped you!
