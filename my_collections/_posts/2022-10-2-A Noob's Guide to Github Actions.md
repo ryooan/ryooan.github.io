@@ -43,7 +43,7 @@ Those are the main sources of useful information related to Github Actions I fou
 * [My Github workflows](https://github.com/ryooan/ryooan.github.io/tree/master/.github/workflows). That’s a link to my Workflows folder containing the .yaml files that are my Github Actions. This may be handy if you want to follow along with an existing example.
 
 
-#First Step - Making a Simple Package
+# First Step - Making a Simple Package
 Once you have an R file you want to regularly run using Github Actions, whether it’s a script or an Rmarkdown document, the first thing you need to do is make a package. This is simpler than it might sound. There are [several different package formats](https://r-pkgs.org/package-structure-state.html), but we only care about the simplest one. It’s essentially your R file placed in a folder with a few other basic files nearby. You make a folder, name it what you want your package name to be, and the inside of that folder will end up looking like this:
 
 
