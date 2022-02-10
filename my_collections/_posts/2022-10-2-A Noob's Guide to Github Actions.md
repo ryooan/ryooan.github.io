@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 author: Ryan
 title: A Noob's Guide to Github Actions
