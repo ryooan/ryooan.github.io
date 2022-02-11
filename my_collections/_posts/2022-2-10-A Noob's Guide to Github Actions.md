@@ -21,7 +21,7 @@ Before digging in, a few things are worth mentioning and linking up front so the
 
 
 * Source: [R-lib Actions](https://github.com/r-lib/actions)
-    * TL;DR: A Github repository with a bunch of actions and examples for using Github Actions to run R scripts and files. This one was particularly useful for figuring out syntax or what specific commands were doing, but it’s somewhat light on descriptions so is mostly useful for templates and added context.
+    * TL;DR: A Github repository with a bunch of actions and examples for using Github Actions to run R scripts and files. This one was particularly useful for figuring out syntax or what specific commands were doing, but it’s somewhat light on descriptions so is mostly useful for templates and added context.  
 
 
 Those are the main sources of useful information related to Github Actions I found. But there are some additional helpful tools and sources I’ve mentioned in the following guide that I’ll link here. These might be meaningless to anyone reading this who isn’t familiar with this stuff, but I think it will be useful to have some of the more important links up front and all in one place for referring back to later.
@@ -41,7 +41,7 @@ Those are the main sources of useful information related to Github Actions I fou
     * [Download a Github file or folder](https://download-directory.github.io/). Super useful since Github can be a bit of a pain to work with on the web (and I’m too ignorant/lazy to try to figure out Git). You just simply paste the address of the Github repository, folder, or file you want into that website and it’ll create a download for you.
     * [Path syntax explainer on Stack Overflow](https://superuser.com/questions/153165/what-does-represent-while-giving-path). A helpful explainer on Stack Overflow of how you can create a path to root, parent, and current directories using "/" , "./", or "../".
 * [Github Actions documentation](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions). Extremely helpful for looking up commands, syntax, and available options. Entries give really good explanations of what’s actually happening and what options are available to you.
-* [My Github workflows](https://github.com/ryooan/ryooan.github.io/tree/master/.github/workflows). That’s a link to my Workflows folder containing the .yaml files that are my Github Actions. This may be handy if you want to follow along with an existing example.
+* [My Github workflows](https://github.com/ryooan/ryooan.github.io/tree/master/.github/workflows). That’s a link to my Workflows folder containing the .yaml files that are my Github Actions. This may be handy if you want to follow along with an existing example.  
 
 
 # First Step - Making a Simple Package
@@ -131,8 +131,8 @@ Onto line 17. The "env" portion is [another context](https://docs.github.com/en/
 
 
 * R_REMOTES_NO_ERRORS_FROM_WARNINGS: If you’ve installed packages in R before you’ve probably seen some warnings pop up, this keeps those warnings [from turning into errors](https://github.com/r-lib/remotes#environment-variables) that could [mess up your Github Action](https://github.com/r-lib/remotes/issues/403).
-* RSPM: RSPM seems to stand for "[R Studio Package Manager](https://github.com/r-lib/actions/tree/v2/setup-r)". I don’t think this line is necessary, but also it’s not hurting anything so I’m leaving it in. In [other examples](https://github.com/r-lib/actions/actions/runs/431266692/workflow) it seems to be calling a variable set under the matrix section, like we did with the OS. But the example I followed didn’t set an RSPM variable so I’m fairly sure it’s doing nothing, but I also haven’t tried to take it out. ¯\\_(ツ)_/¯
-* GITHUB_PAT: This line seems to work some Github Actions magic that I don’t know the reason for, [other people say that it helps](https://github.com/r-lib/actions/issues/208) and to [put it there](https://github.com/DoubleML/doubleml-docs/issues/38) so why not.
+* RSPM: RSPM seems to stand for "[R Studio Package Manager](https://github.com/r-lib/actions/tree/v2/setup-r)". I don’t think this line is necessary, but also it’s not hurting anything so I’m leaving it in. In [other examples](https://github.com/r-lib/actions/actions/runs/431266692/workflow) it seems to be calling a variable set under the matrix section, like we did with the OS. But the example I followed didn’t set an RSPM variable so I’m fairly sure it’s doing nothing, but I also haven’t tried to take it out. ¯\\\_(ツ)\_/¯
+* GITHUB_PAT: This line seems to work some Github Actions magic that I don’t know the reason for, [other people say that it helps](https://github.com/r-lib/actions/issues/208) and to [put it there](https://github.com/DoubleML/doubleml-docs/issues/38) so why not.  
 
 
 The variables on lines 21 through 24 are ones I created. You’ll see how I use them later on, but basically I’m just putting the path and filename I want up front so I can copy this workflow and change only those variables the next time I want to automate an R file. I don’t actually use the variables on lines 23 and 24, they’re commented out using "#".
@@ -163,7 +163,7 @@ When we’re defining paths and directories, it’s important to know how to sta
 
 * "/" = root directory (top level of all your folders)
 * "./" = current working directory
-* "../" = parent directory (one folder up from the current working directory)
+* "../" = parent directory (one folder up from the current working directory)  
 
 
 On line 38 we enter the [run command](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) which tells our action to execute commands. The \| after "run:" just means there are multiple lines to this run command and tells it to look at the lines below. Something important to know is that the "shell: Rscript {0}" on line 43 tells this step what [shell to use](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell). I don’t fully understand it, but my impression is that the different shells are just the core computer languages you can choose from. Specifically, line 43 is using a command to [specify a custom shell](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#custom-shell) for R files. That’s all we need to know, since we setup the R environment in previous commands it’ll recognize that we want to run R commands.
