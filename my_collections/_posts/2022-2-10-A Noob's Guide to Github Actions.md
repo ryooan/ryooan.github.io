@@ -53,7 +53,7 @@ Once you have an R file you want to regularly run using Github Actions, whether 
 
 
 <figure>
-  <img src="{{site.url}}/assets/github-1.png" alt="Package Folder Structure" style="width:95%; margin:auto; display:block"/>
+  <img src="{{site.url}}/assets/github-1.png" alt="Package Folder Structure" style="width:50%; margin:auto; display:block"/>
   <figcaption>Package Folder Structure</figcaption>
 </figure>
 
