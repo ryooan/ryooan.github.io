@@ -5,3 +5,6 @@ collections_dir: my_collections
 
 plugins:
   - jemoji
+  
+#below fixes a timezone issue where posts dated in the future in UTC don't get posted  
+future: true
