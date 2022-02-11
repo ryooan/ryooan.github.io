@@ -131,7 +131,7 @@ Onto line 17. The "env" portion is [another context](https://docs.github.com/en/
 
 
 * R_REMOTES_NO_ERRORS_FROM_WARNINGS: If you’ve installed packages in R before you’ve probably seen some warnings pop up, this keeps those warnings [from turning into errors](https://github.com/r-lib/remotes#environment-variables) that could [mess up your Github Action](https://github.com/r-lib/remotes/issues/403).
-* RSPM: RSPM seems to stand for ["R Studio Package Manager"](https://github.com/r-lib/actions/tree/v2/setup-r). I don’t think this line is necessary, but also it’s not hurting anything so I’m leaving it in. In [other examples](https://github.com/r-lib/actions/actions/runs/431266692/workflow) it seems to be calling a variable set under the matrix section, like we did with the OS. But the example I followed didn’t set an RSPM variable so I’m fairly sure it’s doing nothing, but I also haven’t tried to take it out. ¯\_(ツ)_/¯
+* RSPM: RSPM seems to stand for ["R Studio Package Manager"](https://github.com/r-lib/actions/tree/v2/setup-r). I don’t think this line is necessary, but also it’s not hurting anything so I’m leaving it in. In [other examples](https://github.com/r-lib/actions/actions/runs/431266692/workflow) it seems to be calling a variable set under the matrix section, like we did with the OS. But the example I followed didn’t set an RSPM variable so I’m fairly sure it’s doing nothing, but I also haven’t tried to take it out. ¯\\_(ツ)_/¯
 * GITHUB_PAT: This line seems to work some Github Actions magic that I don’t know the reason for, [other people say that it helps](https://github.com/r-lib/actions/issues/208) and to [put it there](https://github.com/DoubleML/doubleml-docs/issues/38) so why not.
 
 
