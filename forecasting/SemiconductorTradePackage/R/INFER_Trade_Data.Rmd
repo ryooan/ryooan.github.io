@@ -1,0 +1,328 @@
+---
+title: "INFER Semiconductor Trade Forecasting"
+author: "[Ryan Beck](https://twitter.com/BeckRyooan)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page contains semiconductor trade data for use in forecasting the following questions on INFER:
+
+* [What will be the value, in dollars, of U.S. exports of semiconductor chips to China in 2022?](https://www.infer-pub.com/questions/130-what-will-be-the-value-in-dollars-of-u-s-exports-of-semiconductor-chips-to-china-in-2022)
+* [What will be the value, in dollars, of all Chinese imports of semiconductor manufacturing equipment in 2022?](https://www.infer-pub.com/questions/128-what-will-be-the-value-in-dollars-of-all-chinese-imports-of-semiconductor-manufacturing-equipment-in-2022)
+* [What will be the value, in dollars, of all Chinese imports of semiconductor chips in 2022?](https://www.infer-pub.com/questions/129-what-will-be-the-value-in-dollars-of-all-chinese-imports-of-semiconductor-chips-in-2022)
+* [What will be the value, in dollars, of U.S. exports of semiconductor manufacturing equipment to China in 2022?](https://www.infer-pub.com/questions/131-what-will-be-the-value-in-dollars-of-u-s-exports-of-semiconductor-manufacturing-equipment-to-china-in-2022)
+
+Date is updated automatically at regular intervals and is sourced from COMTRADE.
+
+Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
+
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+library(jsonlite)
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(zoo)
+library(tidyr)
+library(kableExtra)
+
+#
+#
+#
+#US exports of SME to China
+#
+#
+#
+
+us_sme_china <- read.csv(url("https://comtrade.un.org/api/get?type=C&freq=M&px=HS&ps=all&r=842&p=156&rg=2&cc=8486%2C903082%2C903141%2C854311%2C901041&fmt=csv"))
+
+us_sme_china <- select(us_sme_china,"Period","Trade.Value..US..")
+
+us_sme_china <- cbind("Date" = as.Date(parse_date_time(us_sme_china$Period,"ym")),us_sme_china)
+
+us_sme_china <- us_sme_china %>% group_by(Date) %>% summarise(Value = sum(Trade.Value..US..)) %>% ungroup()
+
+us_sme_china <- transform(us_sme_china,Rolling.Sum = rollapply(Value,12,sum, fill = NA, align = "left"))
+
+us_sme_china <- transform(us_sme_china,Rolling.Average = rollapply(as.numeric(Value),6,mean, fill = NA, align = "right"))
+
+us_sme_china_annual <- us_sme_china
+
+us_sme_china_annual$DateFloor <- floor_date(us_sme_china_annual$Date,"year")
+
+us_sme_china_annual <- us_sme_china_annual %>% group_by(DateFloor) %>% mutate(Annual.Sum = sum(Value)) %>% ungroup()
+
+us_sme_china_annual$Annual.Sum[duplicated(us_sme_china_annual$Annual.Sum)] <- NA
+
+us_sme_china_annual <- select(us_sme_china_annual,"Date","Rolling.Sum","Annual.Sum")
+
+us_sme_china_annual_long <- gather(us_sme_china_annual,Type,Sum,Rolling.Sum,Annual.Sum)
+
+us_sme_china_annual_long <- na.omit(us_sme_china_annual_long)
+
+us_sme_china <- select(us_sme_china,"Date","Value","Rolling.Average")
+
+us_sme_china_long <- gather(us_sme_china,Type,Result,Value,Rolling.Average)
+
+us_sme_china_monthly_plot <- ggplot(us_sme_china_long, aes(Date,Result)) +
+  geom_line(size=0.75, aes(color=Type)) +
+  labs(x="Month", y="Export Value (Millions of Dollars)", title="US to China Monthly Semiconductor Equipment Exports",color = "Legend") +
+  scale_color_hue(labels = c("6 Month Rolling Average", "Monthly Value")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+#Expand limits: https://stackoverflow.com/questions/27028825/ggplot2-force-y-axis-to-start-at-origin-and-float-y-axis-upper-limit/59056123#59056123
+
+us_sme_china_annual_plot <- ggplot(us_sme_china_annual_long, aes(Date,Sum)) +
+  geom_line(size=0.75, aes(color=Type)) +
+  geom_point(data = us_sme_china_annual_long[us_sme_china_annual_long$Type == "Annual.Sum",], color = "red", size=2) +
+  labs(x="Year", y="Export Value (Billions of Dollars)", title="US to China Annual Semiconductor Equipment Exports", color = "Legend") +
+  scale_color_hue(labels = c("Annual", "12-Month Rolling Sum")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%Y")) +
+  expand_limits(y = c(0,NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+us_sme_china_combined <- us_sme_china
+
+us_sme_china_combined <- transform(us_sme_china_combined,Rolling.Sum = rollapply(Value,12,sum, fill = NA, align = "right"))
+
+us_sme_china_combined$DateCeiling <- floor_date(rollback(ceiling_date(us_sme_china_combined$Date,"year")),"month")
+
+us_sme_china_combined <- us_sme_china_combined %>% group_by(DateCeiling) %>% mutate(Annual.Sum = sum(Value)) %>% ungroup()
+
+us_sme_china_combined <- us_sme_china_combined[,c("Date","Value","Rolling.Average","Rolling.Sum","Annual.Sum")]
+
+us_sme_china_combined[,2:5] <- us_sme_china_combined[,2:5]/1000000
+
+
+us_sme_china_combined <- us_sme_china_combined %>% arrange(desc(Date))
+
+#number formatting discussion: https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
+us_sme_china_combined_formatted <- us_sme_china_combined %>% mutate_if(is.numeric,round,digits=0) %>% mutate_if(is.numeric,format,nsmall=0,big.mark=",")
+
+us_sme_china_monthly_table <- kbl(us_sme_china_combined_formatted,col.names = c("Date","Monthly Export","6 Month Rolling Average","Rolling Annual Total","Total by Year")) %>%
+  add_header_above(c(" " = 1,"Monthly Values (Millions of $)" = 2,"Annual Values (Millions of $)" = 2)) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+#US exports of chips to China
+
+us_chips_china <- read.csv(url("https://comtrade.un.org/api/get?type=C&freq=M&px=HS&ps=all&r=842&p=156&rg=2&cc=8542&fmt=csv"))
+
+us_chips_china <- select(us_chips_china,"Period","Trade.Value..US..")
+
+us_chips_china <- cbind("Date" = as.Date(parse_date_time(us_chips_china$Period,"ym")),us_chips_china)
+
+us_chips_china <- us_chips_china %>% group_by(Date) %>% summarise(Value = sum(Trade.Value..US..)) %>% ungroup()
+
+us_chips_china <- transform(us_chips_china,Rolling.Sum = rollapply(Value,12,sum, fill = NA, align = "left"))
+
+us_chips_china <- transform(us_chips_china,Rolling.Average = rollapply(as.numeric(Value),6,mean, fill = NA, align = "right"))
+
+us_chips_china_annual <- us_chips_china
+
+us_chips_china_annual$DateFloor <- floor_date(us_chips_china_annual$Date,"year")
+
+us_chips_china_annual <- us_chips_china_annual %>% group_by(DateFloor) %>% mutate(Annual.Sum = sum(Value)) %>% ungroup()
+
+us_chips_china_annual$Annual.Sum[duplicated(us_chips_china_annual$Annual.Sum)] <- NA
+
+us_chips_china_annual <- select(us_chips_china_annual,"Date","Rolling.Sum","Annual.Sum")
+
+us_chips_china_annual_long <- gather(us_chips_china_annual,Type,Sum,Rolling.Sum,Annual.Sum)
+
+us_chips_china_annual_long <- na.omit(us_chips_china_annual_long)
+
+us_chips_china <- select(us_chips_china,"Date","Value","Rolling.Average")
+
+us_chips_china_long <- gather(us_chips_china,Type,Result,Value,Rolling.Average)
+
+us_chips_china_monthly_plot <- ggplot(us_chips_china_long, aes(Date,Result)) +
+  geom_line(size=0.75, aes(color=Type)) +
+  labs(x="Month", y="Export Value (Millions of Dollars)", title="US to China Monthly Semiconductor Equipment Exports",color = "Legend") +
+  scale_color_hue(labels = c("6 Month Rolling Average", "Monthly Value")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+#Expand limits: https://stackoverflow.com/questions/27028825/ggplot2-force-y-axis-to-start-at-origin-and-float-y-axis-upper-limit/59056123#59056123
+
+us_chips_china_annual_plot <- ggplot(us_chips_china_annual_long, aes(Date,Sum)) +
+  geom_line(size=0.75, aes(color=Type)) +
+  geom_point(data = us_chips_china_annual_long[us_chips_china_annual_long$Type == "Annual.Sum",], color = "red", size=2) +
+  labs(x="Year", y="Export Value (Billions of Dollars)", title="US to China Annual Semiconductor Equipment Exports", color = "Legend") +
+  scale_color_hue(labels = c("Annual", "12-Month Rolling Sum")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%Y")) +
+  expand_limits(y = c(0,NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+us_chips_china_combined <- us_chips_china
+
+us_chips_china_combined <- transform(us_chips_china_combined,Rolling.Sum = rollapply(Value,12,sum, fill = NA, align = "right"))
+
+us_chips_china_combined$DateCeiling <- floor_date(rollback(ceiling_date(us_chips_china_combined$Date,"year")),"month")
+
+us_chips_china_combined <- us_chips_china_combined %>% group_by(DateCeiling) %>% mutate(Annual.Sum = sum(Value)) %>% ungroup()
+
+us_chips_china_combined <- us_chips_china_combined[,c("Date","Value","Rolling.Average","Rolling.Sum","Annual.Sum")]
+
+us_chips_china_combined[,2:5] <- us_chips_china_combined[,2:5]/1000000
+
+
+us_chips_china_combined <- us_chips_china_combined %>% arrange(desc(Date))
+#number formatting discussion: https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
+us_chips_china_combined_formatted <- us_chips_china_combined %>% mutate_if(is.numeric,round,digits=0) %>% mutate_if(is.numeric,format,nsmall=0,big.mark=",")
+
+us_chips_china_monthly_table <- kbl(us_chips_china_combined_formatted,col.names = c("Date","Monthly Export","6 Month Rolling Average","Rolling Annual Total","Total by Year")) %>%
+  add_header_above(c(" " = 1,"Monthly Values (Millions of $)" = 2,"Annual Values (Millions of $)" = 2)) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+#
+#
+#
+#china chips imports total
+#
+#
+#
+china_chip_imports <- read.csv(url("https://comtrade.un.org/api/get?max=100000&type=C&freq=A&px=HS&ps=all&r=156&p=0&rg=1&cc=8542&fmt=csv"))
+
+china_chip_imports <- select(china_chip_imports,"Period","Trade.Value..US..")
+
+china_chip_imports <- cbind("Date" = as.Date(parse_date_time(china_chip_imports$Period,"y")),china_chip_imports)
+
+china_chip_imports <- china_chip_imports %>% group_by(Date) %>% summarise(Value = sum(Trade.Value..US..)) %>% ungroup()
+
+china_chip_imports_annual_plot <- ggplot(china_chip_imports, aes(Date,Value)) +
+  geom_line(size=0.75, color = "red") +
+  geom_point(color = "red", size=2) +
+  labs(x="Year", y="Import Value (Billions of Dollars)", title="China Annual Semiconductor Chip Imports") +
+  scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%Y")) +
+  expand_limits(y = c(0,NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+china_chip_imports_formatted <- china_chip_imports
+
+china_chip_imports_formatted$Date <- format(as.Date(china_chip_imports_formatted$Date),"%Y")
+china_chip_imports_formatted[,2] <- china_chip_imports_formatted[,2]/1000000
+
+china_chip_imports_formatted <- china_chip_imports_formatted %>% arrange(desc(Date))
+
+#number formatting discussion: https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
+china_chip_imports_formatted <- china_chip_imports_formatted %>% mutate_if(is.numeric,round,digits=0) %>% mutate_if(is.numeric,format,nsmall=0,big.mark=",")
+
+china_chip_imports_table <- kbl(china_chip_imports_formatted,col.names = c("Date","Semiconductor Imports (Millions of $)")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+#
+#
+#
+#china sme imports total
+#
+#
+#
+
+china_sme_imports <- read.csv(url("https://comtrade.un.org/api/get?max=100000&type=C&freq=A&px=HS&ps=all&r=156&p=0&rg=1&cc=8486%2C903082%2C903141%2C854311%2C901041&fmt=csv"))
+
+china_sme_imports <- select(china_sme_imports,"Period","Trade.Value..US..")
+
+china_sme_imports <- cbind("Date" = as.Date(parse_date_time(china_sme_imports$Period,"y")),china_sme_imports)
+
+china_sme_imports <- china_sme_imports %>% group_by(Date) %>% summarise(Value = sum(Trade.Value..US..)) %>% ungroup()
+
+china_sme_imports_annual_plot <- ggplot(china_sme_imports, aes(Date,Value)) +
+  geom_line(size=0.75, color = "red") +
+  geom_point(color = "red", size=2) +
+  labs(x="Year", y="Import Value (Billions of Dollars)", title="China Annual Semiconductor sme Imports") +
+  scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%Y")) +
+  expand_limits(y = c(0,NA)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+china_sme_imports_formatted <- china_sme_imports
+
+china_sme_imports_formatted$Date <- format(as.Date(china_sme_imports_formatted$Date),"%Y")
+china_sme_imports_formatted[,2] <- china_sme_imports_formatted[,2]/1000000
+
+china_sme_imports_formatted <- china_sme_imports_formatted %>% arrange(desc(Date))
+
+#number formatting discussion: https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
+china_sme_imports_formatted <- china_sme_imports_formatted %>% mutate_if(is.numeric,round,digits=0) %>% mutate_if(is.numeric,format,nsmall=0,big.mark=",")
+
+china_sme_imports_table <- kbl(china_sme_imports_formatted,col.names = c("Date","Semiconductor Imports (Millions of $)")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+```
+
+
+## US Semiconductor Manufacturing Equipment Exports to China
+
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+us_sme_china_monthly_plot
+
+us_sme_china_annual_plot
+
+us_sme_china_monthly_table
+```
+
+## US Semiconductor Chips Exports to China
+  
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+us_chips_china_monthly_plot
+
+us_chips_china_annual_plot
+
+us_chips_china_monthly_table
+```
+
+
+## China Semiconductor Manufacturing Equipment Imports
+  
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+china_sme_imports_annual_plot
+
+china_sme_imports_table
+```
+
+
+## China Semiconductor Chips Imports
+
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+china_chip_imports_annual_plot
+
+china_chip_imports_table
+```
