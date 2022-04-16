@@ -15,7 +15,9 @@ This page contains semiconductor trade data for use in forecasting the following
 * [What will be the value, in dollars, of all Chinese imports of semiconductor chips in 2022?](https://www.infer-pub.com/questions/129-what-will-be-the-value-in-dollars-of-all-chinese-imports-of-semiconductor-chips-in-2022)
 * [What will be the value, in dollars, of U.S. exports of semiconductor manufacturing equipment to China in 2022?](https://www.infer-pub.com/questions/131-what-will-be-the-value-in-dollars-of-u-s-exports-of-semiconductor-manufacturing-equipment-to-china-in-2022)
 
-Date is updated automatically at regular intervals and is sourced from COMTRADE.
+Data is updated automatically at regular intervals and is sourced from COMTRADE.
+
+**Important Note: The annual data for US exports to China is a summation of monthly data, so data for the current year is to-date and is not complete.**
 
 Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
 
@@ -117,9 +119,13 @@ us_sme_china_monthly_table <- kbl(us_sme_china_combined_formatted,col.names = c(
   kable_minimal(full_width = F) %>%
   column_spec(1,width_min = "6em") %>%
   scroll_box(width = "100%", height = "500px")
-
+#
+#
+#
 #US exports of chips to China
-
+#
+#
+#
 us_chips_china <- read.csv(url("https://comtrade.un.org/api/get?type=C&freq=M&px=HS&ps=all&r=842&p=156&rg=2&cc=8542&fmt=csv"))
 
 us_chips_china <- select(us_chips_china,"Period","Trade.Value..US..")
@@ -152,7 +158,7 @@ us_chips_china_long <- gather(us_chips_china,Type,Result,Value,Rolling.Average)
 
 us_chips_china_monthly_plot <- ggplot(us_chips_china_long, aes(Date,Result)) +
   geom_line(size=0.75, aes(color=Type)) +
-  labs(x="Month", y="Export Value (Millions of Dollars)", title="US to China Monthly Semiconductor Equipment Exports",color = "Legend") +
+  labs(x="Month", y="Export Value (Millions of Dollars)", title="US to China Monthly Semiconductor Chips Exports",color = "Legend") +
   scale_color_hue(labels = c("6 Month Rolling Average", "Monthly Value")) +
   scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
@@ -167,7 +173,7 @@ us_chips_china_monthly_plot <- ggplot(us_chips_china_long, aes(Date,Result)) +
 us_chips_china_annual_plot <- ggplot(us_chips_china_annual_long, aes(Date,Sum)) +
   geom_line(size=0.75, aes(color=Type)) +
   geom_point(data = us_chips_china_annual_long[us_chips_china_annual_long$Type == "Annual.Sum",], color = "red", size=2) +
-  labs(x="Year", y="Export Value (Billions of Dollars)", title="US to China Annual Semiconductor Equipment Exports", color = "Legend") +
+  labs(x="Year", y="Export Value (Billions of Dollars)", title="US to China Annual Semiconductor Chips Exports", color = "Legend") +
   scale_color_hue(labels = c("Annual", "12-Month Rolling Sum")) +
   scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 year",labels = date_format("%Y")) +
@@ -261,7 +267,7 @@ china_sme_imports <- china_sme_imports %>% group_by(Date) %>% summarise(Value = 
 china_sme_imports_annual_plot <- ggplot(china_sme_imports, aes(Date,Value)) +
   geom_line(size=0.75, color = "red") +
   geom_point(color = "red", size=2) +
-  labs(x="Year", y="Import Value (Billions of Dollars)", title="China Annual Semiconductor sme Imports") +
+  labs(x="Year", y="Import Value (Billions of Dollars)", title="China Annual Semiconductor Manufacturing Equipment Imports") +
   scale_y_continuous(labels = label_dollar(scale = 1e-9), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 year",labels = date_format("%Y")) +
   expand_limits(y = c(0,NA)) +
