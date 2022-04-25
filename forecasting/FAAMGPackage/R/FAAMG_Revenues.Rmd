@@ -1,0 +1,228 @@
+---
+title: "FAAMG Revenues"
+author: "[Ryan Beck](https://twitter.com/BeckRyooan)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page contains semiconductor trade data for use in forecasting the following question on INFER:
+
+* [How will the combined annual revenue of Alphabet, Amazon, Apple, Facebook, and Microsoft change over the next three years?](https://www.infer-pub.com/questions/396-how-will-the-combined-annual-revenue-of-alphabet-amazon-apple-facebook-and-microsoft-change-over-the-next-three-years)
+
+Data is updated automatically at regular intervals and is sourced from [SEC filings](https://www.sec.gov/edgar/sec-api-documentation).
+
+**Important Note: The data is pulled automatically and quarterly data may become available at different times, so the most recent quarterly data may be incomplete and not account for all of the included companies.**
+
+Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
+
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+library(tidyverse)
+library(jsonlite)
+library(httr)
+library(lubridate)
+library(data.table)
+library(zoo)
+library(scales)
+library(kableExtra)
+
+#SEC api call documentation: https://www.sec.gov/edgar/sec-api-documentation
+#SEC company CIK # lookup: https://www.sec.gov/edgar/searchedgar/cik.htm
+#Revenue tag used for alphabet and amazon, confirm others: RevenueFromContractWithCustomerExcludingAssessedTax
+#See SEC filings with tagged 10-Qs to check proper tag
+#see here for fair access and user-agent description: https://www.sec.gov/os/accessing-edgar-data
+
+#Microsoft seems to report annual revenue in Q2 and Apple in Q3. Alphabet need to use "Revenues" in addition to "RevenueFromContract..."
+alphabet_additional <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/Revenues.json",sep=""),user_agent("Personal use, contact ryooan@gmail.com"))
+alphabet_additional <- content(alphabet_additional, as="text")
+alphabet_additional <- fromJSON(alphabet_additional) %>% as.data.frame
+
+company <- c("Alphabet","Amazon","Apple","Facebook","Microsoft")
+CIK <- c("0001652044","0001018724","0000320193","0001326801","0000789019")
+
+for (i in 1:length(CIK)) {
+  temporary_list <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK",CIK[i],"/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",sep=""),user_agent("Personal use, contact ryooan@gmail.com"))
+  temporary_json <- content(temporary_list, as="text")
+  temporary_revenue <- fromJSON(temporary_json) %>% as.data.frame
+  
+  if (company[i] == "Alphabet") {
+    temporary_revenue <- full_join(temporary_revenue,alphabet_additional)
+  }
+  
+  
+  temporary_revenue$period <- as.numeric(as.Date(temporary_revenue$units.USD.end) - as.Date(temporary_revenue$units.USD.start))
+  
+  temporary_revenue$end_year <- year(temporary_revenue$units.USD.end)
+  temporary_revenue$end_month <- month(temporary_revenue$units.USD.end)
+  temporary_revenue$end_day <- day(temporary_revenue$units.USD.end)
+  
+  temporary_revenue <- temporary_revenue %>% mutate(quarter = case_when(end_month == 12 & period < 100 ~ 'Q4', 
+                                                                  end_month == 9 & period < 100 ~ 'Q3', 
+                                                                  end_month == 6 & period < 100 ~ 'Q2',
+                                                                  end_month == 3 & period < 100 ~ 'Q1',
+                                                                  period > 350 ~ 'Annual'))
+  assign(paste(company[i],"raw",sep=""),temporary_revenue)
+  min_year = min(temporary_revenue$end_year)
+  max_year = max(temporary_revenue$end_year)
+  
+  temporary_revenue <- temporary_revenue %>% select(units.USD.start,units.USD.end,units.USD.val,period,end_year,end_month,end_day,quarter)
+  
+  assign(paste(company[i],"cleaned",sep=""),temporary_revenue)
+  
+  for (val in min_year:max_year) {
+    #lookup values: https://stackoverflow.com/questions/15303283/how-to-do-vlookup-and-fill-down-like-in-excel-in-r
+    lookup_annual <- data.frame(val,"Annual")
+    names(lookup_annual) <- c("end_year","quarter")
+    annual_values <- (merge(lookup_annual, temporary_revenue, by = c("end_year","quarter")))
+    annual_values <- unique(annual_values)
+    
+    quarter_names <- c("Q1","Q2","Q3","Q4")
+    quarter_end_month <- c(3,6,9,12)
+    lookup_quarters <- data.frame(c(val,val,val,val),quarter_names)
+    names(lookup_quarters) <- c("end_year","quarter")
+    quarterly_values <- (merge(lookup_quarters, temporary_revenue, by = c("end_year","quarter")))
+    quarterly_values <- unique(quarterly_values)
+    
+    lookup_previous_quarters <- data.frame(c(val-1,val-1,val-1,val-1),quarter_names)
+    names(lookup_previous_quarters) <- c("end_year","quarter")
+    
+    two_years <- full_join(lookup_previous_quarters,lookup_quarters)
+    two_years <- arrange(two_years,end_year,quarter)
+    two_years <- tibble::rowid_to_column(two_years, "ID")
+    
+    for (k in 1:4) {
+      if (!any(quarterly_values==quarter_names[k])) {
+        annual_value <- annual_values$units.USD.val[1]
+        
+        remove_current <- k+4
+        two_years <- two_years[-c(1:k,remove_current:8),]
+        previous_quarters <- merge(two_years,temporary_revenue,by=c("end_year","quarter"))
+        previous_quarters <- unique(previous_quarters)
+        cumulative_quarters <- sum(previous_quarters$units.USD.val)
+        current_value <- annual_value - cumulative_quarters
+        temporary_revenue <- temporary_revenue %>% add_row(period = 90, end_year = val, end_month = quarter_end_month[k], end_day = 31,units.USD.val = current_value,quarter = quarter_names[k])
+      }
+    }
+  }
+  
+  cleaned_revenue <- temporary_revenue
+  cleaned_revenue <- cleaned_revenue %>% select("end_year","end_month","quarter","units.USD.val")
+  cleaned_revenue <- unique(cleaned_revenue)
+  #https://stackoverflow.com/questions/45472480/how-to-rename-a-column-to-a-variable-name-in-a-tidyverse-way
+  cleaned_revenue <- rename(cleaned_revenue,!!company[i] := units.USD.val)
+  cleaned_revenue <- na.omit(cleaned_revenue)
+  assign(paste(company[i]),cleaned_revenue)
+  
+  
+  if (i == 1) {
+    summarized_revenue <- cleaned_revenue
+  } else {
+    summarized_revenue <- full_join(summarized_revenue, cleaned_revenue)
+  }
+}
+
+year_quarter <- select(summarized_revenue,end_year,quarter)
+year_quarter <- unique(year_quarter)
+revenue_all <- summarized_revenue %>% group_by(end_year,quarter) %>% summarize_all(~mean(.,na.rm=TRUE)) %>% ungroup()
+revenue_all <- select(revenue_all,!end_month)
+revenue_annual <- filter(revenue_all,quarter=="Annual")
+revenue_quarterly <- filter(revenue_all,quarter!="Annual")
+
+revenue_quarterly <- revenue_quarterly %>% mutate(quarter_total = rowSums(.[3:7],na.rm=TRUE))
+revenue_quarterly <- revenue_quarterly %>% mutate(four_Q_rolling_sum = rollapply(quarter_total,4,sum,fill=NA,align="right"))
+
+revenue_quarterly <- revenue_quarterly %>% mutate(year_quarter = as.yearqtr(paste(end_year,quarter),"%Y Q%q"))
+revenue_quarterly <- revenue_quarterly %>% filter(year_quarter >= "2018-01-01")
+revenue_quarters <- revenue_quarterly[,c("year_quarter","Alphabet","Amazon","Apple","Facebook","Microsoft")]
+revenue_quarters[,c(2:6)] <- revenue_quarters[,c(2:6)]/1000000000
+revenue_quarters_long <- revenue_quarters %>% pivot_longer(!year_quarter,names_to = "Company",values_to = "Revenue")
+
+revenue_quarters_plot <- ggplot(revenue_quarters_long, aes(year_quarter,Revenue)) +
+  geom_line(size=0.75, aes(color=Company)) +
+  geom_point(aes(color=Company), size=2) +
+  labs(x="Quarter", y="Revenue (Billions of Dollars)", title="FAAMG Quarterly Revenues",color = "Company") +
+  scale_y_continuous(labels = label_dollar(scale = 1), limits = c(0, NA), expand = expansion(mult = c(0, 0.2))) +
+  scale_x_yearqtr(format="%Y-Q%q",n=10) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+revenue_sum <- revenue_quarterly[,c("year_quarter","quarter_total","four_Q_rolling_sum")]
+revenue_sum[,c(2:3)] <- revenue_sum[,c(2:3)]/1000000000
+revenue_sum <- revenue_sum %>% filter(year_quarter >= "2019-01-01")
+revenue_sum_long <- revenue_sum %>% pivot_longer(!year_quarter,names_to = "Type",values_to = "Revenue")
+
+revenue_sum_quarter_total <- ggplot(revenue_sum, aes(year_quarter,quarter_total)) +
+  geom_line(size=0.75, color="blue") +
+  geom_point(color="blue", size=2) +
+  labs(x="Quarter", y="Total Revenue (Billions of Dollars)", title="FAAMG Revenue Quarterly Totals",color = "Legend") +
+  scale_y_continuous(labels = label_dollar(scale = 1), limits = c(NA, NA), expand = expansion(mult = c(0.2, 0.2))) +
+  scale_x_yearqtr(format="%Y-Q%q",n=10) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+revenue_rolling_sum <- ggplot(revenue_sum, aes(year_quarter,four_Q_rolling_sum)) +
+  geom_line(size=0.75, color="blue") +
+  geom_point(color="blue", size=2) +
+  labs(x="Quarter", y="Rolling Annual Revenue (Billions of Dollars)", title="FAAMG Revenue Four Quarter Rolling Sum",color = "Legend") +
+  scale_y_continuous(labels = label_dollar(scale = 1), limits = c(NA, NA), expand = expansion(mult = c(0.2, 0.2))) +
+  scale_x_yearqtr(format="%Y-Q%q",n=10) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank())
+
+revenue_quarters_formatted <- revenue_quarters %>% arrange(desc(year_quarter))
+revenue_quarters_formatted <- revenue_quarters_formatted %>% mutate_if(is.numeric,round,digits=1) %>% mutate_if(is.numeric,format,nsmall=1,big.mark=",")
+
+quarterly_revenues_table <- kbl(revenue_quarters_formatted,col.names = c("Quarter","Alphabet","Amazon","Apple","Facebook","Microsoft")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+revenue_sum_formatted <- revenue_sum %>% arrange(desc(year_quarter))
+revenue_sum_formatted <- revenue_sum_formatted %>% mutate_if(is.numeric,round,digits=1) %>% mutate_if(is.numeric,format,nsmall=1,big.mark=",")
+
+quarterly_sum_table <- kbl(revenue_sum_formatted,col.names = c("Quarter","Quarterly Sum","Four Quarter Rolling Sum")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1,width_min = "6em") %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+## FAAMG Quarterly Revenues
+This plot shows the revenues from each quarter for the individual FAAMG companies (Alphabet, Amazon, Apple, Facebook, and Microsoft).
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+revenue_quarters_plot
+```
+
+## FAAMG Quarterly Combined Revenues
+This plot shows the sum of all FAAMG revenues for each quarter. As noted at the top, numbers from the most recent quarters may not be complete, verify in the tables at the bottom whether all of the revenues are included.
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+revenue_sum_quarter_total
+```
+
+## FAAMG Four Quarter Rolling Sum of Revenues
+This plot shows the four quarter rolling sum of revenues, or the combined annual revenues of all FAAMG companies each quarter. This is what INFER uses to resolve the question linked above, though INFER refers to halves instead of quarters. INFER's H1 values will correspond to Q2 and H2 will correspond to Q4 numbers.
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+revenue_rolling_sum
+```
+
+## FAAMG Quarterly Revenues Table
+A table of quarterly revenues for each company with the most recent shown first. Values are in billions of dollars.
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+quarterly_revenues_table
+```
+
+## FAAMG Combined Revenues Table
+This table shows the quarterly combined revenues of all of the FAAMG companies ("Quarterly Sum") and the four quarter rolling sum or combined annual revenues ("Four Quarter Rolling Sum"). Values are in billions of dollars. The "Four Quarter Rolling Sum" numbers are what INFER uses to resolve the question linked above, INFER's H1 values will correspond to Q2 and H2 corresponds to Q4. Verify that all companies are accounted for in the most recent quarter in the quarterly revenues table before relying on the most recent number.
+```{r message=FALSE, warning=FALSE, fig.align="center"}
+quarterly_sum_table
+```
