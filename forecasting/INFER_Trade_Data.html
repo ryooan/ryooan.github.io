@@ -667,7 +667,7 @@ pre code {
 </div>
 
 
-<p>Last updated: May 30, 2022</p>
+<p>Last updated: June 02, 2022</p>
 <p>This page contains semiconductor trade data for use in forecasting the following questions on INFER:</p>
 <ul>
 <li><a href="https://www.infer-pub.com/questions/130-what-will-be-the-value-in-dollars-of-u-s-exports-of-semiconductor-chips-to-china-in-2022">What will be the value, in dollars, of U.S. exports of semiconductor chips to China in 2022?</a></li>
@@ -943,7 +943,7 @@ china_sme_imports_formatted &lt;- china_sme_imports_formatted %&gt;% arrange(des
 #number formatting discussion: https://stackoverflow.com/questions/3443687/formatting-decimal-places-in-r
 china_sme_imports_formatted &lt;- china_sme_imports_formatted %&gt;% mutate_if(is.numeric,round,digits=0) %&gt;% mutate_if(is.numeric,format,nsmall=0,big.mark=&quot;,&quot;)
 
-china_sme_imports_table &lt;- kbl(china_sme_imports_formatted,col.names = c(&quot;Date&quot;,&quot;Semiconductor Imports (Millions of $)&quot;)) %&gt;%
+china_sme_imports_table &lt;- kbl(china_sme_imports_formatted,col.names = c(&quot;Date&quot;,&quot;Semiconductor Equipment Imports (Millions of $)&quot;)) %&gt;%
   kable_minimal(full_width = F) %&gt;%
   column_spec(1,width_min = &quot;6em&quot;) %&gt;%
   scroll_box(width = &quot;100%&quot;, height = &quot;500px&quot;)</code></pre>
@@ -6018,7 +6018,7 @@ NA
 Date
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-Semiconductor Imports (Millions of $)
+Semiconductor Equipment Imports (Millions of $)
 </th>
 </tr>
 </thead>
