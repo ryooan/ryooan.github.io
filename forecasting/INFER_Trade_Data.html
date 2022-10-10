@@ -587,8 +587,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -596,16 +596,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -667,7 +660,7 @@ pre code {
 </div>
 
 
-<p>Last updated: October 03, 2022</p>
+<p>Last updated: October 10, 2022</p>
 <p>This page contains semiconductor trade data for use in forecasting the following questions on INFER:</p>
 <ul>
 <li><a href="https://www.infer-pub.com/questions/130-what-will-be-the-value-in-dollars-of-u-s-exports-of-semiconductor-chips-to-china-in-2022">What will be the value, in dollars, of U.S. exports of semiconductor chips to China in 2022?</a></li>
