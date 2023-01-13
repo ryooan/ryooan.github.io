@@ -79,7 +79,7 @@ debtLimitPlot <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
   theme_classic() +
-  theme(text = element_text(size=20), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
   theme(legend.position = "top") +
   theme(legend.title = element_blank()) +
@@ -89,9 +89,10 @@ debtLimitPlot <- ggplot(debtLimitLong, aes(data_record_date,value)) +
                     guide = guide_legend(override.aes = list(alpha = 0.5))) +
   coord_cartesian(ylim=c(0,35000000))
 
+debtLimitPlotLargeText <- debtLimitPlot + theme(text = element_text(size=20))
 
 CairoPNG("debtLimitPlot.png",width=900,height=600,units="px",pointsize=12)
-debtLimitPlot
+debtLimitPlotLargeText
 nothing <- dev.off()
 
 #set limits without losing data: https://stackoverflow.com/questions/25685185/limit-ggplot2-axes-without-removing-data-outside-limits-zoom
@@ -102,7 +103,7 @@ debtLimitPlotShort <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
   theme_classic() +
-  theme(text = element_text(size=20), axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
   theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
   theme(legend.position = "top") +
   theme(legend.title = element_blank()) +
@@ -112,9 +113,10 @@ debtLimitPlotShort <- ggplot(debtLimitLong, aes(data_record_date,value)) +
                     guide = guide_legend(override.aes = list(alpha = 0.5))) +
   coord_cartesian(ylim=c(20000000,35000000),xlim=c(max(debtLimitLong$data_record_date)-1100,max(debtLimitLong$data_record_date)))
 
+debtLimitPlotShortLargeText <- debtLimitPlotShort + theme(text = element_text(size=20))
 
 CairoPNG("debtLimitPlotShort.png",width=900,height=600,units="px",pointsize=12)
-debtLimitPlotShort
+debtLimitPlotShortLargeText
 nothing <- dev.off()
 
 #creating and formatting values for table view
@@ -129,8 +131,16 @@ debtLimitTable <- kbl(debtLimitForTable,col.names = c("Date","Debt Subject to Li
   column_spec(1:3,width = "10em") %>%
   scroll_box(width = "100%", height = "500px")
 
-debtLimitTable
-
 ```
+
+```{r message=FALSE, warning=FALSE}
+
+debtLimitPlot
+
+debtLimitPlotShort
+
+debtLimitTable
+```
+
 
 \* NA means the debt limit was suspended.
