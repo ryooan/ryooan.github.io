@@ -1,0 +1,136 @@
+---
+title: "US Debt Limit"
+author: "[Ryan Beck](https://twitter.com/ryanbeck111)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page contains information about the US debt ceiling provided by the US Treasury. Date is updated daily automatically and is sourced from the US Treasury's [Daily Treasury Statement](https://fiscaldata.treasury.gov/datasets/daily-treasury-statement/debt-subject-to-limit) (DTS).
+
+For more details about the statutory debt limit see [this article from the Committee for a Responsible Federal Budget](https://www.crfb.org/papers/qa-everything-you-should-know-about-debt-ceiling). The gray areas on the charts below represent periods where the debt limit was suspended. The debt subject to limit is the US debt issued which cannot exceed the statutory debt limit. Suspensions [often specify](https://crsreports.congress.gov/product/pdf/IN/IN11829) that at the time the suspension ends the statutory debt limit will be set to the amount of the outstanding obligations.
+
+Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
+
+```{r message=FALSE, warning=FALSE}
+library(jsonlite)
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(zoo)
+library(tidyr)
+library(janitor)
+library(kableExtra)
+library(Cairo)
+
+#more info on pagination https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
+baseUrl <- "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/dts_table_3c?page[size]=10000&sort=-record_date&fields=record_date,debt_catg,debt_catg_desc,close_today_bal"
+#debtLimit1 <- fromJSON(paste0(baseUrl, "&page[number]=1"))
+
+pages <- list()
+for(i in 1:4){
+  debtPages <- fromJSON(paste0(baseUrl, "&page[number]=", i))
+  message("Retrieving page ", i)
+  debtPages <- debtPages[1] %>% as.data.frame
+  pages[[i+1]] <- debtPages
+}
+
+debtLimitPrelim <- rbind_pages(pages)
+#debtLimit <- debtLimit[c("data.record_date","data.debt_catg","data.debt_catg_desc","data.close_today_bal")]
+debtLimit <- debtLimitPrelim %>% pivot_wider(names_from = data.debt_catg, values_from = data.close_today_bal)
+debtLimit <- subset(debtLimit, select = -data.debt_catg_desc)
+debtLimit[, 2:8] <- lapply(debtLimit[, 2:8],as.numeric)
+debtLimit$data.record_date <- as.Date(debtLimit$data.record_date)
+debtLimit <- debtLimit %>% group_by(data.record_date) %>% summarise_each(funs(sum(., na.rm = TRUE)))
+
+debtLimit <- clean_names(debtLimit)
+
+debtLimit <- transform(debtLimit,total_subject_limit = debt_held_by_the_public + intragovernmental_holdings - debt_not_subject_to_limit + other_debt_subject_to_limit - less_debt_not_subject_to_limit + plus_other_debt_subject_to_limit)
+debtLimitLong <- debtLimit[c("data_record_date","total_subject_limit","statutory_debt_limit")] %>% pivot_longer(cols=c('total_subject_limit','statutory_debt_limit'),names_to="type",values_to="value")
+
+find_suspension <- debtLimitLong %>% filter(type == "statutory_debt_limit") # %>% mutate(s = na_if(value,0))
+start_date <- vector()
+end_date <- vector()
+
+for(i in 1:length(find_suspension$data_record_date)) {
+  if (find_suspension$value[i] == 0) {
+    if (find_suspension$value[i-1] != 0) {
+      start_date <- append(start_date, find_suspension$data_record_date[i])
+    }
+    if (find_suspension$value[i+1] != 0) {
+      end_date <- append(end_date, find_suspension$data_record_date[i])
+    }
+  }
+}
+
+suspend_dates <- data.frame(start_date, end_date)
+
+debtLimitLong <- debtLimitLong %>% mutate(value = na_if(value,0))
+
+#more about using geom_rect
+#1) https://stackoverflow.com/questions/55301759/ggplot-geom-rect-error-object-not-found
+#2) https://plotly.com/ggplot2/geom_rect/
+debtLimitPlot <- ggplot(debtLimitLong, aes(data_record_date,value)) +
+  geom_line(size=0.75, aes(color=type)) +
+  labs(x="Date", y="Trillions of Dollars", title="US Debt Limit and Debt Subject to Limit (Full)",color = "Legend") +
+  scale_color_hue(labels = c("Statutory Debt Limit", "Debt Subject to Limit")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank()) +
+  geom_rect(data=suspend_dates,aes(x=NULL,y=NULL,xmin=start_date,xmax=end_date,ymin = -30000000, ymax = 50000000,fill="Limit Suspended"),alpha=0.5) +
+  scale_fill_manual('Shading',
+                    values = 'gray',
+                    guide = guide_legend(override.aes = list(alpha = 0.5))) +
+  coord_cartesian(ylim=c(0,35000000))
+
+
+CairoPNG("debtLimitPlot.png",width=640,height=480,units="px",pointsize=12)
+debtLimitPlot
+nothing <- dev.off()
+
+#set limits without losing data: https://stackoverflow.com/questions/25685185/limit-ggplot2-axes-without-removing-data-outside-limits-zoom
+debtLimitPlotShort <- ggplot(debtLimitLong, aes(data_record_date,value)) +
+  geom_line(size=0.75, aes(color=type)) +
+  labs(x="Date", y="Trillions of Dollars", title="US Debt Limit and Debt Subject to Limit (Past Three Years)",color = "Legend") +
+  scale_color_hue(labels = c("Statutory Debt Limit", "Debt Subject to Limit")) +
+  scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  theme(legend.position = "top") +
+  theme(legend.title = element_blank()) +
+  geom_rect(data=suspend_dates,aes(x=NULL,y=NULL,xmin=start_date,xmax=end_date,ymin = -30000000, ymax = 50000000, fill="Limit Suspended"),alpha=0.5) +
+  scale_fill_manual('Shading',
+                    values = 'gray',
+                    guide = guide_legend(override.aes = list(alpha = 0.5))) +
+  coord_cartesian(ylim=c(20000000,35000000),xlim=c(max(debtLimitLong$data_record_date)-1100,max(debtLimitLong$data_record_date)))
+
+
+CairoPNG("debtLimitPlotShort.png",width=640,height=480,units="px",pointsize=12)
+debtLimitPlotShort
+nothing <- dev.off()
+
+#creating and formatting values for table view
+debtLimitForTable <- debtLimit %>% select(data_record_date,total_subject_limit,statutory_debt_limit) %>% mutate(statutory_debt_limit = na_if(statutory_debt_limit,0))
+debtLimitForTable <- debtLimitForTable %>% arrange(desc(data_record_date))
+debtLimitForTable[,2:3] <- debtLimitForTable[,2:3]/1000000
+debtLimitForTable <- debtLimitForTable %>% mutate_if(is.numeric,round,digits=3)
+
+
+debtLimitTable <- kbl(debtLimitForTable,col.names = c("Date","Debt Subject to Limit (Trillions of $)","Statutory Debt Limit* (Trillions of $)")) %>%
+  kable_minimal(full_width = F) %>%
+  column_spec(1:3,width = "10em") %>%
+  scroll_box(width = "100%", height = "500px")
+
+debtLimitTable
+
+```
+
+\* NA means the debt limit was suspended.
