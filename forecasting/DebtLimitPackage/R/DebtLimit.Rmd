@@ -79,7 +79,7 @@ debtLimitPlot <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 year",labels = date_format("%b/%y")) +
   theme_classic() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(text = element_text(size=20), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
   theme(legend.position = "top") +
   theme(legend.title = element_blank()) +
@@ -90,7 +90,7 @@ debtLimitPlot <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   coord_cartesian(ylim=c(0,35000000))
 
 
-CairoPNG("debtLimitPlot.png",width=640,height=480,units="px",pointsize=12)
+CairoPNG("debtLimitPlot.png",width=900,height=600,units="px",pointsize=12)
 debtLimitPlot
 nothing <- dev.off()
 
@@ -102,7 +102,7 @@ debtLimitPlotShort <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   scale_y_continuous(labels = label_dollar(scale = 1e-6), limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
   scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
   theme_classic() +
-  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
+  theme(text = element_text(size=20), axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
   theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
   theme(legend.position = "top") +
   theme(legend.title = element_blank()) +
@@ -113,7 +113,7 @@ debtLimitPlotShort <- ggplot(debtLimitLong, aes(data_record_date,value)) +
   coord_cartesian(ylim=c(20000000,35000000),xlim=c(max(debtLimitLong$data_record_date)-1100,max(debtLimitLong$data_record_date)))
 
 
-CairoPNG("debtLimitPlotShort.png",width=640,height=480,units="px",pointsize=12)
+CairoPNG("debtLimitPlotShort.png",width=900,height=600,units="px",pointsize=12)
 debtLimitPlotShort
 nothing <- dev.off()
 
