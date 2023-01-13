@@ -14,7 +14,7 @@ For more details about the statutory debt limit see [this article from the Commi
 
 Click the "Code" buttons to see the R code used on this page. An R Markdown file of this page is [available here](https://github.com/ryooan/ryooan.github.io/tree/master/forecasting) for anyone who wishes to download and run or modify it themselves.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, fig.show='hide'}
 library(jsonlite)
 library(tidyverse)
 library(lubridate)
