@@ -1,0 +1,83 @@
+/*@font-face {
+    font-family: "Source Serif Pro";
+    src: url("SourceSerifPro-Regular.e47a0df06a21.woff2") format("woff2"),
+         url("SourceSerifPro-Regular.57515d7a1348.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Source Serif Pro";
+    src: url("SourceSerifPro-Italic.2b2d8fab3db0.woff2") format("woff2"),
+         url("SourceSerifPro-Italic.67912c72b97b.woff") format("woff");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Source Serif Pro";
+    src: url("SourceSerifPro-Bold.c10ec58ebf0c.woff2") format("woff2"),
+         url("SourceSerifPro-Bold.9f8c7227dd02.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Source Serif Pro";
+    src: url("SourceSerifPro-BoldItalic.d9ea1a32e3b5.woff2") format("woff2"),
+         url("SourceSerifPro-BoldItalic.62f2cc928c22.woff") format("woff");
+    font-weight: 700;
+    font-style: italic;
+}*/
+
+@font-face {
+    font-family: "Diatype Variable";
+    src: url("ABCDiatypeVariable.ceb8c44baf72.woff2") format("woff2-variations"),
+         url("ABCDiatypeVariable.89ddb36bc0f2.woff") format("woff-variations");
+    font-weight: 100 700;
+}
+
+/* Fallback static font */
+@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-Regular.60b95829bf3a.woff2") format("woff2"),
+         url("ABCDiatype-Regular.31df4dd92559.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-RegularItalic.0b52b76aa2ba.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+/*@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-Medium.9fe5ded8511d.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-MediumItalic.b18e2a030aa5.woff2") format("woff2");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-Bold.3615f084637e.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Diatype";
+    src: url("ABCDiatype-BoldItalic.dd2e56a25b00.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+}
+*/

@@ -1,0 +1,38 @@
+
+.itn-radio {
+    display: flex;
+    justify-content: space-around;
+}
+
+.itn-columns {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.itn-columns>div {
+    flex: 1 1 50%;
+    min-width: 250px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.itn-subtitle {
+    margin-top: -0.5em;
+    color: var(--gray500);
+    font-style: italic;
+}
+
+.itn-article-body {
+    margin: 1em auto;
+    padding: 1em;
+    border: 1px solid var(--blue500);
+    white-space: pre-wrap;
+    text-align: left;
+    font-size: 15px;
+}
+
+.itn-match-list {
+    text-align: left;
+}
