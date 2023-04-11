@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: Degeneracy and Jefferson and a Moose
-ogimageurl: ryanbeckauthor.com/assets/cougar.jpg
+ogimageurl: /assets/cougar.jpg
 tags: [science, history]
 ---
 >"The Europeans who pass into America degenerate, as do the animals; a proof that the climate is unfavourable to the improvement of either man or animal... This degradation of humanity must be imputed to the vitiated qualities of the air stagnating in their immense forests, and corrupted by the noxious vapours from standing waters and uncultivated grounds."
