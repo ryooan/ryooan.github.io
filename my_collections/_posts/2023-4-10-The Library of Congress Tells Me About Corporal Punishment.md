@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: The Library of Congress Tells Me About Corporal Punishment
-ogimageurl: ryanbeckauthor.com/assets/tar_and_feather.jpg
+ogimageurl: /assets/tar_and_feather.jpg
 tags: [history]
 ---
 I've been reading *[Empire of Liberty: A history of the Early Republic, 1780-1815](https://www.goodreads.com/en/book/show/550931)* by Gordon S. Wood and while it's full of fascinating information one passage in particular recently caught my eye:
