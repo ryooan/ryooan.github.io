@@ -23,7 +23,7 @@ This seemed far and away beyond anything I imagined occurring in that time perio
 
 <figure>
   <img src="{{site.url}}/assets/tar_and_feather.jpg" alt="Tarring and Feathering" style="width:50%; margin:auto; display:block"/>
-  <figcaption><a href="https://commons.wikimedia.org/wiki/File:A_New_Method_of_Maracrony_Making_as_Practised_at_Boston_in_North_America_MET_MM2283.jpg">Metropolitan Museum of Art</a>, CC0, via Wikimedia Commons — more historical information about this image [available from the Library of Congress](https://www.loc.gov/pictures/item/2004673300/)</figcaption>
+  <figcaption><a href="https://commons.wikimedia.org/wiki/File:A_New_Method_of_Maracrony_Making_as_Practised_at_Boston_in_North_America_MET_MM2283.jpg">Metropolitan Museum of Art</a>, CC0, via Wikimedia Commons — more historical information about this image <a href="https://www.loc.gov/pictures/item/2004673300/">available from the Library of Congress</a></figcaption>
 </figure>
 
 All of it seemed extreme, such as burning hands and cutting off ears, but cutting off an entire arm? I had to know more. So I skimmed and cntrl+f'd my way through the sources referenced in that section of *Empire of Liberty* and came up short. I couldn't find anything as extreme as cutting off an arm mentioned.
