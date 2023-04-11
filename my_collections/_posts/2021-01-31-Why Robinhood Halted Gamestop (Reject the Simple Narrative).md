@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: Why Robinhood Halted Gamestop (Reject the Simple Narrative)
-ogimageurl: /assets/value%20at%20risk%20percent%20full.png
+ogimageurl: https://www.ryanbeckauthor.com/assets/value%20at%20risk%20percent%20full.png
 tags: [politics]
 ---
 On January 28th Robinhood [disabled all transactions except for position-closing (selling) for a small set of stocks including Gamestop (GME)](https://web.archive.org/web/20210128225134/https://robinhood.com/support/articles/5u3FDQTWzsH0yNQ4sJXYsZ/changes-due-to-recent-market-volatility/). This was a new and exciting development in the ongoing saga of how a subreddit called Wallstreetbets (WSB) memed their way into contributing to a short squeeze and profiting from it (or at least the early adopters are likely to profit from it). Freezing stock purchases also generated significant outrage, quickly turning into a narrative of how Big Wallstreet will cheat to avoid losing money to the average Joe. This narrative is simple, appealing, and probably wrong, and the following is an attempt to explain why.
