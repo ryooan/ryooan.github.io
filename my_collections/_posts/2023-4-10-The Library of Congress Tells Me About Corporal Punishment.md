@@ -28,7 +28,7 @@ This seemed far and away beyond anything I imagined occurring in that time perio
 
 All of it seemed extreme, such as burning hands and cutting off ears, but cutting off an entire arm? I had to know more. So I skimmed and cntrl+f'd my way through the sources referenced in that section of *Empire of Liberty* and came up short. I couldn't find anything as extreme as cutting off an arm mentioned.
 
-While my own research skills failed me, I was pleased to find in my search that the Library of Congress provides an [Ask a Librarian](https://ask.loc.gov/) resource, where you can submit a question to one of their specialists. So I did, and I was quite pleased to get the following detailed answer in response, with the relevant segment shared in full (and lightly formatted):
+While my own research skills failed me, I was pleased to find in my search that the Library of Congress provides an [Ask a Librarian](https://ask.loc.gov/) resource, where you can submit a question to one of their specialists. So I did, and I was delighted to get the following detailed answer in response, with the relevant segment shared in full (and lightly formatted):
 
 >Consulting Wood we found the passage you quoted on page 493.
 >
