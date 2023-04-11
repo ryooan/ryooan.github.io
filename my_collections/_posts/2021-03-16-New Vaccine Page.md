@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: New Vaccine Page
-ogimageurl: https://www.ryanbeckauthor.com/vaccines/images/coronavirus123454321.jpg
+ogimageurl: /vaccines/images/coronavirus123454321.jpg
 tags: [science]
 ---
 I forgot to post here about it, but a few weeks ago I turned my [vaccine spreadsheet](https://docs.google.com/spreadsheets/d/1HUY4b7Q-eoJgCBa9dKe466Pl_Q_kQO4hk3PuoI_mC4E/edit?usp=sharing) into a webpage on my site. You can check it out at the link below, it should be easier to navigate than the spreadsheet, especially on mobile.
