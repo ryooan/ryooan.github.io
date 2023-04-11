@@ -22,7 +22,7 @@ Going back to that first quote, one portion especially stood out to me:
 This seemed far and away beyond anything I imagined occurring in that time period in the US. I know tarring and feathering was happening, and one of my general takeaways from the rest of *Empire of Liberty* is that 18th century "civilized" society was downright barbaric. But still, tarring and feathering was usually associated with mob violence, and state sponsored corporal punishment — especially the forced parting with one's own arm — did indeed seem shocking to me.
 
 <figure>
-  <img src="ryanbeckauthor.com/assets/tar_and_feather.jpg" alt="Tarring and Feathering" style="width:50%; margin:auto; display:block"/>
+  <img src="{{site.url}}/assets/tar_and_feather.jpg" alt="Tarring and Feathering" style="width:50%; margin:auto; display:block"/>
   <figcaption><a href="https://commons.wikimedia.org/wiki/File:A_New_Method_of_Maracrony_Making_as_Practised_at_Boston_in_North_America_MET_MM2283.jpg">Metropolitan Museum of Art</a>, CC0, via Wikimedia Commons — more historical information about this image [available from the Library of Congress](https://www.loc.gov/pictures/item/2004673300/)</figcaption>
 </figure>
 
