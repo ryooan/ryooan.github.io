@@ -5,7 +5,7 @@ title: The Library of Congress Tells Me About Corporal Punishment
 ogimageurl: ryanbeckauthor.com/assets/tar_and_feather.jpg
 tags: [history]
 ---
-I've been reading [Empire of Liberty: A history of the Early Republic, 1780-1815](https://www.goodreads.com/en/book/show/550931) by Gordon S. Wood and while it's full of fascinating information one passage in particular recently caught my eye:
+I've been reading *[Empire of Liberty: A history of the Early Republic, 1780-1815](https://www.goodreads.com/en/book/show/550931)* by Gordon S. Wood and while it's full of fascinating information one passage in particular recently caught my eye:
 
 >In Massachusetts in 1785 a counterfeiter was no longer executed. Instead, he was set in the pillory, taken to the gallows, where he stood with a rope around his neck for a time, whipped twenty stripes, had his left arm cut off, and finally was sentenced to three years' hard labor.
 
