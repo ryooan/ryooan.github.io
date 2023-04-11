@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: Afghanistan Uncertainty
-ogimageurl: ryanbeckauthor.com/assets/gjopen_kabul.png
+ogimageurl: /assets/gjopen_kabul.png
 tags: [politics, forecasting]
 ---
 I've been increasingly frustrated with the public conversation around Afghanistan. The whole situation is a tragedy, and instead of sober reflection on the situation we got ourselves into the public conversation has predictably become nothing but political finger pointing. Those flinging blame at this point appear to be selectively attacking only their political enemies and defending their political allies. But the failures have been bipartisan, and I think we should all be ignoring the people who are currently using this horrible situation as a tool to attack their political enemies.
