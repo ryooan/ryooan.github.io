@@ -2,7 +2,7 @@
 layout: post
 author: Ryan
 title: A Noob's Guide to Github Actions
-ogimageurl: ryanbeckauthor.com/assets/github-3.png
+ogimageurl: /assets/github-3.png
 tags: [programming, resources]
 ---
 I have a few Rmarkdown scripts that I’ve created to visualize data for forecasting. I host them on Github so they appear as html [pages](https://www.ryanbeckauthor.com/forecasting/Virginia_Vaccinations.html) on my [website](https://www.ryanbeckauthor.com/forecasting/Virginia_Vaccinations.html). I’ve been looking for a way to automatically render those Rmarkdown files every day instead of manually running and uploading the updated html file to Github, and someone suggested I try Github Actions. This turned out to be the perfect solution, but it took a lot of head scratching and confusion on my part to get it going. So here I’m documenting in detail everything I learned from the perspective of a novice muddling through it. There are other guides out there from people who have more knowledge of Github, Github Actions, and R, but as I looked at these guides I felt that there were gaps where they were either discussing things above my level of understanding or things didn’t apply to my situation. I’m hoping that by documenting what I’ve learned here it will help other noobs learn and setup their own Github Actions more quickly, and also that I’ll be able to use this guide myself when I inevitably forget how my setup works.
