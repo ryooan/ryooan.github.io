@@ -59,8 +59,15 @@ for(i in 1:length(find_suspension$data_record_date)) {
     if (find_suspension$value[i-1] != 0) {
       start_date <- append(start_date, find_suspension$data_record_date[i])
     }
-    if (find_suspension$value[i+1] != 0) {
-      end_date <- append(end_date, find_suspension$data_record_date[i])
+    
+    #check if we're at the end of the loop
+    #if value is 0 and we're at the end set the current date as the end of the suspension.
+    if (i < length(find_suspension$data_record_date)) {
+      if (find_suspension$value[i+1] != 0) {
+        end_date <- append(end_date, find_suspension$data_record_date[i])
+      }
+    } else {
+      end_date <- append(end_date, Sys.Date())
     }
   }
 }
