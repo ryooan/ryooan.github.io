@@ -1,0 +1,200 @@
+---
+title: "Weekly Covid Hospital Admissions"
+author: "[Ryan Beck](https://twitter.com/ryanbeck111)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page shows weekly COVID confirmed admissions for Virginia as well as the national level.
+
+## Virginia
+
+### Weekly Adult and Pediatric Covid Hospital Admissions
+
+The plot shows weekly adult and pediatric total hospital admissions over time for patients with confirmed COVID-19 in Virginia. The data comes from HealthData.gov.
+
+Data source: https://healthdata.gov/Hospital/COVID-19-Reported-Patient-Impact-and-Hospital-Capa/g62h-syeh
+
+Click the code buttons to view the R code used.
+
+
+```{r message=FALSE, warning=FALSE}
+
+library(RSocrata)
+library(tidyverse)
+library(zoo)
+library(scales)
+library(kableExtra)
+library(reshape2)
+library(latticeExtra)
+
+df <- read.socrata("https://healthdata.gov/resource/g62h-syeh.csv")
+
+df <- df %>% mutate(date = as.Date(date,"%Y-%m-%dT00:00:00.000"))
+
+df[is.na(df)] = 0
+
+df_va <- df[df$state == "VA",]
+
+data_by_date_va <- df_va %>% group_by(date) %>% summarise(Adult = sum(previous_day_admission_adult_covid_confirmed),Pediatric = sum(previous_day_admission_pediatric_covid_confirmed))
+
+data_by_date_va <- transform(data_by_date_va,Total = Adult + Pediatric)
+
+data_by_date_va <- transform(data_by_date_va,Rolling.Sum = rollapply(Total,7,sum, fill = NA, align = "right"))
+
+data_by_date_va <- transform(data_by_date_va,Change = Rolling.Sum - lag(Rolling.Sum,1))
+
+data_by_date_va <- transform(data_by_date_va,Rolling.Average.Change = round(rollmean(Change,7,fill = NA, align = "right"),digits=0))
+
+#hospitalizations_plot_va <- ggplot(data_by_date_va, aes(date, Rolling.Sum)) +
+#  geom_line() +
+#  labs(x="Date", y="Weekly Hospital Admissions", title="Weekly Confirmed Covid Adult and Pediatric Hospital #Admissions") +
+#  scale_y_continuous(breaks = breaks_width(1000)) +
+#  scale_x_date(breaks="1 month",labels = date_format("%b/%y"),limits = c(as.Date("2020-07-01"),NA))
+
+hospitalizations_plot_va <- ggplot(data_by_date_va, aes(date,Rolling.Sum)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Weekly Hospital Admissions", title="Virginia Weekly Confirmed COVID Hospital Admissions",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b/%y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+  
+hospitalizations_plot_va
+
+
+```
+
+```{r message=FALSE, warning=FALSE}
+hospitalizations_plot_va_short <- ggplot(data_by_date_va, aes(date,Rolling.Sum)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Weekly Hospital Admissions", title="Virginia Weekly Confirmed COVID Hospital Admissions (Past 60 Days)",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b %d, %y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  coord_cartesian(ylim=,c(min(tail(data_by_date_va$Rolling.Sum, 60))-10,max(tail(data_by_date_va$Rolling.Sum, 60))+10),xlim=c(max(data_by_date_va$date)-60,max(data_by_date_va$date)))
+  
+hospitalizations_plot_va_short
+```
+
+### Table
+
+The table below shows the daily values for all admissions in Virginia, as well as the daily and weekly totals. Additionally it shows the change in the weekly total each day, and the rolling average change which can be used to determine whether hospital admissions are going up or down and how quickly.
+
+```{r message=FALSE, warning=FALSE}
+
+table_df_va <- data_by_date_va
+table_df_va$Adult <- NULL
+table_df_va$Pediatric <- NULL
+table_df_va <- table_df_va %>% arrange(desc(date))
+
+kbl(table_df_va,col.names = c("Date","Total Daily Admissions","Total Weekly Admissions","Change in Weekly Total","7 Day Rolling Average Change")) %>%
+  kable_minimal() %>%
+  scroll_box(width = "100%", height = "500px")
+
+```
+
+## National
+
+### Weekly Adult and Pediatric Covid Hospital Admissions
+
+```{r message=FALSE, warning=FALSE}
+
+data_by_date <- df %>% group_by(date) %>% summarise(Adult = sum(previous_day_admission_adult_covid_confirmed),Pediatric = sum(previous_day_admission_pediatric_covid_confirmed))
+
+data_by_date <- transform(data_by_date,Total = Adult + Pediatric)
+
+data_by_date <- transform(data_by_date,Rolling.Sum = rollapply(Total,7,sum, fill = NA, align = "right"))
+
+data_by_date <- transform(data_by_date,Change = Rolling.Sum - lag(Rolling.Sum,1))
+
+data_by_date <- transform(data_by_date,Rolling.Average.Change = round(rollmean(Change,7,fill = NA, align = "right"),digits=0))
+
+hospitalizations_plot <- ggplot(data_by_date, aes(date,Rolling.Sum)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Weekly Hospital Admissions", title="National Weekly Confirmed COVID Hospital Admissions",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b/%y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+  
+hospitalizations_plot
+
+```
+
+```{r message=FALSE, warning=FALSE}
+hospitalizations_plot_short <- ggplot(data_by_date, aes(date,Rolling.Sum)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Weekly Hospital Admissions", title="National Weekly Confirmed COVID Hospital Admissions (Past 60 Days)",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b %d, %y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90")) +
+  coord_cartesian(ylim=,c(min(tail(data_by_date$Rolling.Sum, 60))-10,max(tail(data_by_date$Rolling.Sum, 60))+10),xlim=c(max(data_by_date$date)-60,max(data_by_date$date)))
+  
+hospitalizations_plot_short
+```
+
+### Weekly Pediatric Hospital Admissions
+
+As concerns about variants and their effects on children have grown it seems useful to track pediatric hospital admissions on their own. This is a subset of the previous graph showing only pediatric hospital admissions with confirmed COVID. It's important to note the scale of this graph and the previous, pediatric hospital admissions are still only a small component of overall hospital admissions.
+
+```{r message=FALSE, warning=FALSE}
+adult_pediatric <- select(data_by_date, -Rolling.Average.Change, -Change, -Rolling.Sum)
+adult_pediatric <- transform(adult_pediatric,Weekly.Pediatric = rollapply(Pediatric,7,sum, fill = NA, align = "right"))
+adult_pediatric <- select(adult_pediatric, -Adult, -Pediatric, -Total)
+
+pediatric_plot <- ggplot(adult_pediatric, aes(date,Weekly.Pediatric)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Weekly Hospital Admissions", title="National Weekly Confirmed COVID Pediatric Hospital Admissions",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b/%y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+pediatric_plot
+```
+
+Here is pediatric hospital admissions as a percent of all hospital admissions.
+
+```{r message=FALSE, warning=FALSE}
+adult_pediatric <- select(data_by_date, -Rolling.Average.Change, -Change, -Rolling.Sum)
+adult_pediatric <- transform(adult_pediatric,Weekly.Pediatric = rollapply(Pediatric,7,sum, fill = NA, align = "right"),Weekly.Adult = rollapply(Adult,7,sum, fill = NA, align = "right"))
+adult_pediatric <- select(adult_pediatric, -Adult, -Pediatric, -Total)
+adult_pediatric <- transform(adult_pediatric, Pediatric.Portion = Weekly.Pediatric/(Weekly.Adult + Weekly.Pediatric)*100)
+
+pediatric_percent_plot <- ggplot(adult_pediatric, aes(date,Pediatric.Portion)) +
+  geom_line(size=0.75) +
+  labs(x="Date", y="Percent of Admissions", title="National Pediatric Share of Weekly Admissions",color = "Legend") +
+  scale_y_continuous(limits = c(NA, NA)) + #, expand = expansion(mult = c(0, 0.2))) +
+  scale_x_date(labels = date_format("%b/%y")) + #breaks="1 year"
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  theme(panel.grid.major = element_line(colour = "grey"), panel.grid.minor = element_line(colour = "gray90"))
+
+pediatric_percent_plot
+```
+
+### Table
+
+The table below shows the daily values for adult and pediatric admissions, as well as the daily and weekly totals. Additionally it shows the change in the weekly total each day, and the rolling average change which can be used to determine whether hospital admissions are going up or down and how quickly.
+
+```{r message=FALSE, warning=FALSE}
+
+table_df <- data_by_date
+table_df <- table_df %>% arrange(desc(date))
+
+kbl(table_df,col.names = c("Date","Adult Admissions","Pediatric Admissions","Total Daily Admissions","Total Weekly Admissions","Change in Weekly Total","7 Day Rolling Average Change")) %>%
+  kable_minimal() %>%
+  scroll_box(width = "100%", height = "500px")
+
+```
