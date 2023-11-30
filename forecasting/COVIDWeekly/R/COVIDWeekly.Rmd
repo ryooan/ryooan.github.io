@@ -85,9 +85,8 @@ annotate_points <- covid_data_daily %>%
 max_change <- max(covid_data_daily$weekly_percentage_change, na.rm = TRUE)
 min_change <- min(covid_data_daily$weekly_percentage_change, na.rm = TRUE)
 
-offset_percentage <- 0.8  # 80% offset
-upper_offset <- max_change * offset_percentage
-lower_offset <- min_change * offset_percentage
+offset_percentage <- 0.2  # 20% offset
+offset <- (max_change - min_change) * offset_percentage
 
 # Define a threshold for y-value
 y_threshold <- max(covid_data_daily$weekly_percentage_change) * 0.9
@@ -101,8 +100,8 @@ state_plot <- ggplot(covid_data_daily, aes(x = date, y = weekly_percentage_chang
   geom_text(data = annotate_points, 
             aes(label = round(rolling_weekly_sum), 
                 y = ifelse(weekly_percentage_change > y_threshold, 
-                           weekly_percentage_change - upper_offset, 
-                           weekly_percentage_change + upper_offset),
+                           weekly_percentage_change - offset, 
+                           weekly_percentage_change + offset),
                 hjust = ifelse(date == first_date, -0, 1)), # Adjust hjust based on date
             check_overlap = TRUE, size = 3) +
   facet_geo(~ abbr, grid = "us_state_grid1") +
