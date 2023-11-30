@@ -80,7 +80,7 @@ annotate_points <- influenza_data_daily %>%
 max_change <- max(influenza_data_daily$weekly_percentage_change, na.rm = TRUE)
 min_change <- min(influenza_data_daily$weekly_percentage_change, na.rm = TRUE)
 
-offset_percentage <- 0.2  # 20% offset
+offset_percentage <- 0.4  # 40% offset
 upper_offset <- max_change * offset_percentage
 lower_offset <- min_change * offset_percentage
 
