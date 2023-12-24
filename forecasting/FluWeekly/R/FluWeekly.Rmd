@@ -194,3 +194,55 @@ us_influenza_kbl
 The figure below shows the relative change in weekly hospitalizations in each state in the most recent four weeks, relative to the figure from four weeks ago. The starting and ending weekly sum of hospitalizations are shown on each chart.
 
 ![](./state_plot.png)
+
+```{r message=FALSE, warning=FALSE}
+##plots for each state
+
+# Determine the date one year ago from the latest date
+state_plot_start <- latest_date - years(2)
+
+# Get unique list of state abbreviations
+state_list <- unique(influenza_data$abbr)
+
+# Loop through each state and create a plot
+for (state in state_list) {
+  # Filter data for the current state and the past year
+  state_data <- influenza_data %>%
+    filter(abbr == state & date >= state_plot_start)
+  
+  # Calculate daily sums (preserving original data structure)
+  state_data <- state_data %>%
+    group_by(location_name, abbr, date) %>%
+    summarize(weekly_total = sum(value, na.rm = TRUE), .groups = "drop")
+  
+  # Find the latest point in state data for annotation
+  latest_state_data <- state_data %>%
+    filter(date == max(date)) %>%
+    select(date, weekly_total)
+  
+  # Annotation text for the latest point
+  annotate_text <- paste(latest_state_data$date, "\n", scales::comma(latest_state_data$weekly_total), sep = "")
+  
+  state_plot <- ggplot(state_data, aes(x = date, y = weekly_total)) +
+    geom_line(color = "black", size = 1) +
+    geom_text(data = latest_state_data, aes(label = annotate_text, x = date, y = weekly_total), 
+              vjust = -0.5, hjust = 1, color = "black", size = 3) +
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %Y") +
+    scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks(n = 10)) +
+    labs(title = paste("Influenza Weekly Total Hospitalizations in", state),
+         subtitle = "Past Two Years",
+         x = element_blank(),
+         y = "Weekly Total") +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(size = 16),
+      plot.subtitle = element_text(size = 12),
+      axis.text.x = element_text(angle = 45, hjust = 1)
+    )
+  
+  # Save the plot
+  ggsave(paste0("state_plot_", state, ".png"), state_plot, width = 10, height = 6, dpi = 300, bg = "white")
+}
+
+
+```

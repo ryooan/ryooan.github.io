@@ -77,6 +77,7 @@ jobs:
           git rev-parse --show-toplevel
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          git pull origin main --no-edit # Pull changes from remote, avoiding the opening of an editor for a merge commit message
           git add --all
           git status
           git commit -am 'Scheduled update' || echo "No changes to commit"

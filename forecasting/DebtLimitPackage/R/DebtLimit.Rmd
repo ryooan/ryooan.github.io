@@ -26,7 +26,7 @@ library(kableExtra)
 library(Cairo)
 
 #more info on pagination https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
-baseUrl <- "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/dts_table_3c?page[size]=10000&sort=-record_date&fields=record_date,debt_catg,debt_catg_desc,close_today_bal"
+baseUrl <- "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/debt_subject_to_limit?page[size]=10000&sort=-record_date&fields=record_date,debt_catg,debt_catg_desc,close_today_bal"
 #debtLimit1 <- fromJSON(paste0(baseUrl, "&page[number]=1"))
 
 pages <- list()
