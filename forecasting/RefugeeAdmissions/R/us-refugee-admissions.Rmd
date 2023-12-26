@@ -1,0 +1,161 @@
+---
+title: "US Refugee Admissions"
+author: "[Ryan Beck](https://twitter.com/ryanbeck111)"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+This page plots refugee admissions data from the US Department of State's [Refugee Processing Center](https://www.wrapsnet.org/admissions-and-arrivals/) (RPC). Note that annual data is summarized according to the US government's fiscal year, which runs from October to September.
+
+```{r message=FALSE, warning=FALSE}
+# Load necessary libraries
+library(openxlsx)
+library(httr)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+
+
+# Annual Totals -----------------------------------------------------------
+
+
+# URL of the Excel file
+url <- "https://www.wrapsnet.org/documents/PRM%20Refugee%20Admissions%20Report%20as%20of%2030%20Nov%202023.xlsx"
+
+# Read the data from the Cumulative Summary tab
+# Note: You might need to adjust the range "A11:B60" based on the exact columns for Fiscal Year and Total
+data <- read.xlsx(url, sheet = "Cumulative Summary", startRow = 11, )
+
+subset_data <- data[1:49, c('Year', 'Total')]
+
+subset_data$Year <- as.numeric(as.character(subset_data$Year))
+subset_data$Total <- as.numeric(as.character(subset_data$Total))
+
+# Find the latest point in the solidified US data for annotation
+latest_year <- subset_data %>%
+  filter(Year == max(Year)) %>%
+  select(Year, Total)
+
+# Annotation text for the latest point
+annotate_text <- paste(latest_year$Year, "\n", format(latest_year$Total, big.mark = ","), sep = "")
+
+# Plotting
+fy_admissions <- ggplot(subset_data, aes(x = Year, y = Total)) +
+  geom_line(color = "black", size = 1) +
+  geom_point() +
+  geom_text(data = latest_year, aes(x = Year, y = Total, label = annotate_text), 
+            vjust = -0.5, hjust = 1, color = "black", size = 4) +
+  # Scales and labels
+  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks(n = 10)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 20),
+    plot.subtitle = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14, margin = margin(r = 7, unit = "pt"))
+  ) +
+  labs(title = "Total US Refugee Admissions by Fiscal Year", x = "Fiscal Year", y = "Total")
+
+fy_admissions
+
+ggsave("fy_admissions.png", fy_admissions, width = 10, height = 6, dpi = 300, bg = "white")
+
+# Monthly Totals ----------------------------------------------------------
+
+# Function to calculate the current fiscal year
+# subtract 1 to account for data lag
+get_fiscal_year <- function(date) {
+  year <- year(date)
+  if (month(date) - 1 >= 10) {
+    return(year + 1)
+  } else {
+    return(year)
+  }
+}
+
+# Calculate the current fiscal year based on the current date
+current_date <- as.Date(Sys.Date())
+current_fiscal_year <- get_fiscal_year(current_date)
+
+# List the three most recent fiscal years
+fiscal_years <- c(current_fiscal_year - 2, current_fiscal_year - 1, current_fiscal_year)
+
+# Function to extract 'Grand Totals' from a given sheet
+extract_grand_totals <- function(year) {
+  
+  # Read the entire sheet
+  grand_totals <- read.xlsx(url, sheet = as.character(year))
+  if (is.null(grand_totals)) {
+    print(paste("No data found in sheet", as.character(year)))
+    return(NULL)
+  }
+  
+  #print(year)
+  #print(grand_totals)
+  
+  # Extract headers from row 8, columns 5 to 16
+  table_headers <- grand_totals[5, 5:16]
+  if (any(is.na(table_headers))) {
+    print("Headers not properly found")
+    return(NULL)
+  }
+  
+  #print(table_headers)
+  
+  # Find the row index for "Grand Totals"
+  grand_total_row_index <- which(grand_totals[, 2] == "Grand Totals")
+  if (length(grand_total_row_index) == 0) {
+    print("No 'Grand Totals' row found")
+    return(NULL)
+  }
+  
+  #print(grand_total_row_index)
+  # Extract data from the "Grand Totals" row, columns 5 to 16
+  grand_total_data <- grand_totals[grand_total_row_index, 5:16]
+  
+  # Set the column names
+  colnames(grand_total_data) <- table_headers
+  
+  # Convert the data frame to long format
+  grand_totals_long <- grand_total_data %>%
+    pivot_longer(cols = everything(), names_to = "Month", values_to = "Total") %>%
+    mutate(Actual_Date = if_else(Month %in% c("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP"), as.Date(paste("01 ", Month, " ", year), "%d %b %Y"), as.Date(paste("01 ", Month, " ", year - 1), "%d %b %Y")))
+  
+  return(grand_totals_long)
+}
+
+# Extract 'Grand Totals' for each of the fiscal years and bind them into one data frame
+monthly_totals <- bind_rows(lapply(fiscal_years, extract_grand_totals))
+
+monthly_totals <- monthly_totals %>%
+  drop_na(Total)
+
+monthly_totals$Total <- as.numeric(monthly_totals$Total)
+
+# Now plot the data with a trendline
+monthly_admissions <- ggplot(monthly_totals, aes(x = Actual_Date, y = Total)) +
+  geom_line(color = "black", size = 1) +
+  geom_point() +
+  scale_x_date(date_labels = "%b %Y", breaks = scales::pretty_breaks(n = 10)) +  # Format the x-axis labels
+  scale_y_continuous(labels = scales::comma, breaks = scales::pretty_breaks(n = 10)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
+  labs(title = "US Monthly Refugee Admissions Over Time", x = "Date", y = "Monthly Admissions") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 20),
+    plot.subtitle = element_text(size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+    axis.text.y = element_text(size = 12),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14, margin = margin(r = 7, unit = "pt"))
+  )
+
+monthly_admissions
+
+ggsave("monthly_admissions.png", monthly_admissions, width = 10, height = 6, dpi = 300, bg = "white")
+```
