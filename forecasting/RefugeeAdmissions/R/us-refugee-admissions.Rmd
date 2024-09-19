@@ -37,9 +37,6 @@ latest_url <- paste0(base_url, relative_url)
 # Encode the URL properly
 latest_url <- URLencode(latest_url)
 
-# Print the latest URL to verify
-print(latest_url)
-
 
 # Annual Totals -----------------------------------------------------------
 
