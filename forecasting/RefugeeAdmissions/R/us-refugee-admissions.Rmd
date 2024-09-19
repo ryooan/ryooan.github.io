@@ -12,18 +12,40 @@ This page plots refugee admissions data from the US Department of State's [Refug
 
 ```{r message=FALSE, warning=FALSE}
 # Load necessary libraries
+library(rvest)
 library(openxlsx)
 library(httr)
 library(ggplot2)
 library(tidyverse)
 library(lubridate)
 
+# Define the page URL to scrape the latest Excel file
+base_url <- "https://www.wrapsnet.org"
+page_url <- "https://www.wrapsnet.org/admissions-and-arrivals/"
+
+# Scrape the page to find the URL of the latest Excel file
+page <- read_html(page_url)
+relative_url <- page %>%
+  html_nodes("a") %>%
+  html_attr("href") %>%
+  .[grepl(".xlsx$", .)] %>%
+  .[1]  # Assuming the first .xlsx file is the most recent
+
+# Combine base URL with the relative path to get the full URL
+latest_url <- paste0(base_url, relative_url)
+
+# Encode the URL properly
+latest_url <- URLencode(latest_url)
+
+# Print the latest URL to verify
+print(latest_url)
+
 
 # Annual Totals -----------------------------------------------------------
 
 
 # URL of the Excel file
-url <- "https://www.wrapsnet.org/documents/PRM%20Refugee%20Admissions%20Report%20as%20of%2030%20Nov%202023.xlsx"
+url <- latest_url
 
 # Read the data from the Cumulative Summary tab
 # Note: You might need to adjust the range "A11:B60" based on the exact columns for Fiscal Year and Total
