@@ -1,0 +1,12 @@
+Package: hpai-depopulations
+Type: Package
+Title: HPAI Bird Flu Depopulations Rmarkdown Generator
+Version: 0.1.0
+Author: Ryan Beck
+Maintainer: Ryan Beck
+Description: A package used for generating an html file with HPAI bird flu depopulation data.
+License: 
+Imports:
+    tidyverse
+Encoding: UTF-8
+LazyData: true

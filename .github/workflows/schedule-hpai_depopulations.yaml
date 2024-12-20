@@ -1,0 +1,90 @@
+on:
+  schedule:
+    - cron: "0 */10 * * *"
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest,   r: 'release'}
+
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      RSPM: ${{ matrix.config.rspm }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      working-directory: ./forecasting/hpai-depopulations
+      working-path: R/hpai-depopulations.rmd
+      #output-file: NA.html
+      #output-path: ./forecasting
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Query dependencies
+        working-directory: ${{env.working-directory}}
+        run: |
+          install.packages('remotes')
+          install.packages('sessioninfo')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), "R-version")
+        shell: Rscript {0}
+        
+      - name: install required packages
+        working-directory: ${{env.working-directory}}
+        run: |
+          install.packages("rmarkdown")
+        shell: Rscript {0}
+
+      #- name: Cache R packages
+      #  working-directory: ${{env.working-directory}}
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ${{ env.R_LIBS_USER }}
+      #    key: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-${{ hashFiles('depends.Rds') }}
+      #    restore-keys: ${{ runner.os }}-${{ hashFiles('R-version') }}-1-
+
+      - name: Install dependencies
+        working-directory: ${{env.working-directory}}
+        run: |
+          remotes::install_deps(dependencies = TRUE)
+        shell: Rscript {0}
+          
+      - name: Run Rmarkdown
+        working-directory: ${{env.working-directory}}
+        run: |
+          rmarkdown::render("${{env.working-path}}", output_format = "html_document", output_dir = "../")
+        shell: Rscript {0} 
+        
+      - name: Commit files
+        #working-directory: ${{env.output-path}}
+        run: |
+          git rev-parse --show-toplevel
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git pull origin main --no-edit # Pull changes from remote, avoiding the opening of an editor for a merge commit message
+          git add --all
+          git status
+          git commit -am 'Scheduled update' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+          
+      - name: Session info
+        working-directory: ${{env.working-directory}}
+        run: |
+          options(width = 100)
+          pkgs <- installed.packages()[, "Package"]
+          sessioninfo::session_info(pkgs, include_base = TRUE)
+        shell: Rscript {0}
