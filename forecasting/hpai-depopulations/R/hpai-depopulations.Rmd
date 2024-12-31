@@ -14,6 +14,7 @@ Click the "Code" buttons to see the R code used on this page. An R Markdown file
 
 ```{r message=FALSE, warning=FALSE, fig.show='hide'}
 library(tidyverse)
+library(lubridate)
 
 # Download the CSV file
 data_url <- "https://www.cdc.gov/bird-flu/modules/situation-summary/commercial-backyard-flocks.csv"
@@ -25,7 +26,7 @@ data <- data %>%
 
 # Convert "Outbreak Date" to Date type
 data <- data %>%
-  mutate(`Outbreak Date` = as.Date(`Outbreak Date`, format = "%m/%d/%Y"))
+  mutate(`Outbreak Date` = parse_date_time(`Outbreak Date`, orders = "mdy"))
 
 # Prepare data for cumulative sum plot
 cumulative_data <- data %>%
