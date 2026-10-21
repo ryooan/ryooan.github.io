@@ -703,7 +703,7 @@ library(kableExtra)
 #see here for fair access and user-agent description: https://www.sec.gov/os/accessing-edgar-data
 
 #Microsoft seems to report annual revenue in Q2 and Apple in Q3. Alphabet need to use &quot;Revenues&quot; in addition to &quot;RevenueFromContract...&quot;
-alphabet_additional &lt;- GET(paste(&quot;https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/Revenues.json&quot;,sep=&quot;&quot;),user_agent(&quot;Personal use, contact ryooan@gmail.com&quot;))
+alphabet_additional &lt;- GET(paste(&quot;https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/Revenues.json&quot;,sep=&quot;&quot;),user_agent(&quot;Personal use, contact ryanbeckauthor@gmail.com&quot;))
 alphabet_additional &lt;- content(alphabet_additional, as=&quot;text&quot;)
 alphabet_additional &lt;- fromJSON(alphabet_additional) %&gt;% as.data.frame
 
@@ -711,7 +711,7 @@ company &lt;- c(&quot;Alphabet&quot;,&quot;Amazon&quot;,&quot;Apple&quot;,&quot;
 CIK &lt;- c(&quot;0001652044&quot;,&quot;0001018724&quot;,&quot;0000320193&quot;,&quot;0001326801&quot;,&quot;0000789019&quot;)
 
 for (i in 1:length(CIK)) {
-  temporary_list &lt;- GET(paste(&quot;https://data.sec.gov/api/xbrl/companyconcept/CIK&quot;,CIK[i],&quot;/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json&quot;,sep=&quot;&quot;),user_agent(&quot;Personal use, contact ryooan@gmail.com&quot;))
+  temporary_list &lt;- GET(paste(&quot;https://data.sec.gov/api/xbrl/companyconcept/CIK&quot;,CIK[i],&quot;/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json&quot;,sep=&quot;&quot;),user_agent(&quot;Personal use, contact ryanbeckauthor@gmail.com&quot;))
   temporary_json &lt;- content(temporary_list, as=&quot;text&quot;)
   temporary_revenue &lt;- fromJSON(temporary_json) %&gt;% as.data.frame
   

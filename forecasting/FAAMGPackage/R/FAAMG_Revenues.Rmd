@@ -35,7 +35,7 @@ library(kableExtra)
 #see here for fair access and user-agent description: https://www.sec.gov/os/accessing-edgar-data
 
 #Microsoft seems to report annual revenue in Q2 and Apple in Q3. Alphabet need to use "Revenues" in addition to "RevenueFromContract..."
-alphabet_additional <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/Revenues.json",sep=""),user_agent("Personal use, contact ryooan@gmail.com"))
+alphabet_additional <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/Revenues.json",sep=""),user_agent("Personal use, contact ryanbeckauthor@gmail.com"))
 alphabet_additional <- content(alphabet_additional, as="text")
 alphabet_additional <- fromJSON(alphabet_additional) %>% as.data.frame
 
@@ -43,7 +43,7 @@ company <- c("Alphabet","Amazon","Apple","Facebook","Microsoft")
 CIK <- c("0001652044","0001018724","0000320193","0001326801","0000789019")
 
 for (i in 1:length(CIK)) {
-  temporary_list <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK",CIK[i],"/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",sep=""),user_agent("Personal use, contact ryooan@gmail.com"))
+  temporary_list <- GET(paste("https://data.sec.gov/api/xbrl/companyconcept/CIK",CIK[i],"/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",sep=""),user_agent("Personal use, contact ryanbeckauthor@gmail.com"))
   temporary_json <- content(temporary_list, as="text")
   temporary_revenue <- fromJSON(temporary_json) %>% as.data.frame
   
