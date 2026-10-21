@@ -1,0 +1,66 @@
+---
+layout: default
+title: Blog
+description: The blog of Ryan Beck, author of SEER
+ogimageurl: https://www.ryanbeckauthor.com/images/SeerWeb.jpg
+---
+<!-- FOR MOBILE FIRST DESIGN MOVE SIDEBAR TO TOP AND PUT WITHIN LARGER -->
+<!-- MENU BUTTON. BUTTON CLICK EXPANDS TO REVEAL BUTTONS BY YEAR -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/infinite-jekyll.js"></script>
+
+
+<!-- used for mobile display -->
+{% include buttonbar.html %}
+
+<!--  used for full size display
+<div class="sidebar">
+	{% for post in site.posts %}
+  		{% assign currentdate = post.date | date: "%Y" %}
+  		{% if currentdate != date %}
+    			{% unless forloop.first %}</ul></div>{% endunless %}
+			<button class="collapsible">{{ currentdate }}</button>
+			<div class="content">
+    			<ul class="posts2">
+    			{% assign date = currentdate %}
+  		{% endif %}
+    			<li><a href="{{ post.url }}" class="postlinksblog">{{ post.title }}</a></li>
+  		{% if forloop.last %}</ul></div>{% endif %}
+	{% endfor %}
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+  			coll[i].addEventListener("click", function() {
+    			this.classList.toggle("active");
+    			var content = this.nextElementSibling;
+   			if (content.style.display === "block") {
+      				content.style.display = "none";
+    			} else {
+      			content.style.display = "block";
+    			}
+  			});
+		}
+	</script>
+
+</div>
+-->
+
+<div class="left">
+	<ul class="posts">
+  	{% for post in site.posts limit: 5 %}
+    		<li>
+      			<div class="post">
+				<h1 class="blog"><a href="{{ post.url }}" class="headerlink">{{ post.title }}</a></h1>
+				<p>{{ post.date | date: '%B %d, %Y' }}</p>
+
+				{{ post.content }}
+			</div>
+    		</li>
+  	{% endfor %}
+	</ul>
+	<div class="infinite-spinner"></div>
+</div>
+

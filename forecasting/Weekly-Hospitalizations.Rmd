@@ -1,0 +1,100 @@
+---
+title: "Weekly Covid Hospital Admissions"
+author: "Ryan Beck"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Last updated: `r format(Sys.time(), '%B %d, %Y')`
+
+### Weekly Adult and Pediatric Covid Hospital Admissions
+
+The plot shows weekly adult and pediatric total hospital admissions over time for patients with confirmed COVID-19. The data comes from HealthData.gov, and the source data is updated every Saturday.
+
+Data source: https://healthdata.gov/Hospital/COVID-19-Reported-Patient-Impact-and-Hospital-Capa/g62h-syeh
+
+Click the code buttons to view the R code used.
+
+```{r message=FALSE, warning=FALSE}
+
+library(RSocrata)
+library(tidyverse)
+library(zoo)
+library(scales)
+library(kableExtra)
+library(reshape2)
+library(latticeExtra)
+
+df <- read.socrata("https://healthdata.gov/resource/g62h-syeh.csv")
+
+df <- df %>% mutate(date = as.Date(date,"%Y-%m-%dT00:00:00.000"))
+
+df[is.na(df)] = 0
+
+data_by_date <- df %>% group_by(date) %>% summarise(Adult = sum(previous_day_admission_adult_covid_confirmed),Pediatric = sum(previous_day_admission_pediatric_covid_confirmed))
+
+data_by_date <- transform(data_by_date,Total = Adult + Pediatric)
+
+data_by_date <- transform(data_by_date,Rolling.Sum = rollapply(Total,7,sum, fill = NA, align = "right"))
+
+data_by_date <- transform(data_by_date,Change = Rolling.Sum - lag(Rolling.Sum,1))
+
+data_by_date <- transform(data_by_date,Rolling.Average.Change = round(rollmean(Change,7,fill = NA, align = "right"),digits=0))
+
+hospitalizations_plot <- ggplot(data_by_date, aes(date, Rolling.Sum)) +
+  geom_line() +
+  labs(x="Date", y="Weekly Hospital Admissions", title="Weekly Confirmed Covid Adult and Pediatric Hospital Admissions") +
+  scale_y_continuous(breaks = breaks_width(10000)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"),limits = c(as.Date("2020-07-01"),NA))
+  
+hospitalizations_plot
+
+```
+
+### Weekly Pediatric Hospital Admissions
+
+As concerns about variants and their effects on children have grown it seems useful to track pediatric hospital admissions on their own. This is a subset of the previous graph showing only pediatric hospital admissions with confirmed COVID. It's important to note the scale of this graph and the previous, pediatric hospital admissions are still only a small component of overall hospital admissions.
+
+```{r message=FALSE, warning=FALSE}
+adult_pediatric <- select(data_by_date, -Rolling.Average.Change, -Change, -Rolling.Sum)
+adult_pediatric <- transform(adult_pediatric,Weekly.Pediatric = rollapply(Pediatric,7,sum, fill = NA, align = "right"))
+adult_pediatric <- select(adult_pediatric, -Adult, -Pediatric, -Total)
+
+pediatric_plot <- ggplot(adult_pediatric, aes(date, Weekly.Pediatric)) +
+  geom_line() +
+  labs(x="Date", y="Weekly Hospital Admissions", title="Weekly Confirmed Covid Pediatric Hospital Admissions") +
+  scale_y_continuous(breaks = breaks_width(500)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"),limits = c(as.Date("2020-07-01"),NA))
+
+pediatric_plot
+```
+
+Here is pediatric hospital admissions as a percent of all hospital admissions.
+
+```{r message=FALSE, warning=FALSE}
+adult_pediatric <- select(data_by_date, -Rolling.Average.Change, -Change, -Rolling.Sum)
+adult_pediatric <- transform(adult_pediatric,Weekly.Pediatric = rollapply(Pediatric,7,sum, fill = NA, align = "right"),Weekly.Adult = rollapply(Adult,7,sum, fill = NA, align = "right"))
+adult_pediatric <- select(adult_pediatric, -Adult, -Pediatric, -Total)
+adult_pediatric <- transform(adult_pediatric, Pediatric.Portion = Weekly.Pediatric/(Weekly.Adult + Weekly.Pediatric)*100)
+
+pediatric_percent_plot <- ggplot(adult_pediatric, aes(date, Pediatric.Portion)) +
+  geom_line() +
+  labs(x="Date", y="Percent Pediatric", title="Weekly Confirmed Covid Pediatric Hospital Admissions - Percent of All") +
+  #scale_y_continuous(breaks = breaks_width(500)) +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y"),limits = c(as.Date("2020-07-01"),NA))
+
+pediatric_percent_plot
+```
+
+### Table
+
+The table below shows the daily values for adult and pediatric admissions, as well as the daily and weekly totals. Additionally it shows the change in the weekly total each day, and the rolling average change which can be used to determine whether hospital admissions are going up or down and how quickly.
+
+```{r message=FALSE, warning=FALSE}
+
+kbl(data_by_date,col.names = c("Date","Adult Admissions","Pediatric Admissions","Total Daily Admissions","Total Weekly Admissions","Change in Weekly Total","7 Day Rolling Average Change")) %>%
+  kable_minimal() %>%
+  scroll_box(width = "100%", height = "500px")
+
+```

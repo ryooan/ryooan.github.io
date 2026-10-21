@@ -1,0 +1,106 @@
+---
+title: "New York Evictions"
+author: "Ryan Beck"
+output:
+  html_document:
+    code_folding: hide
+---
+Last updated `r format(Sys.time(), '%B %d, %Y')`
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+The plots and tables below show weekly and cumulative evictions in New York. The data comes from Eviction Lab. The series "2012-2016 Average" represents the evictions for a given week averaged over the 2012 to 2016 period.
+
+Date source: https://evictionlab.org/eviction-tracking/get-the-data/
+
+Information has been independently calculated for use in forecasting New York evictions on Good Judgement Open: https://www.gjopen.com/questions/2063-how-many-new-york-city-eviction-filings-will-be-reported-for-2021
+
+Click the code buttons to view the R code used.
+```{r}
+# Sample R code to plot weekly filings
+# For Milwaukee until week 24 (06/13/2020)
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(lubridate)
+library(kableExtra)
+
+newyork_weekly_2020_2021 <- read.csv("https://evictionlab.org/uploads/newyork_weekly_2020_2021.csv")
+
+NY_data <- newyork_weekly_2020_2021 %>%   
+  group_by(week, week_date) %>% 
+  summarize(filings_2020 = sum(filings_2020),
+            filings_avg = sum(filings_avg, na.rm = T)) %>%
+  pivot_longer(cols = filings_2020:filings_avg,
+               names_to = "year",
+               values_to = "filings",
+               names_prefix = "filings_") %>% 
+  mutate(year = recode(year,
+                       avg = "2012-2016"))
+
+NY_data <- NY_data %>% mutate(week_date=as.Date(week_date, format = "%Y-%m-%d"))
+
+weekly_plot <-  NY_data %>% ggplot(aes(x = week_date,
+             y = filings)) +
+  geom_line(aes(color = year, group = year)) +
+  labs(x = "Date", y = "Weekly Filings", title = "New York Weekly Eviction Filings") +
+  scale_x_date(breaks="1 month",labels = date_format("%b/%y")) +
+  scale_color_discrete("Period", labels = c("2012-2016 Average","2020-2021 Weekly")) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+NY_weekly <- newyork_weekly_2020_2021 %>% group_by(Week = week_date) %>% summarise(Filings = sum(filings_2020),Average = sum(filings_avg))
+
+NY_Intermediate <- NY_weekly %>% separate(Week,c("Year","Month","Day"),remove = F)
+
+Week_Num <- data.frame()
+Year_Mod <- data.frame()
+
+for (i in 1:nrow(NY_Intermediate)) {
+    Week_Num <- rbind(Week_Num,round(52*(i/52-floor((i-1)/52))))
+    Year_Mod <- rbind(Year_Mod,2020+floor((i-1)/52))
+}
+colnames(Week_Num) <- "Week_Number"
+colnames(Year_Mod) <- "Year_Mod"
+NY_Overall <- cbind(Week_Num,Year_Mod,NY_Intermediate)
+
+NY_Overall <- NY_Overall %>% group_by(Year_Mod) %>% mutate(Cumulative=cumsum(Filings))
+
+month <- seq(as.Date("2020-01-01"), 
+             as.Date("2020-12-01"), 
+             by = "1 month")
+
+month_numeric <- lubridate::yday(month) / 365 * 52 + 1
+month_label <- lubridate::month(month, label = TRUE)
+
+cumulative_plot <-  NY_Overall %>% ggplot(aes(x = Week_Number,
+             y = Cumulative)) +
+  geom_line(aes(color = as.factor(Year_Mod), group = as.factor(Year_Mod))) +
+  labs(x = "Date", y = "Cumulative Filings", title = "New York Cumulative Eviction Filings") +
+  scale_x_continuous(breaks = month_numeric, labels = month_label) +
+  scale_color_discrete("Year", labels = c("2020","2021"))
+
+NY_Table <- NY_Overall %>% ungroup %>% select(-Year_Mod,-Year,-Month,-Day)
+
+NY_Table <- NY_Table %>% mutate(across(is.numeric, ~ round(., 0)))
+
+col_order <- c("Week_Number", "Week", "Average",
+               "Filings", "Cumulative")
+NY_Table <- NY_Table[, col_order]
+
+weekly_plot
+```
+
+
+```{r}
+cumulative_plot
+```
+
+```{r}
+kbl(NY_Table,col.names = c("Week #","Week","2012-2016 Average","Filings","Year to Date")) %>%
+  kable_minimal(full_width = F) %>%
+  scroll_box(width = "75%", height = "500px")
+```
